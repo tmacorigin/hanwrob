@@ -3,11 +3,14 @@ package com.tmac.onsite.adapter;
 import java.io.File;
 import java.util.ArrayList;
 
+import me.tmac.photopicker.PhotoPreview;
 import me.tmac.photopicker.utils.AndroidLifecycleUtils;
 
 import com.bumptech.glide.Glide;
 import com.tmac.onsite.R;
+import com.tmac.onsite.activity.UploadImgActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -33,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	  }
 
 	@Override
-	public void onBindViewHolder(PhotoViewHolder holder, int position) {
+	public void onBindViewHolder(PhotoViewHolder holder, final int position) {
 		// TODO Auto-generated method stub
 		Uri uri = Uri.fromFile(new File(photoPaths.get(position)));
 
@@ -48,6 +51,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	              .error(R.drawable.__picker_ic_broken_image_black_48dp)
 	              .into(holder.iv);
 	    }
+
+		holder.iv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				PhotoPreview.builder()
+						.setPhotos(photoPaths)
+						.setCurrentItem(position)
+						.start((Activity) mContext);
+			}
+		});
+
+		holder.delete.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				photoPaths.remove(position);
+				notifyDataSetChanged();
+			}
+		});
+
 	}
 
 	@Override
@@ -59,10 +81,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	
 	public static class PhotoViewHolder extends RecyclerView.ViewHolder {
 		private ImageView iv;
+		private ImageView delete;
 
 		public PhotoViewHolder(View itemView) {
 			super(itemView);
 			iv = (ImageView) itemView.findViewById(R.id.recy_img);
+			delete = (ImageView) itemView.findViewById(R.id.delete);
 		}
 	}
 

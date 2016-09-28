@@ -3,6 +3,7 @@ package com.tmac.onsite.activity;
 import com.tmac.onsite.R;
 import com.tmac.onsite.utils.MyDialog;
 import com.tmac.onsite.utils.MyDialog.OnDialogClickListener;
+import com.tmac.onsite.utils.StatusBarUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +29,11 @@ public class CannotFinishActivity extends Activity implements OnClickListener, O
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cannot_finish);
-		
+		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+
+
+
+
 		initViews(getIntent());
 		initEvents();
 		

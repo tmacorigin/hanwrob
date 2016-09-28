@@ -9,7 +9,7 @@
         android:id="@+id/cam_layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="@color/layout_title_bg">
         
         <ImageView 

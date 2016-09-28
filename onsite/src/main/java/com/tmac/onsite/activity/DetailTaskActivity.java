@@ -31,8 +31,9 @@ public class DetailTaskActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_detail_task);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-		
+//		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
+		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+
 		initViews();
 		initEvents();
 	}

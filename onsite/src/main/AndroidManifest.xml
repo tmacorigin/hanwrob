@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme">
-        <activity android:name=".activity.WelcomeActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,9 +37,9 @@
             android:name=".activity.IdentifyActivity">
         </activity>
 
-        <activity
+        <!--<activity
             android:name=".activity.MainActivity">
-        </activity>
+        </activity>-->
 
         <activity
             android:name=".activity.DetailTaskActivity"
@@ -73,9 +73,13 @@
             />
 
         <activity
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/customTheme"
             android:name="me.tmac.photopicker.PhotoPagerActivity"
             />
+
+        <activity
+            android:theme="@style/customTheme"
+            android:name="me.tmac.photopicker.PhotoCamDisplayActivity"/>
 
     </application>
 

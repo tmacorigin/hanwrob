@@ -31,7 +31,8 @@ public class LoginActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 //		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-//		StatusBarUtil.setTranslucent(this, 0);
+		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+		StatusBarUtil.setTranslucent(this, 0);
 		
 		initViews();
 		initEvents();

@@ -48,7 +48,7 @@ public class UploadImgActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_upload_img);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
+		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
 		initViews(getIntent());
 		selectedPhotos = new ArrayList<String>();
 		adapter = new RecyclerViewAdapter(this, selectedPhotos);
@@ -85,7 +85,7 @@ public class UploadImgActivity extends Activity{
 				// TODO Auto-generated method stub
 				//startActivity(new Intent(UploadImgActivity.this, SelectImgActivity.class));
 				PhotoPicker.builder()
-					.setPhotoCount(4)
+					.setPhotoCount(20)
 					.setShowCamera(true)
 					.setSelected(selectedPhotos)
 					.start(UploadImgActivity.this);
@@ -93,7 +93,7 @@ public class UploadImgActivity extends Activity{
 		});
 		
 		
-		recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(UploadImgActivity.this, 
+		/*recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(UploadImgActivity.this,
 				new OnItemClickListener() {
 					
 					@Override
@@ -104,7 +104,7 @@ public class UploadImgActivity extends Activity{
 								.setCurrentItem(position)
 								.start(UploadImgActivity.this);
 					}
-				}));
+				}));*/
 		
 		btn_send_img.setOnClickListener(new OnClickListener() {
 			
@@ -149,22 +149,27 @@ public class UploadImgActivity extends Activity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-
 		if (resultCode == RESULT_OK
 				&& (requestCode == PhotoPicker.REQUEST_CODE || requestCode == PhotoPreview.REQUEST_CODE)) {
 
 			List<String> photos = null;
+			String cam_path = null;
 			if (data != null) {
 				photos = data
 						.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
+				cam_path = data.getStringExtra("callback_path");
 			}
-			selectedPhotos.clear();
+
 
 			if (photos != null) {
-
+				selectedPhotos.clear();
 				selectedPhotos.addAll(photos);
 			}
+			if(cam_path != null){
+				selectedPhotos.add(cam_path);
+			}
 			adapter.notifyDataSetChanged();
+
 		}
 	}
 
