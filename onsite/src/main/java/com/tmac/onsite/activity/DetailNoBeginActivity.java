@@ -8,13 +8,18 @@ import com.tmac.onsite.utils.MyDialog.OnDialogClickListener;
 import com.tmac.onsite.view.AudioPopupWindow;
 import com.tmac.onsite.view.AudioPopupWindow.OnUpLoadClickListener;
 
+import android.Manifest;
 import android.R.integer;
 import android.R.layout;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -123,12 +128,12 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 					getWindow(), this, R.id.contrust_no_finish);
 			break;
 		case R.id.contrust_img_btn:
-			
+			Intent intent1 = new Intent(DetailNoBeginActivity.this, DisplayConstructImgActivity.class);
+			startActivity(intent1);
 			break;
 		case R.id.record_time_btn:
 			// 播放录音
 			popupWindow.playAudio(false);
-			
 			break;
 		case R.id.iv_back_detail:
 			finish();
@@ -150,7 +155,10 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		int state = data.getIntExtra(RETURN_STATE, DEFAULT_VALUE);
+		int state = 0;
+		if(data != null){
+			state = data.getIntExtra(RETURN_STATE, DEFAULT_VALUE);
+		}
 		if(DBG) Log.i(TAG, "onActivityResult");
 		if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
 			if(state == UPLOAD_PRE){
@@ -180,8 +188,10 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 	public void onUpload(String time) {
 		// TODO Auto-generated method stub
 		Toast.makeText(this, getResources().getString(R.string.upload_record_success), Toast.LENGTH_SHORT).show();
+
 		layout_bottom_1.setVisibility(View.GONE);
 		layout_bottom_2.setVisibility(View.VISIBLE);
+		btn_construct_img.setText(R.string.construct_img);
 		
 		btn_record_time.setText(time);
 		
@@ -193,11 +203,16 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 		switch (situation) {
 		case R.id.contrust_finish:
 			if(type == MyDialog.NEGATIVE){
+				if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+						!= PackageManager.PERMISSION_GRANTED){
+					ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+				}
 				MyDialog.lightOff(getWindow());
+				// 标题栏的高度
 				int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
 		        int height = getResources().getDimensionPixelSize(resourceId);
 		        popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
-		        popupWindow.showAsDropDown(layout, 0, -layout.getMeasuredHeight()+height);
+		        popupWindow.showAsDropDown(layout, 0, -layout.getMeasuredHeight());
 		        popupWindow.setOnDismissListener(new OnDismissListener() {
 					
 					@Override
