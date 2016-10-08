@@ -66,7 +66,7 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_nobegin);
 //		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+		//StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
 
 
 		initViews();

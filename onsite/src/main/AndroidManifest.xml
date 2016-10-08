@@ -5,7 +5,9 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    
     <!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
@@ -29,16 +31,15 @@
         <activity android:name=".activity.ActivationActivity"></activity>
         <activity android:name=".activity.IdentifyActivity"></activity>
 
-        <!--
-        <activity
+        <!--<activity
             android:name=".activity.MainActivity">
-        </activity>
-        -->
+        </activity>-->
 
         <activity
             android:name=".activity.DetailTaskActivity"
             android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activity.DetailNoBeginActivity"></activity>
+        <activity android:name=".activity.DetailNoBeginActivity"
+            android:theme="@style/customTheme"></activity>
         <activity android:name=".activity.UploadImgActivity"></activity>
         <activity android:name=".activity.SelectImgActivity"></activity>
         <activity android:name=".activity.LoginActivity"></activity>
@@ -54,6 +55,19 @@
         <activity
             android:name="me.tmac.photopicker.PhotoCamDisplayActivity"
             android:theme="@style/customTheme" />
+
+        <service android:name=".service.MainService"
+            android:enabled="true"/>
+
+        <service android:name=".service.AssistService"
+            android:enabled="true"/>
+
+        <receiver android:name=".service.BootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

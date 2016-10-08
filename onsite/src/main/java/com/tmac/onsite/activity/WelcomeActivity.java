@@ -4,6 +4,8 @@
 package com.tmac.onsite.activity;
 
 import com.tmac.onsite.R;
+import com.tmac.onsite.service.AssistService;
+import com.tmac.onsite.service.MainService;
 import com.tmac.onsite.utils.SharePreferens;
 
 import android.app.Activity;
@@ -52,6 +54,7 @@ public class WelcomeActivity extends Activity {
 		}else {
 			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
+		startService(new Intent(this, MainService.class));
 	}
 	
 	/**
