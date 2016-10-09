@@ -11,6 +11,12 @@
     <!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
+    <!-- JPush -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -20,7 +26,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,9 +37,9 @@
         <activity android:name=".activity.ActivationActivity"></activity>
         <activity android:name=".activity.IdentifyActivity"></activity>
 
-        <!--<activity
+        <activity
             android:name=".activity.MainActivity">
-        </activity>-->
+        </activity>
 
         <activity
             android:name=".activity.DetailTaskActivity"
@@ -45,7 +51,10 @@
         <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.CannotFinishActivity"></activity>
         <activity android:name=".activity.DisplayConstructImgActivity"
-            android:theme="@style/customTheme"></activity>
+            android:theme="@style/StyledIndicators"></activity>
+
+        <activity android:name="com.toolset.activity.basicActivity"></activity>
+
         <activity
             android:name="me.tmac.photopicker.PhotoPickerActivity"
             android:theme="@style/customTheme" />
@@ -67,6 +76,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <!-- JPush 配置 AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="27d43a48ffec43b3e199ce24"/>
 
     </application>
 

@@ -1,6 +1,7 @@
 package com.tmac.onsite.activity;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,7 +17,7 @@ import com.tmac.onsite.fragment.ConstructPreFragment;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class DisplayConstructImgActivity extends AppCompatActivity implements View.OnClickListener{
+public class DisplayConstructImgActivity extends FragmentActivity implements View.OnClickListener{
 
     private ImageView iv_back;
     private TextView textView;
@@ -29,7 +30,7 @@ public class DisplayConstructImgActivity extends AppCompatActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_construct_img);
         StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
-
+        StatusBarUtil.setTranslucent(this, 0);
 
         iv_back = (ImageView) findViewById(R.id.base_iv_back);
         textView = (TextView) findViewById(R.id.base_tv);

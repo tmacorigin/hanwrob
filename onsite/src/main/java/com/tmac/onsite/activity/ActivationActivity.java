@@ -30,6 +30,7 @@ public class ActivationActivity extends Activity{
 	private ImageView clear;
 	private Button activate;
 	private LinearLayout back;
+	public static final String INTENT_NAME = "phoneNum";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,9 +117,9 @@ public class ActivationActivity extends Activity{
 				if (on.contains("1") && "358".contains(tw)) {
 					Toast.makeText(getApplicationContext(), "请注意查收短信！",
 							Toast.LENGTH_SHORT).show();
-
-					startActivity(new Intent(ActivationActivity.this,
-							IdentifyActivity.class));
+					Intent intent = new Intent(ActivationActivity.this, IdentifyActivity.class);
+					intent.putExtra(INTENT_NAME, phone.getText().toString());
+					startActivity(intent);
 				} else {
 					Toast.makeText(getApplicationContext(), "请正确输入手机号码！",
 							Toast.LENGTH_SHORT).show();

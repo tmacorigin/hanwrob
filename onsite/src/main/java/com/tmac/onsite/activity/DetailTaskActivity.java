@@ -10,38 +10,45 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.toolset.activity.basicActivity;
 
 /**
  * @author tmac
  */
-public class DetailTaskActivity extends Activity {
-	
+public class DetailTaskActivity extends basicActivity{
+
+	private static final boolean DBG = true;
+	private static final String TAG = "LC-DetailTaskActivity";
 	private Button rob_Btn;
 	private ImageView iv_back;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_detail_task);
 //		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+//		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
 
 		initViews();
 		initEvents();
+		if(hc != null){
+			hc.setTitle("1111");
+		}
 	}
 	
 	private void initViews() {
 		// TODO Auto-generated method stub
 		rob_Btn = (Button) findViewById(R.id.main_button);
-		iv_back = (ImageView) findViewById(R.id.iv_back_detail);
+		//iv_back = (ImageView) findViewById(R.id.iv_back_detail);
 	}
 	
 	private void initEvents() {
@@ -77,14 +84,14 @@ public class DetailTaskActivity extends Activity {
 			}
 		});
 		
-		iv_back.setOnClickListener(new OnClickListener() {
+		/*iv_back.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				finish();
 			}
-		});
+		});*/
 	}
 	
 }
