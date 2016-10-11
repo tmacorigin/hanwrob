@@ -23,6 +23,7 @@ import com.tmac.onsite.view.DraggableFlagView.OnDraggableFlagViewListener;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.FeatureInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,13 +33,15 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class MainActivity extends SlidingFragmentActivity{
+public class MainActivity extends SlidingFragmentActivity implements OnClickListener{
 	
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private ViewPager vp;
@@ -46,6 +49,10 @@ public class MainActivity extends SlidingFragmentActivity{
 	private RadioGroup rg;
 	private BGABadgeRadioButton rb_rob_task;
 	private BGABadgeRadioButton rb_send_task;
+	private FrameLayout settings;
+	private FrameLayout messages;
+	private ImageView iv_set_tip;
+	private ImageView iv_msg_tip;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,10 @@ public class MainActivity extends SlidingFragmentActivity{
 	
 	private void initViews() {
 		// TODO Auto-generated method stub
+		settings = (FrameLayout) findViewById(R.id.layout_settings);
+		messages = (FrameLayout) findViewById(R.id.layout_message);
+		iv_set_tip = (ImageView) findViewById(R.id.img_settings_red_tips);
+		iv_msg_tip = (ImageView) findViewById(R.id.img_message_red_tips);
 		rg = FindViewById.getView(this, R.id.rg);
 		rb_rob_task = FindViewById.getView(this, R.id.rb_get_task);
 		rb_send_task = FindViewById.getView(this, R.id.rb_send_task);
@@ -84,6 +95,9 @@ public class MainActivity extends SlidingFragmentActivity{
 	}
 	
 	private void initEvents() {
+
+		settings.setOnClickListener(this);
+		messages.setOnClickListener(this);
 		
 		// 设置底部RadioButton中气泡提示的数量	
 		rb_rob_task.showTextBadge("10");
@@ -156,8 +170,21 @@ public class MainActivity extends SlidingFragmentActivity{
 		//4.淡入淡出的透明度效果的调整(调整透明度最小的值)
 		sm.setFadeDegree(0.1f);
 		//5.设置SlidingMenu距离右侧的距离大小
-        sm.setBehindOffset(150);
+        sm.setBehindOffset(R.dimen.menu_margin_right);
 		
 	}
-	
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()){
+			case R.id.layout_settings:
+				toggle();
+				break;
+			case R.id.layout_message:
+				startActivity(new Intent(MainActivity.this, MessageActivity.class));
+				break;
+			default:
+				break;
+		}
+	}
 }

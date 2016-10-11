@@ -9,4 +9,8 @@ import com.toolset.CommandParser.CommandE;
 public interface WebApiInterface {
     public void registReq(CommandE e);
     public void registRsp(CommandE e);
+
+
+
+
 }

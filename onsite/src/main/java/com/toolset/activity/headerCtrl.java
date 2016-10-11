@@ -1,5 +1,6 @@
 package com.toolset.activity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,12 +15,15 @@ import com.tmac.onsite.R;
  */
 public class headerCtrl {
 
+    private static final boolean DBG = true;
+    private static final String TAG = "LC-headerCtrl";
     private LinearLayout header = null;
     private menuStateChange msc = null;
 
 
     private ImageView navigationButton = null;
     private ImageView backoff = null;
+    private ImageView headerRight = null;
     private TextView headerTitle = null;
 
     private ImageView ShowFriendListButton = null;
@@ -31,6 +35,8 @@ public class headerCtrl {
         this.header = header;
         this.msc = msc;
 
+        headerTitle = (TextView) header.findViewById(R.id.headerTitle);
+        headerRight = (ImageView) header.findViewById(R.id.headRight);
         RelativeLayout rl = (RelativeLayout)(header.findViewById(R.id.title_bar));
         int buttonCount = rl.getChildCount();
 
@@ -63,6 +69,7 @@ public class headerCtrl {
     {
         if( headerTitle != null )
         {
+            if(DBG) Log.d(TAG, "headerTitle = " + headerTitle);
             headerTitle.setText(title);
         }
     }
@@ -75,6 +82,11 @@ public class headerCtrl {
         }
 
 
+    }
+
+    public void setHeaderRightImage(int srcId){
+        if(headerRight != null){}
+        headerRight.setImageResource(srcId);
     }
 
 

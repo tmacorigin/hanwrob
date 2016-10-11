@@ -5,17 +5,16 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <!-- 在SDCard中创建与删除文件权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <!-- JPush -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -33,28 +32,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.GuideActivity"></activity>
-        <activity android:name=".activity.ActivationActivity"></activity>
-        <activity android:name=".activity.IdentifyActivity"></activity>
-
-        <activity
-            android:name=".activity.MainActivity">
-        </activity>
-
+        <activity android:name=".activity.GuideActivity" />
+        <activity android:name=".activity.ActivationActivity" />
+        <activity android:name=".activity.IdentifyActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.DetailTaskActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activity.DetailNoBeginActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.DetailNoBeginActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.UploadImgActivity" />
+        <activity android:name=".activity.SelectImgActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.CannotFinishActivity" />
+        <activity
+            android:name=".activity.DisplayConstructImgActivity"
+            android:theme="@style/StyledIndicators" />
+        <activity android:name=".activity.MessageActivity"
             android:theme="@style/customTheme"></activity>
-        <activity android:name=".activity.UploadImgActivity"></activity>
-        <activity android:name=".activity.SelectImgActivity"></activity>
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.CannotFinishActivity"></activity>
-        <activity android:name=".activity.DisplayConstructImgActivity"
-            android:theme="@style/StyledIndicators"></activity>
-
-        <activity android:name="com.toolset.activity.basicActivity"></activity>
-
+        <activity android:name="com.toolset.activity.basicActivity" />
         <activity
             android:name="me.tmac.photopicker.PhotoPickerActivity"
             android:theme="@style/customTheme" />
@@ -65,20 +62,24 @@
             android:name="me.tmac.photopicker.PhotoCamDisplayActivity"
             android:theme="@style/customTheme" />
 
-        <service android:name=".service.MainService"
-            android:enabled="true"/>
 
-        <service android:name=".service.AssistService"
-            android:enabled="true"/>
+        <service
+            android:name=".service.MainService"
+            android:enabled="true" />
+        <service
+            android:name=".service.AssistService"
+            android:enabled="true" />
 
         <receiver android:name=".service.BootCompletedReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <!-- JPush 配置 AppKey-->
-        <meta-data android:name="JPUSH_APPKEY" android:value="27d43a48ffec43b3e199ce24"/>
+        <!-- JPush 配置 AppKey -->
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="27d43a48ffec43b3e199ce24" />
 
     </application>
 

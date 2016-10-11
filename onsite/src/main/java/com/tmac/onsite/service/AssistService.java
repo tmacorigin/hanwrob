@@ -15,7 +15,7 @@ import java.util.TimerTask;
 
 public class AssistService extends Service {
 
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final String TAG = "LC-AssistService";
     private final String serviceName = "com.tmac.onsite.service.MainService";
 

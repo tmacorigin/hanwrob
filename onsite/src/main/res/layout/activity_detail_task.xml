@@ -16,11 +16,12 @@
         android:title="工单详情"/> -->
     
   	<!--<include layout="@layout/detail_layout_title"/>-->
+    <include layout="@layout/zdn_header"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/detail_layout"
+        android:layout_below="@+id/header"
         android:background="@color/white"
         android:paddingLeft="10dp"
     	android:paddingRight="10dp"

@@ -30,9 +30,7 @@ public class CannotFinishActivity extends Activity implements OnClickListener, O
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cannot_finish);
 		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
-
-
-
+		StatusBarUtil.setTranslucent(this, 0);
 
 		initViews(getIntent());
 		initEvents();

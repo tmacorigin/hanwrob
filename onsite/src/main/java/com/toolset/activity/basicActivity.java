@@ -32,7 +32,7 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-basicActivity";
 	private LinearLayout zdnHeaderLayout = null;
-	protected headerCtrl hc = null;
+	headerCtrl hc = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,6 +44,7 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		zdnHeaderLayout = (LinearLayout) findViewById(R.id.header);
 		if( zdnHeaderLayout != null )
 		{
+			if (DBG) Log.d(TAG, "headerCtrl init");
 			hc = new headerCtrl( zdnHeaderLayout , this );
 		}
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:padding="10dp"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:id="@+id/msg_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你的项目申请未被通过"
+        />
+
+    <LinearLayout
+        android:id="@+id/msg_item_num_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pro_number"/>
+
+        <TextView
+            android:id="@+id/msg_item_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="CRJ22555"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/msg_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="03-22 15:00:21"/>
+
+    <ImageView
+        android:id="@+id/msg_item_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>
