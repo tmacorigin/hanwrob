@@ -14,6 +14,11 @@ public class dataManager {
     //              tag      dataSet
    // private Map< String, ArrayList<dataManagerdataBase> > dataMap =  new HashMap< String, ArrayList<dataManagerdataBase>>();
     DBManager db ;
+
+    public dataManager( Context context  )
+    {
+        db = new DBManager( context );
+    }
     //增加一个class类型的额数据进入数据管理模块
     public void addA_Class( Class dataClass )
     {
@@ -27,7 +32,7 @@ public class dataManager {
         db = new DBManager(c);
     }
 
-    public void resetdbData(Class c ,ArrayList<dataManagerdataBase> dataList )
+    public void resetdbData(Class c , ArrayList<dmdataDemo> dataList )
     {
 
 		DBHelper getDbHelper = DBManager.GetDbHelper( c );

@@ -5,8 +5,19 @@ package com.toolset.dataManager;
  */
 public class dmdataDemo extends dataManagerdataBase {
 
-    String name;
-    String data1;
-    String data2;
+    public String name;
+    public String data1;
+    public String data2;
+
+    public dmdataDemo()
+    {
+
+    }
+
+    public dmdataDemo(String name, String data1, String data2){
+        this.name = name;
+        this.data1 = data1;
+        this.data2 = data2;
+    }
 
 }

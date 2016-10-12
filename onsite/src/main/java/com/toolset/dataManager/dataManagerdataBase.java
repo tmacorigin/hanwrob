@@ -10,8 +10,7 @@ import java.util.Date;
  */
 public class dataManagerdataBase {
 
-    String dateTime;
-
+    public String dateTime;
     public dataManagerdataBase()
     {
         dateTime = calendarToString(Calendar.getInstance());
