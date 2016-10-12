@@ -15,7 +15,7 @@ public abstract class InternetComponent implements WebApiInterface {
 	static public String WEBSITE_ADDRESS_BASE_NO_SEPARATOR	= "http://10.4.65.32";
 	static public String WEBSITE_ADDRESS_BASE	= WEBSITE_ADDRESS_BASE_NO_SEPARATOR +"/";
 
-	static InternetComponent me = null;
+	protected static InternetComponent me = null;
 	private stateControlInterface sci = null;
 	/* web site address define */
 		//
@@ -97,7 +97,7 @@ public abstract class InternetComponent implements WebApiInterface {
 
 	public int commonReq( ExpCommandE e   ) {
 		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-		StackTraceElement se = stacktrace[2];
+		StackTraceElement se = stacktrace[3];
 		String methodName = se.getMethodName();
 		Log.i(this.getClass().getSimpleName(), "call " + methodName);
 		e.AddAExpProperty(new Property("apiFunctionName",methodName ));

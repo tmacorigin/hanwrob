@@ -5,4 +5,8 @@ package com.toolset.dataManager;
  */
 public class dmdataDemo extends dataManagerdataBase {
 
+    String name;
+    String data1;
+    String data2;
+
 }

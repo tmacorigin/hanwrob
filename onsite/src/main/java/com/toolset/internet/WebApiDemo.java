@@ -1,8 +1,11 @@
 package com.toolset.internet;
 
 import android.os.Looper;
+import android.util.Log;
 
 import com.toolset.CommandParser.CommandE;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 
 
 /**
@@ -11,9 +14,8 @@ import com.toolset.CommandParser.CommandE;
 public class WebApiDemo extends  InternetComponent{
 
     //必须先调用此函数
-    static WebApiDemo me = null;
 
-    public static WebApiDemo getInstance(  Looper looper  )
+    public static InternetComponent getInstance(  Looper looper  )
     {
         if( me != null )
         {
@@ -27,7 +29,7 @@ public class WebApiDemo extends  InternetComponent{
         }
     }
 
-    public static WebApiDemo getInstance(   )
+    public static InternetComponent getInstance(   )
     {
         if( me != null )
         {
@@ -42,14 +44,14 @@ public class WebApiDemo extends  InternetComponent{
 
     static public String WEBSITE_ADDRESS_registReq = WEBSITE_ADDRESS_BASE + "media/";
     @Override
-    public void registReq(CommandE e) {
+    public void registReq(ExpCommandE e) {
 
+        this.commonReq(e);
     }
 
     @Override
-    public void registRsp(CommandE e) {
-
+    public void registRsp(ExpCommandE e) {
+        Log.d("gfds", "registRsp: hwq");
     }
-
 
 }

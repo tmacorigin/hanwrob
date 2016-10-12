@@ -2,15 +2,12 @@ package com.toolset.internet;
 
 
 import com.toolset.CommandParser.CommandE;
+import com.toolset.CommandParser.ExpCommandE;
 
 /**
  * Created by wanghp1 on 2016/9/29.
  */
 public interface WebApiInterface {
-    public void registReq(CommandE e);
-    public void registRsp(CommandE e);
-
-
-
-
+    public void registReq(ExpCommandE e);
+    public void registRsp(ExpCommandE e);
 }
