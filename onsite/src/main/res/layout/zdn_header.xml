@@ -51,8 +51,9 @@
             android:gravity="center"
             android:layout_centerInParent="true"
             android:textSize="18sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:text="contextbalabala"
+            android:text=""
             />
 
         <ImageView

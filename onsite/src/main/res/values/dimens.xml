@@ -11,7 +11,7 @@
     <dimen name="ch_name_margin_top">15dp</dimen>
     <dimen name="underline_margin_top">40dp</dimen>
     <dimen name="layout_padding">9dp</dimen>
-    <dimen name="menu_margin_right">60dp</dimen>
+    <dimen name="menu_margin_right">140dp</dimen>
 
     <!-- main_layout_title -->
     <dimen name="title_height">50dp</dimen>

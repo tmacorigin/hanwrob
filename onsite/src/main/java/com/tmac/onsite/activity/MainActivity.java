@@ -41,9 +41,10 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class MainActivity extends SlidingFragmentActivity implements OnClickListener{
-	
-	private static final String TAG = MainActivity.class.getSimpleName();
+public class MainActivity extends SlidingFragmentActivity implements OnClickListener, LeftMenuFragment.OnExitAvaiListener{
+
+	private static final boolean DBG = true;
+	private static final String TAG = "LC-MainActivity";
 	private ViewPager vp;
 	private List<Fragment> fragmentList;
 	private RadioGroup rg;
@@ -152,11 +153,13 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private void addLeftMenu() {
 		// TODO Auto-generated method stub
 		FrameLayout left = new FrameLayout(this);
+		LeftMenuFragment leftMenuFragment = new LeftMenuFragment();
+		leftMenuFragment.setOnExitAvaiListener(this);
 		left.setId("LEFT".hashCode());
 		setBehindContentView(left);
 		getSupportFragmentManager().
 		beginTransaction().
-		replace("LEFT".hashCode(), new LeftMenuFragment())
+		replace("LEFT".hashCode(), leftMenuFragment)
 		.commit();
 					
 		// 设置SlidingMenu的常用属性
@@ -170,7 +173,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		//4.淡入淡出的透明度效果的调整(调整透明度最小的值)
 		sm.setFadeDegree(0.1f);
 		//5.设置SlidingMenu距离右侧的距离大小
-        sm.setBehindOffset(R.dimen.menu_margin_right);
+        sm.setBehindOffset((int) getResources().getDimension(R.dimen.menu_margin_right));
 		
 	}
 
@@ -186,5 +189,11 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public void onExitAvai() {
+		if(DBG) Log.d(TAG, "Exit MainActivity");
+		finish();
 	}
 }

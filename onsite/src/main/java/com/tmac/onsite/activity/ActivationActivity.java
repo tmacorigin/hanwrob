@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -27,6 +28,7 @@ import android.widget.Toast;
 public class ActivationActivity extends Activity{
 	
 	private PhoneEditText phone;
+	private TextView rob_agreement;
 	private ImageView clear;
 	private Button activate;
 	private LinearLayout back;
@@ -47,6 +49,7 @@ public class ActivationActivity extends Activity{
 	
 	public void initView() {
 		phone = (PhoneEditText) findViewById(R.id.home_phone);
+		rob_agreement = (TextView) findViewById(R.id.rob_agreement);
 		clear = (ImageView) findViewById(R.id.home_clear);
 		activate = (Button) findViewById(R.id.home_activate);
 		back = (LinearLayout) findViewById(R.id.home_back);
@@ -95,6 +98,7 @@ public class ActivationActivity extends Activity{
 	public void setListener() {
 
 		clear.setOnClickListener(ls);
+		rob_agreement.setOnClickListener(ls);
 		activate.setOnClickListener(ls);
 		back.setOnClickListener(ls);
 
@@ -107,6 +111,9 @@ public class ActivationActivity extends Activity{
 			switch (v.getId()) {
 			case R.id.home_clear:
 				phone.setText("");
+				break;
+			case R.id.rob_agreement:
+				startActivity(new Intent(ActivationActivity.this, UseAgreementActivity.class));
 				break;
 			case R.id.home_activate:
 				char one = phone.getText().toString().charAt(0);

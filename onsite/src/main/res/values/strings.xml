@@ -95,4 +95,12 @@
     <!-- MessageActivity -->
     <string name="pro_number">项目编号 : </string>
 
+    <!-- UseDirectionActivity -->
+    <string name="use_direction">使用说明 :</string>
+
+    <!-- UseAgreementActivity -->
+    <string name="use_agreement_title">使用协议</string>
+    <string name="use_agreement">使用协议 :</string>
+
+
 </resources>

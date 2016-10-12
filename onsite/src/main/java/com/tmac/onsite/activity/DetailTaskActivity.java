@@ -58,7 +58,7 @@ public class DetailTaskActivity extends basicActivity{
 		{
 			if (DBG) Log.d(TAG, "headerCtrl init");
 			hc = new headerCtrl(zdnHeaderLayout , this);
-			hc.setTitle("ddsdsds");
+			hc.setTitle(getResources().getString(R.string.task_detail));
 		}
 	}
 

@@ -86,10 +86,10 @@
 	        android:layout_height="wrap_content"
 	        android:text="激活即表示同意" />
 	    <TextView
-	        android:id="@+id/textView2"
+	        android:id="@+id/rob_agreement"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="抢单使用协议"
+	        android:text="翰威抢单使用协议"
 	        android:textColor="#DD7608" />
 	</LinearLayout>
 

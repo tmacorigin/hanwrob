@@ -4,6 +4,7 @@
 package com.tmac.onsite.fragment;
 
 import com.tmac.onsite.R;
+import com.tmac.onsite.activity.UseDirectionActivity;
 import com.tmac.onsite.updateversion.CheckVersionTask;
 import com.tmac.onsite.updateversion.DownLoadManager;
 import com.tmac.onsite.updateversion.UpdataInfoParser;
@@ -11,11 +12,13 @@ import com.tmac.onsite.updateversion.UpdateInfo;
 import com.tmac.onsite.utils.MyDialog;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +33,10 @@ import com.tmac.onsite.utils.MyDialog;
  */
 public class LeftMenuFragment extends Fragment implements View.OnClickListener, MyDialog.OnDialogClickListener{
 
-	private TextView check_update;
+	private LinearLayout check_update;
+	private LinearLayout use_direction;
 	private LinearLayout exit_avai;
+	private static final boolean DBG = true;
 	private static final String TAG = "LC-LeftMenuFragment";
 	public static final int UPDATE_NONEED = 0;
 	public static final int UPDATE_NEED = 1;
@@ -48,25 +53,31 @@ public class LeftMenuFragment extends Fragment implements View.OnClickListener, 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		check_update = (TextView) view.findViewById(R.id.check_update);
+		check_update = (LinearLayout) view.findViewById(R.id.update_layout);
+		use_direction = (LinearLayout) view.findViewById(R.id.use_layout);
 		exit_avai = (LinearLayout) view.findViewById(R.id.exit_avai);
 		initEvents();
 	}
 
 	private void initEvents() {
 		check_update.setOnClickListener(this);
+		use_direction.setOnClickListener(this);
+		exit_avai.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
-			case R.id.check_update:
+			case R.id.update_layout:
 				// 检查服务器上的apk VersionName和当前的apk 的VersioName是否一致
 				CheckVersionTask cvTask = new CheckVersionTask(getActivity(), handler);
 				new Thread(cvTask).start();
 				break;
+			case R.id.use_layout:
+				startActivity(new Intent(getActivity(), UseDirectionActivity.class));
+				break;
 			case R.id.exit_avai:
-				MyDialog.showDialog(getActivity(), R.string.menu_dialog_msg, R.string.menu_dialog_cancel, R.string.menu_dialog_ensure, getActivity().getWindow(), this);
+				MyDialog.showDialog(getActivity(), R.string.menu_dialog_msg, R.string.menu_dialog_ensure, R.string.menu_dialog_cancel, getActivity().getWindow(), this);
 				break;
 			default:
 				break;
@@ -102,6 +113,16 @@ public class LeftMenuFragment extends Fragment implements View.OnClickListener, 
 
 	@Override
 	public void onDialog(int type, int situation) {
+		if(DBG) Log.d(TAG, "ensure dialog");
+		mListener.onExitAvai();
+	}
 
+	private OnExitAvaiListener mListener;
+	public void setOnExitAvaiListener(OnExitAvaiListener listener){
+		this.mListener = listener;
+	}
+
+	public interface OnExitAvaiListener{
+		void onExitAvai();
 	}
 }

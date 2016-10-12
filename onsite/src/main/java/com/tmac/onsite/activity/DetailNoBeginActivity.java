@@ -66,8 +66,8 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_nobegin);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+//		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
+//		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
 
 
 		initViews();
@@ -213,7 +213,7 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 				int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
 		        int height = getResources().getDimensionPixelSize(resourceId);
 		        popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
-		        popupWindow.showAsDropDown(layout, 0, -layout.getMeasuredHeight());
+		        popupWindow.showAsDropDown(layout, 0, -popupWindow.getHeight());
 		        popupWindow.setOnDismissListener(new OnDismissListener() {
 					
 					@Override

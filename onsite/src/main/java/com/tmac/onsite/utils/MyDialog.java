@@ -42,6 +42,7 @@ public class MyDialog {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
+						listener.onDialog(NEGATIVE, DEFAULT_SITUATION);
 					}
 
 				})
@@ -50,7 +51,6 @@ public class MyDialog {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						listener.onDialog(NEGATIVE, DEFAULT_SITUATION);
 					}
 				})
 				.create()
