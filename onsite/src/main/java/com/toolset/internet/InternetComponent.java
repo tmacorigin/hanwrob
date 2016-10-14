@@ -92,7 +92,10 @@ public abstract class InternetComponent implements WebApiInterface {
 
 	private String reqFunctionDrivedToReqAddress( String reqFunctionName )
 	{
-		return WEBSITE_ADDRESS_BASE + reqFunctionName.substring( 0 , reqFunctionName.length() - 3 ) ;
+		String noReqFunctionName = reqFunctionName.substring( 0 , reqFunctionName.length() - 3 );
+		noReqFunctionName.replace('_','/');
+		String subUrl = noReqFunctionName;
+		return WEBSITE_ADDRESS_BASE +subUrl ;
 	}
 
 	public int commonReq( ExpCommandE e   ) {
@@ -105,7 +108,7 @@ public abstract class InternetComponent implements WebApiInterface {
 		e.AddAExpProperty(new Property("URL", reqFunctionDrivedToReqAddress(methodName)));
 
 
-		if( ( sci != null) && ( false == sci.continueControl( e ) ) )
+		if( ( sci != null) && ( false == sci.flowPermissionControl( e ) ) )
 		{
 			// 不允许继续进行消息传递了
 			Log.d(this.getClass().getName() , "API CALL abort for state invalid, methodName = " + methodName );
@@ -125,7 +128,7 @@ public abstract class InternetComponent implements WebApiInterface {
 		String rspFunctionName = (String)(e.GetExpProperty("rspFunctionName").GetPropertyContext());
 		e.AddAExpProperty(new Property("apiFunctionName",rspFunctionName ));
 
-		if( ( sci != null) && ( false == sci.continueControl( e ) ) )
+		if( ( sci != null) && ( false == sci.flowPermissionControl( e ) ) )
 		{
 			// 不允许继续进行消息传递了
 			Log.d(this.getClass().getName() , "API CALL abort for state invalid, methodName = " + rspFunctionName );

@@ -2,6 +2,8 @@ package com.tmac.onsite.activity;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.utils.StatusBarUtil;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import de.greenrobot.event.EventBus;
+
 public class LoginActivity extends BaseActivity {
 
 	private static boolean DBG = true;
@@ -24,6 +28,8 @@ public class LoginActivity extends BaseActivity {
 	private EditText edit_password;
 	private Button btn_login;
 	private String userStr;
+
+	private boolean webEnable = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +118,17 @@ public class LoginActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+			if(webEnable == true ) {
+				ExpCommandE e = new ExpCommandE("STATE_CONTROL_COMMAND");
+				e.AddAExpProperty(new Property("internalMessageName","startUp"));
+				e.AddAProperty(new Property("name", ""));
+				e.AddAProperty(new Property("password", ""));
+				EventBus.getDefault().post(e);
+			}
+			else {
 				startActivity(new Intent(LoginActivity.this, MainActivity.class));
 				finish();
+			}
 			}
 		});
 		

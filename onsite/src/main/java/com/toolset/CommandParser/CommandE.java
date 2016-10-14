@@ -180,7 +180,11 @@ public class CommandE
 		}
 	}
 
-
+	public CommandE clone(){
+		CommandE reCommandE = new CommandE(this.Cmd);
+		this.CopyPropertysTo(reCommandE);
+		return  reCommandE;
+	}
 	
 }
 

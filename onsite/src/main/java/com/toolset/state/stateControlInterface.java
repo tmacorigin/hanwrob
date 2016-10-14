@@ -9,5 +9,5 @@ import com.toolset.CommandParser.ExpCommandE;
 public interface stateControlInterface {
 
     //消息是否允许继续传递
-    boolean continueControl(ExpCommandE e);
+    boolean flowPermissionControl(ExpCommandE e);
 }

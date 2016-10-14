@@ -65,9 +65,16 @@ public class ExpCommandE extends CommandE
 		userData = null;
 		ExpPropertyList = new ArrayList<Property>();
 	}
-	
 
-	public void AddAExpProperty( Property CmdProperty )
+	public void setCmd(String cmd) {
+		Cmd = cmd;
+	}
+
+	public void setExpPropertyList(ArrayList<Property> expPropertyList) {
+		ExpPropertyList = expPropertyList;
+	}
+
+	public void AddAExpProperty(Property CmdProperty )
 	{
 		ExpPropertyList.add(CmdProperty);
 	}
@@ -122,6 +129,15 @@ public class ExpCommandE extends CommandE
 	}
 	
 	public Object getUserData() { return this.userData; }
-	
+
+	public ExpCommandE clone()
+	{
+		ExpCommandE reExpCommandE = new ExpCommandE(this.Cmd);
+		reExpCommandE = (ExpCommandE) super.clone();
+		reExpCommandE.setCmd(this.Cmd);
+		reExpCommandE.setExpPropertyList(this.ExpPropertyList);
+		reExpCommandE.setUserData(this.userData);
+		return reExpCommandE;
+	}
 }
 

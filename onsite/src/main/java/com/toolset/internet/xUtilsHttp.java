@@ -45,7 +45,7 @@ final public class xUtilsHttp {
     	RequestParams params = new RequestParams();
     	
     	ExpCommandE e = command;
-        final ExpCommandE reponse = new ExpCommandE("RESPONSE_API");
+        final ExpCommandE reponse = new ExpCommandE( (String) (command.GetExpProperty("rspFunctionName").GetPropertyContext()) );
 
 		reponse.setUserData(e.getUserData());
         reponse.AddAExpProperty( command.GetExpProperty("rspFunctionName") );

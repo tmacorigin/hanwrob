@@ -1,19 +1,24 @@
-package com.toolset.internet;
+package com.toolset.state;
 
 import android.os.Looper;
 import android.util.Log;
 
-import com.toolset.CommandParser.CommandE;
 import com.toolset.CommandParser.ExpCommandE;
-import com.toolset.CommandParser.Property;
+import com.toolset.internet.InternetComponent;
+
+import de.greenrobot.event.EventBus;
 
 
 /**
  * Created by wanghp1 on 2016/9/29.
  */
-public class WebApiDemo extends  InternetComponent{
+public class WebApiII extends  InternetComponent{
 
     //必须先调用此函数
+
+    public WebApiII(){
+        EventBus.getDefault().register(this);
+    }
 
     public static InternetComponent getInstance(  Looper looper  )
     {
@@ -23,7 +28,7 @@ public class WebApiDemo extends  InternetComponent{
         }
         else
         {
-            me = new WebApiDemo();
+            me = new WebApiII();
             me.setLooper(looper);
             return me;
         }
@@ -61,7 +66,15 @@ public class WebApiDemo extends  InternetComponent{
 
     @Override
     public void user_loginRsp(ExpCommandE e) {
+
+        ExpCommandE pe = e.clone();
+        pe.setCmd("STATE_CONTROL_COMMAND");
+        EventBus.getDefault().post(pe);
     }
 
-
+    @Override
+    protected void finalize() throws Throwable {
+        EventBus.getDefault().unregister(this);
+        super.finalize();
+    }
 }

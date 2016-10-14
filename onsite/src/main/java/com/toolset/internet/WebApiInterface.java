@@ -10,4 +10,7 @@ import com.toolset.CommandParser.ExpCommandE;
 public interface WebApiInterface {
     public void registReq(ExpCommandE e);
     public void registRsp(ExpCommandE e);
+
+    public void user_loginReq(ExpCommandE e);
+    public void user_loginRsp(ExpCommandE e);
 }

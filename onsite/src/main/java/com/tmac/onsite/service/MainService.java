@@ -6,8 +6,13 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.state.stateMachine;
+
 import java.util.Timer;
 import java.util.TimerTask;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by user on 16/10/8.
@@ -18,6 +23,7 @@ public class MainService extends Service {
     private static final boolean DBG = false;
     private static final String TAG = "LC-MainService";
     private final String serviceName = "com.tmac.onsite.service.AssistService";
+    private stateMachine  sm = null;
 
     @Nullable
     @Override
@@ -52,5 +58,31 @@ public class MainService extends Service {
         }
     });
 
+    @Override
+    public void onCreate() {
+        EventBus.getDefault().register(this);
+        super.onCreate();
 
+        sm.mainControl( new ExpCommandE("startUp"));
+    }
+
+    @Override
+    public void onDestroy() {
+        sm = new stateMachine( this );
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    public void onEvent(Object event) {
+
+        assert( event instanceof  ExpCommandE );
+        ExpCommandE e = (ExpCommandE) event;
+        String command = e.GetCommand();
+
+        if( command.equals("STATE_CONTROL_COMMAND") )
+        {
+            sm.mainControl(e);
+        }
+
+    }
 }

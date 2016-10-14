@@ -14,7 +14,7 @@ public class Control extends HandlerThread {
 
 	static public final int SEND_MESSAGE_TO_SERVER_RSP = 1;
 
-	private stateMachine sm = new stateMachine();
+	private stateMachine sm = new stateMachine(null);
 
 	public Control( String name, Context ma) {
 		super(name);
