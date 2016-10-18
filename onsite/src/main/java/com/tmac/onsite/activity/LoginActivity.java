@@ -4,6 +4,7 @@ import com.tmac.onsite.R;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
+import com.toolset.state.WebApiII;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -119,11 +120,11 @@ public class LoginActivity extends BaseActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 			if(webEnable == true ) {
-				ExpCommandE e = new ExpCommandE("STATE_CONTROL_COMMAND");
-				e.AddAExpProperty(new Property("internalMessageName","startUp"));
+				ExpCommandE e = new ExpCommandE();
 				e.AddAProperty(new Property("name", ""));
 				e.AddAProperty(new Property("password", ""));
-				EventBus.getDefault().post(e);
+				WebApiII.getInstance(getMainLooper()).user_loginReq(e);
+//				EventBus.getDefault().post(e);
 			}
 			else {
 				startActivity(new Intent(LoginActivity.this, MainActivity.class));

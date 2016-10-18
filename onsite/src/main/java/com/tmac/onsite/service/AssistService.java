@@ -29,6 +29,7 @@ public class AssistService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(DBG) Log.i(TAG, "onStartCommand");
+        Log.d(TAG, "AssistService onStartCommand");
         thread.start();
         return START_STICKY;
     }

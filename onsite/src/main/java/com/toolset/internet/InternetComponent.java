@@ -10,6 +10,8 @@ import com.toolset.CommandParser.Property;
 import com.toolset.state.stateControlInterface;
 import com.toolset.util.ReflectionUtils;
 
+import de.greenrobot.event.EventBus;
+
 
 public abstract class InternetComponent implements WebApiInterface {
 	static public String WEBSITE_ADDRESS_BASE_NO_SEPARATOR	= "http://10.4.65.32";
@@ -97,7 +99,15 @@ public abstract class InternetComponent implements WebApiInterface {
 		String subUrl = noReqFunctionName;
 		return WEBSITE_ADDRESS_BASE +subUrl ;
 	}
+/*
+	public int postBCommand( ExpCommandE e  )
+	{
+		ExpCommandE e = new ExpCommandE("STATE_CONTROL_COMMAND");
+		e.AddAExpProperty(new Property("internalMessageName","startUp"));
 
+		EventBus.getDefault().post(e);
+	}
+	*/
 	public int commonReq( ExpCommandE e   ) {
 		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
 		StackTraceElement se = stacktrace[3];

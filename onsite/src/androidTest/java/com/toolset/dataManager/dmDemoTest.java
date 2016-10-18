@@ -39,7 +39,7 @@ public class dmDemoTest extends InstrumentationTestCase {
         dataManager dm = new dataManager(appContext );
         dm.addA_Class( dmdataDemo.class );
 
-        dm.resetdbData(dmdataDemo.class, dmdataList);
+//        dm.resetdbData(dmdataDemo.class, dmdataList);
         ArrayList<Object> getdataList = dm.getAll(dmdataDemo.class);
         assertEquals(dmdataList.size(),getdataList.size());
         for (int i = 0; i < getdataList.size(); i ++){

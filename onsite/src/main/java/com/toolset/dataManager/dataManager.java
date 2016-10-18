@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.toolset.dataManager.db.DBHelper;
 import com.toolset.dataManager.db.DBManager;
+import com.toolset.state.dataBean.TelNumInfo;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class dataManager {
         db = new DBManager(c);
     }
 
-    public void resetdbData(Class c , ArrayList<dmdataDemo> dataList )
+    public void resetdbData(Class c , ArrayList<dataManagerdataBase> dataList )
     {
 
 		DBHelper getDbHelper = DBManager.GetDbHelper( c );

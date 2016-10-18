@@ -34,6 +34,7 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (DBG) Log.d(TAG, "onStartCommand");
+        Log.d(TAG, "MainService onStartCommand");
         thread.start();
         return START_STICKY;
     }
@@ -60,15 +61,16 @@ public class MainService extends Service {
 
     @Override
     public void onCreate() {
+        Log.i(TAG, "MainService onCreate");
         EventBus.getDefault().register(this);
-        super.onCreate();
-
+        sm = new stateMachine( this );
         sm.mainControl( new ExpCommandE("startUp"));
+        super.onCreate();
     }
 
     @Override
     public void onDestroy() {
-        sm = new stateMachine( this );
+        Log.i(TAG, "MainService onDestroy");
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }

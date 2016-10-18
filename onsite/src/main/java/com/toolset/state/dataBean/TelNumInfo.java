@@ -1,10 +1,12 @@
 package com.toolset.state.dataBean;
 
 
+import com.toolset.dataManager.dataManagerdataBase;
+
 /**
  * Created by pactera on 2016/10/13.
  */
-public class TelNumInfo {
+public class TelNumInfo extends dataManagerdataBase {
     private String tel;
     private String passWord;
     private String imei;
@@ -12,6 +14,13 @@ public class TelNumInfo {
 
     public TelNumInfo(String tel, String imei, String imsi){
         this.tel = tel;
+        this.imei = imei;
+        this.imsi = imsi;
+    }
+
+    public TelNumInfo(String tel, String passWord, String imei, String imsi){
+        this.tel = tel;
+        this.passWord = passWord;
         this.imei = imei;
         this.imsi = imsi;
     }

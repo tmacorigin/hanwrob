@@ -4,6 +4,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 import com.toolset.internet.InternetComponent;
 
 import de.greenrobot.event.EventBus;
@@ -61,6 +62,12 @@ public class WebApiII extends  InternetComponent{
 
     @Override
     public void user_loginReq(ExpCommandE e) {
+        ExpCommandE expCommandE = new ExpCommandE("STATE_CONTROL_COMMAND");
+        expCommandE.AddAExpProperty(new Property("internalMessageName","loginInfo"));
+        expCommandE.AddAProperty(new Property("name", ""));
+        expCommandE.AddAProperty(new Property("password", ""));
+        EventBus.getDefault().post(expCommandE);
+
         this.commonReq(e);
     }
 
