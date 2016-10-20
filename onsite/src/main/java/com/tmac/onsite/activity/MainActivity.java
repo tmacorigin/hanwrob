@@ -10,6 +10,7 @@ import cn.bingoogolapple.badgeview.BGADragDismissDelegate;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tmac.onsite.R;
 import com.tmac.onsite.adapter.MainViewPageAdapter;
 import com.tmac.onsite.fragment.LeftMenuFragment;
@@ -35,6 +36,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -58,13 +60,19 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		/*//透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
+		//getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		setContentView(R.layout.activity_main);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-		
+		//StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
+
+		/*SystemBarTintManager tintManager = new SystemBarTintManager(this);
+		tintManager.setStatusBarTintEnabled(false);
+		tintManager.setNavigationBarTintEnabled(false);*/
+
 		// 添加SlidingMenu
 		addLeftMenu();
 		// 初始化View

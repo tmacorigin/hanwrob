@@ -7,9 +7,7 @@ import com.tmac.onsite.R;
 import com.tmac.onsite.activity.UseDirectionActivity;
 import com.tmac.onsite.updateversion.CheckVersionTask;
 import com.tmac.onsite.updateversion.DownLoadManager;
-import com.tmac.onsite.updateversion.UpdataInfoParser;
 import com.tmac.onsite.updateversion.UpdateInfo;
-import com.tmac.onsite.utils.MyDialog;
 
 
 import android.content.Intent;
@@ -23,15 +21,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-import com.tmac.onsite.utils.MyDialog;
+import com.tmac.onsite.view.CommonDialog;
 
 
 /**
  * @author tmac
  */
-public class LeftMenuFragment extends Fragment implements View.OnClickListener, MyDialog.OnDialogClickListener{
+public class LeftMenuFragment extends Fragment implements View.OnClickListener, CommonDialog.OnDialogListenerInterface{
 
 	private LinearLayout check_update;
 	private LinearLayout use_direction;
@@ -42,6 +39,7 @@ public class LeftMenuFragment extends Fragment implements View.OnClickListener, 
 	public static final int UPDATE_NEED = 1;
 	public static final int GETUPDATE_INFO_ERROR = 2;
 	public static final int DOWN_ERROR = 3;
+	public static final int DEFAULT_SITUATION = -1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,7 +75,8 @@ public class LeftMenuFragment extends Fragment implements View.OnClickListener, 
 				startActivity(new Intent(getActivity(), UseDirectionActivity.class));
 				break;
 			case R.id.exit_avai:
-				MyDialog.showDialog(getActivity(), R.string.menu_dialog_msg, R.string.menu_dialog_ensure, R.string.menu_dialog_cancel, getActivity().getWindow(), this);
+				CommonDialog commonDialog = new CommonDialog(getActivity(), getResources().getString(R.string.menu_dialog_msg), getResources().getString(R.string.menu_dialog_ensure), getResources().getString(R.string.menu_dialog_cancel), DEFAULT_SITUATION, this);
+				commonDialog.show();
 				break;
 			default:
 				break;
@@ -111,15 +110,14 @@ public class LeftMenuFragment extends Fragment implements View.OnClickListener, 
 		}
 	};
 
-	@Override
-	public void onDialog(int type, int situation) {
-		if(DBG) Log.d(TAG, "ensure dialog");
-		mListener.onExitAvai();
-	}
-
 	private OnExitAvaiListener mListener;
 	public void setOnExitAvaiListener(OnExitAvaiListener listener){
 		this.mListener = listener;
+	}
+
+	@Override
+	public void doConfirm(int situation) {
+		mListener.onExitAvai();
 	}
 
 	public interface OnExitAvaiListener{

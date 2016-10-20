@@ -29,8 +29,9 @@ import com.tmac.onsite.inter_face.RecyclerItemClickListener;
 import com.tmac.onsite.inter_face.RecyclerItemClickListener.OnItemClickListener;
 import com.tmac.onsite.utils.LightControl;
 import com.tmac.onsite.utils.StatusBarUtil;
+import com.tmac.onsite.view.CommonDialog;
 
-public class UploadImgActivity extends Activity{
+public class UploadImgActivity extends Activity implements CommonDialog.OnDialogListenerInterface{
 	
 	private static final String TAG = "LC-UploadImgActivity";
 	private static boolean DBG = true;
@@ -48,7 +49,6 @@ public class UploadImgActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_upload_img);
-		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
 		initViews(getIntent());
 		selectedPhotos = new ArrayList<String>();
 		adapter = new RecyclerViewAdapter(this, selectedPhotos);
@@ -110,9 +110,9 @@ public class UploadImgActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-				LightControl.lightOff(getWindow());
+				//LightControl.lightOff(getWindow());
 				// TODO Auto-generated method stub
-				AlertDialog.Builder builder = new AlertDialog.Builder(UploadImgActivity.this);
+				/*AlertDialog.Builder builder = new AlertDialog.Builder(UploadImgActivity.this);
 				builder.setMessage(R.string.upload_message)
 						.setPositiveButton(R.string.wait_upload, new DialogInterface.OnClickListener() {
 							
@@ -141,7 +141,10 @@ public class UploadImgActivity extends Activity{
 							}
 						})
 						.create()
-						.show();
+						.show();*/
+				CommonDialog commonDialog = new CommonDialog(UploadImgActivity.this, getResources().getString(R.string.upload_message),
+						getResources().getString(R.string.ensure_upload), getResources().getString(R.string.wait_upload), 0, UploadImgActivity.this);
+				commonDialog.show();
 			}
 		});
 	}
@@ -173,6 +176,12 @@ public class UploadImgActivity extends Activity{
 		}
 	}
 
-	
-	
+
+	@Override
+	public void doConfirm(int situation) {
+		Intent intent = new Intent();
+		intent.putExtra(DetailNoBeginActivity.RETURN_STATE, value);
+		setResult(RESULT_OK, intent);
+		finish();
+	}
 }

@@ -20,13 +20,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tmac.onsite.view.CommonDialog;
 import com.toolset.activity.basicActivity;
 import com.toolset.activity.headerCtrl;
 
 /**
  * @author tmac
  */
-public class DetailTaskActivity extends basicActivity{
+public class DetailTaskActivity extends basicActivity implements CommonDialog.OnDialogListenerInterface {
 
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-DetailTaskActivity";
@@ -74,7 +76,7 @@ public class DetailTaskActivity extends basicActivity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				AlertDialog.Builder builder = new AlertDialog.Builder(DetailTaskActivity.this);
+				/*AlertDialog.Builder builder = new AlertDialog.Builder(DetailTaskActivity.this);
 				builder.setMessage(R.string.detail_dialog_message)
 						.setPositiveButton(R.string.ensure, new DialogInterface.OnClickListener() {
 								
@@ -94,8 +96,10 @@ public class DetailTaskActivity extends basicActivity{
 							}
 						})
 						.create()
-						.show();
-				
+						.show();*/
+				CommonDialog commonDialog = new CommonDialog(DetailTaskActivity.this, getResources().getString(R.string.detail_dialog_message), getResources().getString(R.string.ensure), getResources().getString(R.string.cancle),
+						0, DetailTaskActivity.this);
+				commonDialog.show();
 				
 			}
 		});
@@ -113,5 +117,10 @@ public class DetailTaskActivity extends basicActivity{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+
+	@Override
+	public void doConfirm(int situation) {
+		Toast.makeText(DetailTaskActivity.this, "你的抢单要求已发送", Toast.LENGTH_SHORT).show();
 	}
 }

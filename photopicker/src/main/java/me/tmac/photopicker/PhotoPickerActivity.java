@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -48,6 +49,7 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
     private Button btn_ensure;
 
     private int maxCount = DEFAULT_MAX_COUNT;
+    private static final int CODE_FOR_WRITE_PERMISSION = 0;
 
     /**
      * to prevent multiple calls to inflate menu
@@ -57,6 +59,8 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
     private boolean showGif = false;
     private int columnNumber = DEFAULT_COLUMN_NUMBER;
     private ArrayList<String> originalPhotos = null;
+    private boolean showCamera = false;
+    private boolean previewEnabled = false;
 
 
     @Override
@@ -65,14 +69,15 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
         if(Build.VERSION.SDK_INT >= 23){
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                                        , Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS}, 0);
+                Log.d("LC-PhotoPickerActivity", "checkPermission");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+                                        , Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS}, CODE_FOR_WRITE_PERMISSION);
             }
         }
 
-        boolean showCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, true);
+        showCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, true);
         boolean showGif = getIntent().getBooleanExtra(EXTRA_SHOW_GIF, false);
-        boolean previewEnabled = getIntent().getBooleanExtra(EXTRA_PREVIEW_ENABLED, true);
+        previewEnabled = getIntent().getBooleanExtra(EXTRA_PREVIEW_ENABLED, true);
 
         setShowGif(showGif);
 
@@ -99,6 +104,9 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
         columnNumber = getIntent().getIntExtra(EXTRA_GRID_COLUMN, DEFAULT_COLUMN_NUMBER);
         originalPhotos = getIntent().getStringArrayListExtra(EXTRA_ORIGINAL_PHOTOS);
 
+    }
+
+    private void initFragment() {
         pickerFragment = (PhotoPickerFragment) getSupportFragmentManager().findFragmentByTag("tag");
         if (pickerFragment == null) {
             pickerFragment = PhotoPickerFragment
@@ -106,7 +114,7 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.container, pickerFragment, "tag")
-                    .commit();
+                    .commitAllowingStateLoss();
             getSupportFragmentManager().executePendingTransactions();
         }
 
@@ -136,7 +144,6 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
                 return true;
             }
         });
-
     }
 
 
@@ -237,4 +244,22 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
         void OnCapture(String path);
     }
 
+    /**
+     * Android 6.0 权限申请回调
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == CODE_FOR_WRITE_PERMISSION){
+            if(permissions[0].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    &&grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                // 权限申请成功
+                initFragment();
+            }else {
+                finish();
+            }
+        }
+    }
 }

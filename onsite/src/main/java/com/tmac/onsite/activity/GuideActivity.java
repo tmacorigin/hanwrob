@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.adapter.ViewPagerAdapter;
+import com.tmac.onsite.utils.StatusBarUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -37,8 +39,8 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_guide);
+		StatusBarUtil.setTranslucent(this, 0);
 		initViews();
 		initDots();
 		

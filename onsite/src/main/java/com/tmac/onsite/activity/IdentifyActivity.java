@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,7 +60,6 @@ public class IdentifyActivity extends Activity {
 			}
 		}
 		StatusBarUtil.setTranslucent(this, 0);
-//		StatusBarUtil.setColor(this, Color.BLUE, 122);
 		phoneNum = getIntent().getStringExtra(ActivationActivity.INTENT_NAME);
 		SMSSDK.getInstance().initSdk(this);
 		SMSSDK.getInstance().setDebugMode(true);

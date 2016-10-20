@@ -18,7 +18,8 @@
         android:persistentDrawingCache="animation" />
     
     <include
-        layout="@layout/layout_bottom_menu"/>
-	
+        layout="@layout/layout_bottom_menu"
+        />
+
      
 </LinearLayout>

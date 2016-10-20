@@ -7,6 +7,7 @@ import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.utils.MyDialog.OnDialogClickListener;
 import com.tmac.onsite.view.AudioPopupWindow;
 import com.tmac.onsite.view.AudioPopupWindow.OnUpLoadClickListener;
+import com.tmac.onsite.view.CommonDialog;
 
 import android.Manifest;
 import android.R.integer;
@@ -35,7 +36,7 @@ import android.widget.Toast;
 /**
  * @author tmac
  */
-public class DetailNoBeginActivity extends Activity implements OnClickListener, OnUpLoadClickListener, OnDialogClickListener{
+public class DetailNoBeginActivity extends Activity implements OnClickListener, OnUpLoadClickListener, OnDialogClickListener, CommonDialog.OnDialogListenerInterface{
 	
 	private static boolean DBG = true;
 	private static final String TAG = "LC-DetailNoBegin";
@@ -121,12 +122,18 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 			startActivityForResult(intent_end, REQUEST_CODE);
 			break;
 		case R.id.contrust_finish:
-			MyDialog.showDialog(this, R.string.ensure_construct_finish, R.string.waiting, R.string.ensure_finish,
-				getWindow(), this, R.id.contrust_finish);
+			/*MyDialog.showDialog(this, R.string.ensure_construct_finish, R.string.waiting, R.string.ensure_finish,
+				getWindow(), this, R.id.contrust_finish);*/
+			CommonDialog finish_dialog = new CommonDialog(this, getResources().getString(R.string.ensure_construct_finish), getResources().getString(R.string.ensure_finish), getResources().getString(R.string.waiting),
+					R.id.contrust_finish, this);
+			finish_dialog.show();
 			break;
 		case R.id.contrust_no_finish:
-			MyDialog.showDialog(this, R.string.ensure_construct_nofinish, R.string.try_again, R.string.cannot_finish,
-					getWindow(), this, R.id.contrust_no_finish);
+			/*MyDialog.showDialog(this, R.string.ensure_construct_nofinish, R.string.try_again, R.string.cannot_finish,
+					getWindow(), this, R.id.contrust_no_finish);*/
+			CommonDialog no_finish_dialog = new CommonDialog(this, getResources().getString(R.string.ensure_construct_nofinish), getResources().getString(R.string.cannot_finish), getResources().getString(R.string.try_again),
+					R.id.contrust_no_finish, this);
+			no_finish_dialog.show();
 			break;
 		case R.id.contrust_img_btn:
 			Intent intent1 = new Intent(DetailNoBeginActivity.this, DisplayConstructImgActivity.class);
@@ -233,5 +240,35 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 			break;
 		}
 	}
-	
+
+	@Override
+	public void doConfirm(int situation) {
+		switch (situation) {
+			case R.id.contrust_finish:
+					if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+							!= PackageManager.PERMISSION_GRANTED){
+						ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+					}
+					MyDialog.lightOff(getWindow());
+					// 标题栏的高度
+					int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+					int height = getResources().getDimensionPixelSize(resourceId);
+					popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
+					popupWindow.showAsDropDown(layout, 0, -popupWindow.getHeight());
+					popupWindow.setOnDismissListener(new OnDismissListener() {
+
+						@Override
+						public void onDismiss() {
+							// TODO Auto-generated method stub
+							MyDialog.lightOn(getWindow());
+						}
+					});
+				break;
+			case R.id.contrust_no_finish:
+					startActivityForResult(new Intent(DetailNoBeginActivity.this, CannotFinishActivity.class), REQUEST_CODE);
+				break;
+			default:
+				break;
+		}
+	}
 }

@@ -1,9 +1,7 @@
 package com.tmac.onsite.activity;
 
 import com.tmac.onsite.R;
-import com.tmac.onsite.utils.MyDialog;
-import com.tmac.onsite.utils.MyDialog.OnDialogClickListener;
-import com.tmac.onsite.utils.StatusBarUtil;
+import com.tmac.onsite.view.CommonDialog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CannotFinishActivity extends Activity implements OnClickListener, OnDialogClickListener{
+public class CannotFinishActivity extends Activity implements OnClickListener, CommonDialog.OnDialogListenerInterface{
 	
 	private EditText edit_reason;
 	private ImageView iv_back;
@@ -29,8 +27,6 @@ public class CannotFinishActivity extends Activity implements OnClickListener, O
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cannot_finish);
-		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
-		StatusBarUtil.setTranslucent(this, 0);
 
 		initViews(getIntent());
 		initEvents();
@@ -89,8 +85,9 @@ public class CannotFinishActivity extends Activity implements OnClickListener, O
 			finish();
 			break;
 		case R.id.cannot_finish_send:
-			MyDialog.showDialog(this, R.string.ensure_send_reason, R.string.cancel_send, R.string.ensure_send,
-					getWindow(), this, R.id.cannot_finish_send);
+			CommonDialog commonDialog = new CommonDialog(this, getResources().getString(R.string.ensure_send_reason), getResources().getString(R.string.ensure_send),
+					getResources().getString(R.string.cancel_send), R.id.cannot_finish_send, this);
+			commonDialog.show();
 			break;
 		default:
 			break;
@@ -98,22 +95,18 @@ public class CannotFinishActivity extends Activity implements OnClickListener, O
 	}
 
 	@Override
-	public void onDialog(int type, int situation) {
-		// TODO Auto-generated method stub
+	public void doConfirm(int situation) {
 		switch (situation) {
-		case R.id.cannot_finish_send:
-			if(type == MyDialog.NEGATIVE){
+			case R.id.cannot_finish_send:
 				Intent intent = new Intent();
 				intent.putExtra(DetailNoBeginActivity.RETURN_STATE, DetailNoBeginActivity.EDIT_REASON);
 				intent.putExtra(DetailNoBeginActivity.CANNOT_REASON, reasonStr);
 				setResult(RESULT_OK, intent);
 				finish();
-			}
-			break;
-			
-		default:
-			break;
+				break;
+
+			default:
+				break;
 		}
 	}
-
 }
