@@ -3,9 +3,8 @@
  */
 package com.tmac.onsite.activity;
 
-import com.tmac.onsite.R;
-import com.tmac.onsite.service.AssistService;
 import com.tmac.onsite.service.MainService;
+import com.tmac.onsite.service.ServiceWorkUtils;
 import com.tmac.onsite.utils.SharePreferens;
 
 import android.app.Activity;
@@ -23,7 +22,9 @@ public class WelcomeActivity extends Activity {
 	private static final int TIME = 20;
 	private static final int GO_ACTIVATION = 0x100;
 	private static final int GO_GUIDE = 0x101;
-	
+	private final String serviceName = "com.tmac.onsite.service.MainService";
+
+
 	private Handler handler = new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -54,7 +55,9 @@ public class WelcomeActivity extends Activity {
 		}else {
 			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
-		startService(new Intent(this, MainService.class));
+		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
+			startService(new Intent(this, MainService.class));
+		}
 	}
 	
 	/**

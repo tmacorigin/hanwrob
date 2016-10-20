@@ -33,18 +33,12 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-DetailTaskActivity";
 	private Button rob_Btn;
-	private ImageView iv_back;
-	private LinearLayout zdnHeaderLayout;
-	private headerCtrl hc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_task);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
-		StatusBarUtil.setTranslucent(this, 0);
+		super.onCreate(savedInstanceState);
 
 		initViews();
 		initEvents();
@@ -54,14 +48,7 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 	private void initViews() {
 		// TODO Auto-generated method stub
 		rob_Btn = (Button) findViewById(R.id.main_button);
-		//iv_back = (ImageView) findViewById(R.id.iv_back_detail);
-		zdnHeaderLayout = (LinearLayout) findViewById(R.id.header);
-		if( zdnHeaderLayout != null )
-		{
-			if (DBG) Log.d(TAG, "headerCtrl init");
-			hc = new headerCtrl(zdnHeaderLayout , this);
-			hc.setTitle(getResources().getString(R.string.task_detail));
-		}
+		hc.setTitle(getResources().getString(R.string.task_detail));
 	}
 
 	@Override
@@ -123,4 +110,6 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 	public void doConfirm(int situation) {
 		Toast.makeText(DetailTaskActivity.this, "你的抢单要求已发送", Toast.LENGTH_SHORT).show();
 	}
+
+
 }

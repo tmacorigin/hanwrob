@@ -8,6 +8,7 @@ import com.tmac.onsite.utils.MyDialog.OnDialogClickListener;
 import com.tmac.onsite.view.AudioPopupWindow;
 import com.tmac.onsite.view.AudioPopupWindow.OnUpLoadClickListener;
 import com.tmac.onsite.view.CommonDialog;
+import com.toolset.activity.basicActivity;
 
 import android.Manifest;
 import android.R.integer;
@@ -36,7 +37,7 @@ import android.widget.Toast;
 /**
  * @author tmac
  */
-public class DetailNoBeginActivity extends Activity implements OnClickListener, OnUpLoadClickListener, OnDialogClickListener, CommonDialog.OnDialogListenerInterface{
+public class DetailNoBeginActivity extends basicActivity implements OnClickListener, OnUpLoadClickListener, OnDialogClickListener, CommonDialog.OnDialogListenerInterface{
 	
 	private static boolean DBG = true;
 	private static final String TAG = "LC-DetailNoBegin";
@@ -65,10 +66,8 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_nobegin);
-//		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
-//		StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
+		super.onCreate(savedInstanceState);
 
 
 		initViews();
@@ -78,6 +77,7 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 
 	private void initViews() {
 		// TODO Auto-generated method stub
+		hc.setTitle(getResources().getString(R.string.task_detail));
 		btn_upload_pre_img = (Button) findViewById(R.id.upload_pre_image);
 		btn_upload_end_img = (Button) findViewById(R.id.upload_end_image);
 		layout = (RelativeLayout) findViewById(R.id.nobegin_layout_bottom);
@@ -89,7 +89,7 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 		btn_record_time = (Button) findViewById(R.id.record_time_btn);
 		btn_check_reason = (Button) findViewById(R.id.check_reason_btn);
 		
-		iv_back = (ImageView) findViewById(R.id.iv_back_detail);
+		//iv_back = (ImageView) findViewById(R.id.iv_back_detail);
 		popupWindow = new AudioPopupWindow(this, this);
 	}
 
@@ -103,7 +103,7 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 		btn_construct_img.setOnClickListener(this);
 		btn_record_time.setOnClickListener(this);
 		btn_check_reason.setOnClickListener(this);
-		iv_back.setOnClickListener(this);
+		//iv_back.setOnClickListener(this);
 		
 	}
 
@@ -143,9 +143,9 @@ public class DetailNoBeginActivity extends Activity implements OnClickListener, 
 			// 播放录音
 			popupWindow.playAudio(false);
 			break;
-		case R.id.iv_back_detail:
+		/*case R.id.iv_back_detail:
 			finish();
-			break;
+			break;*/
 		case R.id.check_reason_btn:
 			Intent intent = new Intent(DetailNoBeginActivity.this, CannotFinishActivity.class);
 			intent.putExtra(SHOW_REASON, true);

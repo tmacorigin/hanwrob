@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#666666"
+    android:background="@color/enter_base_bg"
     android:orientation="vertical"
     >
     <!-- android:clipToPadding="true"
@@ -38,7 +38,7 @@
 	        android:layout_gravity="center_vertical"
 	        android:background="#666666"
 	        android:cursorVisible="true"
-	        android:hint="请输入手机号码"
+	        android:hint="@string/hint_phone_num"
 	        android:inputType="phone"
 	        android:maxLength="11"
 	        android:textColor="#fff" 
@@ -69,7 +69,7 @@
             android:layout_marginRight="30dp"
             android:background="@drawable/btn_gray_bg"
             android:gravity="center"
-            android:text="激活"
+            android:text="@string/next_do"
             android:textColor="#fff" 
             android:enabled="false"/>
     </LinearLayout>
@@ -84,12 +84,12 @@
 	        android:id="@+id/textView1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="激活即表示同意" />
+	        android:text="@string/activation_grey" />
 	    <TextView
 	        android:id="@+id/rob_agreement"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="翰威抢单使用协议"
+	        android:text="@string/activation_yellow"
 	        android:textColor="#DD7608" />
 	</LinearLayout>
 

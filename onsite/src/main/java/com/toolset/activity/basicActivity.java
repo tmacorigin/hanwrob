@@ -32,7 +32,7 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-basicActivity";
 	private LinearLayout zdnHeaderLayout = null;
-	headerCtrl hc = null;
+	protected headerCtrl hc = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -80,8 +80,7 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		switch( menuId )
 		{
 
-			//case R.id.back_button:
-			case 1:
+			case R.id.headBack:
 				onBackPressed();
 				break;
 

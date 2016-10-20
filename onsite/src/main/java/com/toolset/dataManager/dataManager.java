@@ -20,6 +20,7 @@ public class dataManager {
     {
         db = new DBManager( context );
     }
+
     //增加一个class类型的额数据进入数据管理模块
     public void addA_Class( Class dataClass )
     {

@@ -6,7 +6,8 @@
     android:background="@color/layout_detail_background" >
     
     	
-    <include layout="@layout/detail_nobegin_title"/>
+    <!--<include layout="@layout/detail_nobegin_title"/>-->
+    <include layout="@layout/zdn_header"/>
     
     <LinearLayout
         android:id="@+id/linearlayout"

@@ -8,6 +8,12 @@
     <string name="home_tel_img">中国  ( +86 )</string>
     <string name="image_clear">msgClear</string>
 
+    <!-- Activation -->
+    <string name="imme_login">马上登录</string>
+    <string name="next_do">下一步</string>
+    <string name="hint_phone_num">输入手机号码</string>
+    <string name="activation_grey">登录即表示同意</string>
+    <string name="activation_yellow">翰威抢单使用协议</string>
 
     <!-- SlidingMenu -->
     <string name="check_update">检查更新</string>
@@ -76,10 +82,11 @@
     <string name="construct_img">施工图片</string>
 
     <!-- Login -->
-    <string name="login_title">商务通</string>
+    <string name="login_title">输入公司提供的登录密码</string>
     <string name="login">登录</string>
     <string name="hint_user">输入用户名</string>
-    <string name="hint_password">输入密码</string>
+    <string name="hint_password">输入登录密码</string>
+
 
     <!-- UploadImg -->
     <string name="upload_message">确认这是要上传的施工图片吗?</string>
