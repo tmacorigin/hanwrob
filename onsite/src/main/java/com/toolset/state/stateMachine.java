@@ -5,6 +5,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.lidroid.xutils.db.sqlite.DbModelSelector;
+import com.toolset.CommandParser.CommandE;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
 import com.toolset.dataManager.dataManager;
@@ -13,7 +14,13 @@ import com.toolset.dataManager.dmdataDemo;
 import com.toolset.internet.WebApiDemo;
 import com.toolset.state.dataBean.TelNumInfo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
 
 
 /**
@@ -62,7 +69,7 @@ public class stateMachine implements stateControlInterface {
                 String imsi = mTm.getSubscriberId();
 
 
-                String tel = (String) (e.GetProperty("name").GetPropertyContext());
+                String tel = (String) (e.GetProperty("phone").GetPropertyContext());
                 String passWord = (String) (e.GetProperty("password").GetPropertyContext());
                 TelNumInfo telNumInfo = new TelNumInfo(tel, passWord, imei, imsi);
                 telNumInfoList.add(telNumInfo);
@@ -93,7 +100,7 @@ public class stateMachine implements stateControlInterface {
                                 ExpCommandE login = new ExpCommandE();
                                 login.AddAProperty(new Property("phone", telNumInfo.getTel()));
                                 login.AddAProperty(new Property("password", telNumInfo.getPassWord()));
-                                WebApiII.getInstance().user_loginReq(login);
+                                WebApiII.getInstance(mContext.getMainLooper()).user_loginReq(login);
                                 setState(stateMachine.STATE_WAIT_LOGIN);
                                 //start trans activity
                             } else {
@@ -113,6 +120,13 @@ public class stateMachine implements stateControlInterface {
                         String reState = (String) (e.GetProperty("success").GetPropertyContext());
                         if (reState.equals("1")) {
                             setState(stateMachine.STATE_NORMAL);
+                            dataManager dm = new dataManager(mContext);
+                            dm.addA_Class(TelNumInfo.class);
+                            ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+                            TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
+                            ExpCommandE getTaskE = new ExpCommandE();
+                            e.AddAProperty(new Property("mobile", telNumInfo.getTel()));
+                            WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
                             //start normal ACTIVITY
                         } else if (reState.equals("0")) {
                             setState(stateMachine.STATE_NULL);
@@ -122,16 +136,23 @@ public class stateMachine implements stateControlInterface {
                     break;
                 case stateMachine.STATE_NORMAL:
                     if (eventName.equals("netConnect")) {
+                        Log.d( "stateMachine","netConnect  + STATE_NORMAL" );
                         String reState = (String) (e.GetProperty("netState").GetPropertyContext());
                         if (reState.equals("disconnect")) {
+                            Log.d( "stateMachine","disconnect" );
                             setState(stateMachine.STATE_OUT_OF_SERVICE);
                         }
+                    }
+                    if (eventName.equals("getTaskListRsp")) {
+                        robotScanRspHandle(e);
                     }
                     break;
                 case stateMachine.STATE_OUT_OF_SERVICE:
                     if (eventName.equals("netConnect")) {
+                        Log.d( "stateMachine","netConnect  + STATE_OUT_OF_SERVICE" );
                         String reState = (String) (e.GetProperty("netState").GetPropertyContext());
                         if (reState.equals("connect")) {
+                            Log.d( "stateMachine","connect" );
                             setState(stateMachine.STATE_NORMAL);
                         }
                     }
@@ -142,6 +163,47 @@ public class stateMachine implements stateControlInterface {
         }
         return true;
     }
+
+    private void robotScanRspHandle(ExpCommandE e) {
+        int status = -1;
+        String rep = (String) e.GetPropertyContext("HTTP_REQ_RSP");
+        JSONObject json_obj = null;
+        try {
+            json_obj = new JSONObject(rep);
+            if (json_obj != null) status = json_obj.getInt("status");
+
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+
+        if (status == 0) {
+            ArrayList<dataManagerdataBase> robotList = new ArrayList<dataManagerdataBase>();
+            JSONArray robotsArray = null;
+            try {
+                robotsArray = json_obj.getJSONArray("tasks");
+                for (int i = 0; i < robotsArray.length(); i++) {
+                    JSONObject obj;
+                    obj = (JSONObject) robotsArray.get(i);
+
+//                    String user = getStringFromJasonObj(obj, "user");
+//                    String pictureUrl = getStringFromJasonObj(obj, "avatar_url");
+//                    String current_lat = getStringFromJasonObj(obj, "current_lat");
+//                    String current_lng = getStringFromJasonObj(obj, "current_lng");
+//
+//                    robotList.add(new robot(user, pictureUrl, Double.parseDouble(current_lat), Double.parseDouble(current_lng)));
+
+                }
+                dataManager dm = new dataManager(mContext);
+                dm.addA_Class(TelNumInfo.class);
+                dm.resetdbData(TelNumInfo.class, robotList);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+    }
+
+
     @Override
     public boolean flowPermissionControl(ExpCommandE e) {
 

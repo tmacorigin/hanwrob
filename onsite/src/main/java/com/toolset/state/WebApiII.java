@@ -64,7 +64,7 @@ public class WebApiII extends  InternetComponent{
     public void user_loginReq(ExpCommandE e) {
         ExpCommandE expCommandE = new ExpCommandE("STATE_CONTROL_COMMAND");
         expCommandE.AddAExpProperty(new Property("internalMessageName","loginInfo"));
-        expCommandE.AddAProperty(new Property("name", ""));
+        expCommandE.AddAProperty(new Property("phone", ""));
         expCommandE.AddAProperty(new Property("password", ""));
         EventBus.getDefault().post(expCommandE);
 
@@ -74,6 +74,18 @@ public class WebApiII extends  InternetComponent{
     @Override
     public void user_loginRsp(ExpCommandE e) {
 
+        ExpCommandE pe = e.clone();
+        pe.setCmd("STATE_CONTROL_COMMAND");
+        EventBus.getDefault().post(pe);
+    }
+
+    @Override
+    public void getTaskListReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void getTaskListRsp(ExpCommandE e) {
         ExpCommandE pe = e.clone();
         pe.setCmd("STATE_CONTROL_COMMAND");
         EventBus.getDefault().post(pe);

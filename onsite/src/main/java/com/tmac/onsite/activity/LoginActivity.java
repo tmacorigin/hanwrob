@@ -5,14 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.tmac.onsite.R;
+import com.tmac.onsite.activity.MainActivity;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.PhoneEditText;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
+import com.toolset.MainControl.TestControl;
+import com.toolset.state.WebApiII;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
 
@@ -78,7 +86,17 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.login:
                 // 验证密码是否正确
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+				if(TestControl.isTest) {
+					startActivity(new Intent(LoginActivity.this, MainActivity.class));
+					finish();
+				}
+				else {
+					ExpCommandE e = new ExpCommandE();
+					e.AddAProperty(new Property("name", ""));
+					e.AddAProperty(new Property("password", ""));
+					WebApiII.getInstance(getMainLooper()).user_loginReq(e);
+//				EventBus.getDefault().post(e);
+				}
                 break;
             case R.id.login_back:
                 finish();
@@ -89,3 +107,4 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         }
     }
 }
+

@@ -55,6 +55,7 @@ public class NetworkReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO Auto-generated method stub
+        Log.d("NetworkReceiver", "onReceive");
         ConnectivityManager connectMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -73,8 +74,10 @@ public class NetworkReceiver extends BroadcastReceiver {
         e.AddAExpProperty(new Property("internalMessageName", "netConnect"));
 
         if (gprsConnect || wifiConnect) {
+            Log.d("NetworkReceiver", "connect");
             e.AddAProperty(new Property("netState", "connect"));
         } else {
+            Log.d("NetworkReceiver", "disconnect");
             e.AddAProperty(new Property("netState", "disconnect"));
         }
         EventBus.getDefault().post(e); // dispatch message to anyone who care about it

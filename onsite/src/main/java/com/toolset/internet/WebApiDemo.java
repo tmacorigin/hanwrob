@@ -63,5 +63,15 @@ public class WebApiDemo extends  InternetComponent{
     public void user_loginRsp(ExpCommandE e) {
     }
 
+    @Override
+    public void getTaskListReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getTaskListRsp(ExpCommandE e) {
+
+    }
+
 
 }

@@ -13,4 +13,7 @@ public interface WebApiInterface {
 
     public void user_loginReq(ExpCommandE e);
     public void user_loginRsp(ExpCommandE e);
+
+    public void getTaskListReq(ExpCommandE e);
+    public void getTaskListRsp(ExpCommandE e);
 }
