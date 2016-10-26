@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/y138"
     android:id="@+id/layout_title"
     android:background="@color/layout_title_bg"
-    android:padding="@dimen/layout_padding"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
     >
     
     <FrameLayout
         android:id="@+id/layout_settings"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x40">
 
         <ImageView
             android:id="@+id/img_settings"
-            android:layout_width="@dimen/setting_img_width"
-            android:layout_height="@dimen/setting_img_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x8"
             android:src="@drawable/setting" />
 
         <ImageView
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|top"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:src="@drawable/red_tips" />
     </FrameLayout>
 
@@ -34,12 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x50"
         >
 
         <ImageView
             android:id="@+id/img_message"
-            android:layout_width="@dimen/setting_img_width"
-            android:layout_height="@dimen/setting_img_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/message" />
 
         <ImageView

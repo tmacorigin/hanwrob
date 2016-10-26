@@ -24,7 +24,7 @@ import com.toolset.state.WebApiII;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
 
-    private PhoneEditText password;
+    private EditText password;
     private ImageView clear;
     private Button login;
     private LinearLayout back;
@@ -41,7 +41,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     }
 
     private void initViews() {
-        password = (PhoneEditText) findViewById(R.id.login_password);
+        password = (EditText) findViewById(R.id.login_password);
         clear = (ImageView) findViewById(R.id.login_clear);
         login = (Button) findViewById(R.id.login);
         back = (LinearLayout) findViewById(R.id.login_back);

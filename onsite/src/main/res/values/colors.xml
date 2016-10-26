@@ -5,13 +5,19 @@
     <color name="red">#ff0000</color>
     <color name="black">#000000</color>
 
+    <color name="common_yellow">#ff7200</color>
+    <color name="common_yellow_press">#aaff7200</color>
+    <color name="base_bg_grey">#505663</color>
+
+    <color name="grey_btn_bg">#afafaf</color>
+
     <color name="enter_base_bg">#666666</color>
     
     <color name="main_viewpager_bg">#EDEDED</color>
     <color name="slidingmenu_bg">#212429</color>
     <color name="sliding_underline">#46494E</color>
     
-    <color name="layout_title_bg">#505664</color>
+    <color name="layout_title_bg">#505663</color>
     <color name="layout_bottom_menu_bg">#F5F5F5</color>
     <color name="layout_bottom_menu_text_press">#427CA6</color>
     <color name="layout_bottom_menu_text_normal">#BDBDBD</color>

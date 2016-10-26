@@ -29,14 +29,14 @@ public class TimeCount extends CountDownTimer{
 	public void onFinish() {
 		getcode.setText("重新获取");
 		getcode.setEnabled(true);
-		getcode.setTextColor(Color.parseColor("#FF6633"));
+		getcode.setTextColor(Color.parseColor("#ff7200"));
 	}
 
 	@Override
 	public void onTick(long millisUntilFinished) {
 		getcode.setText("正在获取"+"("+millisUntilFinished / 1000 + ")");
 		getcode.setEnabled(false);
-		getcode.setTextColor(Color.parseColor("#ffffff"));
+		getcode.setTextColor(Color.parseColor("#afafaf"));
 	}
 
 }

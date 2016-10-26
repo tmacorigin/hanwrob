@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff" >
+    android:background="@color/white" >
 
     <ImageView
         android:layout_width="fill_parent"
@@ -15,17 +15,17 @@
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal" 
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="@dimen/y186">
 
         <Button
             android:id="@+id/start_btn"
-            android:layout_width="130dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x477"
+            android:layout_height="@dimen/x156"
             android:text="@string/imme_login"
-            android:background="#ff9900"
+            android:background="@color/common_yellow"
             android:layout_gravity="center"
-            android:textColor="#fff"
-            android:textSize="18sp"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/x48"/>
     </LinearLayout>
 
 </RelativeLayout>

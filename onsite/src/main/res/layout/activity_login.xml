@@ -3,32 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/enter_base_bg"
+    android:background="@color/base_bg_grey"
     android:orientation="vertical"
     tools:context="com.tmac.onsite.activity.LoginActivity">
 
-
     <LinearLayout
         android:id="@+id/login_back"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y50"
         android:orientation="vertical" >
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="@dimen/x54"
+            android:layout_marginRight="@dimen/x30"
             android:background="@drawable/back_white"
             android:contentDescription="@string/image_back" />
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/x136"
+        android:layout_marginTop="@dimen/y86"
         android:text="@string/login_title"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-    <RelativeLayout
+        android:textColor="@color/white"
+        android:textSize="@dimen/x48" />
+
+    <!--<RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp">
@@ -55,8 +58,48 @@
             android:contentDescription="@string/image_clear"
             android:visibility="gone"/>
 
+    </RelativeLayout>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y60">
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="@dimen/x807"
+            android:layout_height="@dimen/y90"
+            android:layout_centerHorizontal="true"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:hint="@string/hint_password"
+            android:inputType="numberPassword"
+            android:maxLength="11"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x48" />
+
+        <TextView
+            android:layout_width="@dimen/x807"
+            android:layout_height="@dimen/y2"
+            android:layout_below="@+id/login_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y44"
+            android:background="@color/white"/>
+
+
+        <ImageView
+            android:id="@+id/login_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x166"
+            android:layout_marginTop="@dimen/y16"
+            android:src="@drawable/clear"
+            android:contentDescription="@string/image_clear"
+            android:visibility="gone"/>
+
     </RelativeLayout>
-    <LinearLayout
+
+    <!--<LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -73,7 +116,27 @@
             android:text="@string/login"
             android:textColor="#fff"
             android:enabled="false"/>
-    </LinearLayout>
+    </LinearLayout>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y80"
+        >
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="@dimen/x807"
+            android:layout_height="@dimen/y158"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_gray_bg"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textSize="@dimen/x48"
+            android:textColor="@color/white"
+            android:enabled="false"/>
+
+    </RelativeLayout>
 
 
 </LinearLayout>

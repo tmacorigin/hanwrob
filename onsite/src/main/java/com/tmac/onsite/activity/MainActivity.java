@@ -26,6 +26,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.FeatureInfo;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -109,7 +110,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		messages.setOnClickListener(this);
 		
 		// 设置底部RadioButton中气泡提示的数量	
-		rb_rob_task.showTextBadge("10");
+		rb_rob_task.showDrawableBadge(BitmapFactory.decodeResource(getResources(), R.drawable.badge_view));
+		rb_rob_task.showTextBadge("5");
 
 		rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			

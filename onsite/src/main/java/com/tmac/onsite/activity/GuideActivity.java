@@ -43,7 +43,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		StatusBarUtil.setTranslucent(this, 0);
 		initViews();
 		initDots();
-		
+
 	}
 	
 	private void initViews() {

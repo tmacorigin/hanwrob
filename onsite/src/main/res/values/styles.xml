@@ -34,10 +34,12 @@
     <style name="rb_style" parent="AutoWrap">
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/rb_text_size</item>
+        <item name="android:textSize">@dimen/x32</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@drawable/layout_bottom_text_select</item>
-        <item name="android:padding">@dimen/rb_padding</item>
-        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:paddingTop">@dimen/x10</item>
+        <item name="android:paddingBottom">@dimen/x12</item>
+        <item name="android:drawablePadding">@dimen/x10</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
 

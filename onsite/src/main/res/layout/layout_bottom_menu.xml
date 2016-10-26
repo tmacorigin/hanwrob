@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/bottom_menu_height"
+    android:layout_height="@dimen/y160"
 	android:orientation="horizontal"
-    android:background="@color/layout_bottom_menu_bg">
+    android:background="@color/white">
     
     <RadioGroup
         android:id="@+id/rg" 
@@ -19,24 +19,25 @@
         <cn.bingoogolapple.badgeview.BGABadgeRadioButton
             android:id="@+id/rb_get_task" 
             style="@style/rb_style"
-            android:text="抢任务"
+            android:text="@string/rob_task"
             android:checked="true"
-            android:drawableTop="@drawable/get_task"
+            android:drawableTop="@drawable/rob_task_sele"
             app:badge_dragable="true"
             app:badge_isResumeTravel="true"
-            app:badge_padding="@dimen/badge_padding"
-            app:badge_horizontalMargin="@dimen/badge_horizontalMargin"
+            app:badge_padding="@dimen/x9"
+            app:badge_horizontalMargin="@dimen/x200"
             />
         
         <cn.bingoogolapple.badgeview.BGABadgeRadioButton
             android:id="@+id/rb_send_task"
             style="@style/rb_style"
-            android:text="派任务"
-            android:drawableTop="@drawable/send_task"
+            android:textStyle="bold"
+            android:text="@string/send_task"
+            android:drawableTop="@drawable/send_task_sele"
             app:badge_dragable="true"
             app:badge_isResumeTravel="true"
-            app:badge_padding="@dimen/badge_padding"
-            app:badge_horizontalMargin="@dimen/badge_horizontalMargin"
+            app:badge_padding="@dimen/x9"
+            app:badge_horizontalMargin="@dimen/x200"
             />
         
     </RadioGroup>

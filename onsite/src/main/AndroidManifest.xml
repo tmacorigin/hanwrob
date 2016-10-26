@@ -22,13 +22,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/customTheme">
         <activity
-            android:name=".activity.WelcomeActivity"
-            android:theme="@style/AppBaseTheme">
+            android:name=".activity.MainActivity"
+            android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,9 +79,9 @@
         <activity
             android:name=".activity.IdentifyActivity"
             android:theme="@style/AppBaseTheme" />
-        <activity
+        <!--<activity
             android:name=".activity.MainActivity"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:theme="@style/ColorTranslucentTheme" />-->
         <activity android:name=".activity.DetailTaskActivity" />
         <activity android:name=".activity.DetailNoBeginActivity" />
         <activity android:name=".activity.UploadImgActivity" />

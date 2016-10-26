@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ public class IdentifyActivity extends Activity {
 
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-IdentifyActivity";
-	private PhoneEditText code;
+	private EditText code;
 	private Button agin, primit;
 	private ImageView clear;
 	private TimeCount timeCount;
@@ -85,7 +86,7 @@ public class IdentifyActivity extends Activity {
 
 	// 初始化View
 	private void initView() {
-		code = (PhoneEditText) findViewById(R.id.identify_code);
+		code = (EditText) findViewById(R.id.identify_code);
 		agin = (Button) findViewById(R.id.identify_agin);
 		primit = (Button) findViewById(R.id.identify_primit);
 		clear = (ImageView) findViewById(R.id.identify_clear);

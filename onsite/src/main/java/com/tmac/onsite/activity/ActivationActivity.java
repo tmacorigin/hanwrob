@@ -13,10 +13,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,8 +30,9 @@ import android.widget.Toast;
  * @date 2016年6月6日
  */
 public class ActivationActivity extends Activity{
-	
-	private PhoneEditText phone;
+
+	private static final String TAG = "LC-ActivationActivity";
+	private EditText phone;
 	private TextView rob_agreement;
 	private ImageView clear;
 	private Button activate;
@@ -41,6 +45,11 @@ public class ActivationActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activation);
 		StatusBarUtil.setTranslucent(this, 0);
+		WindowManager windowManager = getWindowManager();
+		Display display = windowManager.getDefaultDisplay();
+		int screenWidth = display.getWidth();
+		int screenHeight = display.getHeight();
+		Log.d(TAG, "width = " + screenWidth + "/ height = " + screenHeight);
 		
 		initView();
 		setEditChanged();
@@ -49,11 +58,12 @@ public class ActivationActivity extends Activity{
 
 	
 	public void initView() {
-		phone = (PhoneEditText) findViewById(R.id.home_phone);
+		phone = (EditText) findViewById(R.id.home_phone);
 		rob_agreement = (TextView) findViewById(R.id.rob_agreement);
 		clear = (ImageView) findViewById(R.id.home_clear);
 		activate = (Button) findViewById(R.id.home_activate);
 		back = (LinearLayout) findViewById(R.id.home_back);
+		Log.d(TAG, "button size = " + activate.getTextSize());
 	}
 
 	public void setEditChanged() {
@@ -78,6 +88,7 @@ public class ActivationActivity extends Activity{
 			public void afterTextChanged(Editable arg0) {
 				int i = phone.getText().toString().trim().length();
 				if (i > 0) {
+					Log.d(TAG, "afterTextChanged");
 					clear.setVisibility(View.VISIBLE);
 					if (i == 11) {
 						activate.setBackgroundResource(drawable.btn_orange_bg);

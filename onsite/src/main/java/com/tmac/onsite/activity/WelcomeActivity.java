@@ -58,6 +58,7 @@ public class WelcomeActivity extends Activity {
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
 			startService(new Intent(this, MainService.class));
 		}
+
 	}
 	
 	/**

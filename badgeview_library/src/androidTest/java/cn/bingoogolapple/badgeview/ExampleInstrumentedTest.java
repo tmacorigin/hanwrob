@@ -24,3 +24,4 @@ public class ExampleInstrumentedTest {
         assertEquals("cn.bingoogolapple.badgeview.test", appContext.getPackageName());
     }
 }
+
