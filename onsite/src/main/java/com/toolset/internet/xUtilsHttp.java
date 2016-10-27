@@ -74,7 +74,7 @@ final public class xUtilsHttp {
             ResultStruct data = mTestSetInterface.getReqData();
             //call call interface => String data
              reponse.AddAProperty(new Property("HTTP_REQ_RSP", data.getData()));
-             reponse.AddAProperty(new Property("STATUS", data.getStauts()));
+             reponse.AddAProperty(new Property("STATUS", data.getStatus()));
              InternetComponent.getInstance().commonRsp(reponse);
         }
         else {
