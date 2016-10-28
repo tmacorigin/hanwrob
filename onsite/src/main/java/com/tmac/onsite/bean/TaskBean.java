@@ -1,15 +1,23 @@
 package com.tmac.onsite.bean;
 
+import com.toolset.dataManager.dataManagerdataBase;
+
 /**
  * Created by user on 16/10/20.
  */
-public class TaskBean {
+public class TaskBean extends dataManagerdataBase {
 
     private String taskId;
     private String taskState;
     private String preformAddress;
     private String finishedTime;
 
+    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime) {
+        this.taskId = taskId;
+        this.taskState = taskState;
+        this.preformAddress = preformAddress;
+        this.finishedTime = finishedTime;
+    }
 
     public String getTaskId() {
         return taskId;
