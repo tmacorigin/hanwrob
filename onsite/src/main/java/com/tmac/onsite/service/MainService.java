@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 import com.toolset.state.stateMachine;
 
 import java.util.Timer;
@@ -64,7 +65,9 @@ public class MainService extends Service {
         Log.i(TAG, "MainService onCreate");
         EventBus.getDefault().register(this);
         sm = new stateMachine( this );
-        sm.mainControl( new ExpCommandE("startUp"));
+        ExpCommandE expCommandE = new ExpCommandE("startUp");
+        expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
+        sm.mainControl(expCommandE );
         super.onCreate();
     }
 

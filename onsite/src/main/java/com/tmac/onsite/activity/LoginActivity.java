@@ -86,7 +86,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.login:
                 // 验证密码是否正确
-				if(TestControl.isTest) {
+				if(!TestControl.isTest) {
 					startActivity(new Intent(LoginActivity.this, MainActivity.class));
 					finish();
 				}

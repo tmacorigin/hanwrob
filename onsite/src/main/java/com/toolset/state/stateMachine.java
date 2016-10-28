@@ -1,10 +1,14 @@
 package com.toolset.state;
 
 import android.content.Context;
+import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.lidroid.xutils.db.sqlite.DbModelSelector;
+import com.tmac.onsite.activity.LoginActivity;
+import com.tmac.onsite.activity.MainActivity;
+import com.tmac.onsite.bean.TaskBean;
 import com.toolset.CommandParser.CommandE;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
@@ -57,7 +61,7 @@ public class stateMachine implements stateControlInterface {
         }
         Log.d(this.getClass().getName() , "eventName = " +eventName  );
         if (eventName != null) {
-            if (eventName.equals("loginInfo")) {
+            if (eventName.equals("loginRequest")) {
                 //send regist
                 dataManager dm = new dataManager(mContext);
                 dm.addA_Class(TelNumInfo.class);
@@ -74,6 +78,7 @@ public class stateMachine implements stateControlInterface {
                 TelNumInfo telNumInfo = new TelNumInfo(tel, passWord, imei, imsi);
                 telNumInfoList.add(telNumInfo);
                 dm.resetdbData(TelNumInfo.class, telNumInfoList);
+
             }
             switch (state) {
                 case stateMachine.STATE_NULL:
@@ -84,7 +89,9 @@ public class stateMachine implements stateControlInterface {
                         ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 
                         if (getDataList == null || getDataList.size() == 0) {
-                            //start login ACTIVITY
+                            Intent intent = new Intent(mContext, LoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(intent);
                         } else {
                             TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
                             TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
@@ -111,26 +118,41 @@ public class stateMachine implements stateControlInterface {
 
 //
                     }
+                    if(eventName.equals("loginRequest")){
+                        setState(stateMachine.STATE_WAIT_LOGIN);
+                    }
 
 
                     break;
 
                 case stateMachine.STATE_WAIT_LOGIN:
                     if (eventName.equals("user_loginRsp")) {
-                        String reState = (String) (e.GetProperty("success").GetPropertyContext());
-                        if (reState.equals("1")) {
-                            setState(stateMachine.STATE_NORMAL);
-                            dataManager dm = new dataManager(mContext);
-                            dm.addA_Class(TelNumInfo.class);
-                            ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
-                            TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
-                            ExpCommandE getTaskE = new ExpCommandE();
-                            e.AddAProperty(new Property("mobile", telNumInfo.getTel()));
-                            WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
-                            //start normal ACTIVITY
-                        } else if (reState.equals("0")) {
-                            setState(stateMachine.STATE_NULL);
-                            //start login ACTIVITY
+                        String reState = (String) (e.GetProperty("HTTP_REQ_RSP").GetPropertyContext());
+                        String successValue = null;
+                        try {
+                            JSONObject jsonObject = new JSONObject(reState);
+                            successValue = jsonObject.getString("success");
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+                        if(successValue != null) {
+                            if (successValue.equals("1")) {
+                                setState(stateMachine.STATE_NORMAL);
+//                                dataManager dm = new dataManager(mContext);
+//                                dm.addA_Class(TelNumInfo.class);
+//                                ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+//                                TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
+                                ExpCommandE getTaskE = new ExpCommandE();
+                                e.AddAProperty(new Property("mobile", ""));
+                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
+                                //start normal ACTIVITY
+                                Intent intent = new Intent(mContext, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                mContext.startActivity(intent);
+                            } else if (successValue.equals("0")) {
+                                setState(stateMachine.STATE_NULL);
+                                //start login ACTIVITY
+                            }
                         }
                     }
                     break;
@@ -180,22 +202,22 @@ public class stateMachine implements stateControlInterface {
             ArrayList<dataManagerdataBase> robotList = new ArrayList<dataManagerdataBase>();
             JSONArray robotsArray = null;
             try {
-                robotsArray = json_obj.getJSONArray("tasks");
+                String taskStr = json_obj.getString("tasks");
+                robotsArray = new JSONArray(taskStr);
                 for (int i = 0; i < robotsArray.length(); i++) {
-                    JSONObject obj;
-                    obj = (JSONObject) robotsArray.get(i);
+                    JSONObject obj = (JSONObject) robotsArray.get(i);
 
-//                    String user = getStringFromJasonObj(obj, "user");
-//                    String pictureUrl = getStringFromJasonObj(obj, "avatar_url");
-//                    String current_lat = getStringFromJasonObj(obj, "current_lat");
-//                    String current_lng = getStringFromJasonObj(obj, "current_lng");
-//
-//                    robotList.add(new robot(user, pictureUrl, Double.parseDouble(current_lat), Double.parseDouble(current_lng)));
+                    String taskId = obj.getString("taskId");
+                    String taskState = obj.getString("taskState");
+                    String preformAddress = obj.getString("preformAddress");
+                    String finishedTime = obj.getString("finishedTime");
+
+                    robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime));
 
                 }
                 dataManager dm = new dataManager(mContext);
-                dm.addA_Class(TelNumInfo.class);
-                dm.resetdbData(TelNumInfo.class, robotList);
+                dm.addA_Class(TaskBean.class);
+                dm.resetdbData(TaskBean.class, robotList);
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }

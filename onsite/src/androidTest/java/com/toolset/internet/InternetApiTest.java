@@ -75,5 +75,8 @@ public class InternetApiTest extends InstrumentationTestCase {
         xUtilsHttp.setTestSetInterface(testSetInterfaceII);
 
         appContext.startService(new Intent(appContext, MainService.class));
+
+        while (true){}
+
     }
 }
