@@ -15,7 +15,7 @@
 			android:id="@+id/no_begin_task"
 			style="@style/send_rb_style"
 	        android:checked="true"
-	        android:drawableBottom="@drawable/rb_shape"
+	        android:drawableBottom="@drawable/send_rb_underline"
 	        android:text="@string/no_begin_task"
         	/>
 	    

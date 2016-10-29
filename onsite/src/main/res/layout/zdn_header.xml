@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/y138"
     android:id="@+id/header"
     android:background="@color/layout_title_bg"
     >
@@ -9,10 +9,9 @@
 
     <RelativeLayout
         android:id="@+id/title_bar"
-        android:layout_height="40dp"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        >
 
         <!--ImageView
             android:id="@+id/navigationButton"
@@ -41,16 +40,15 @@
             android:layout_height="wrap_content"
             android:src="@drawable/back_white"
             android:layout_centerVertical="true"
-            android:paddingLeft="5dp"/>
+            android:layout_marginLeft="@dimen/x54"/>
 
         <TextView
             android:id="@+id/headerTitle"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:layout_centerInParent="true"
-            android:textSize="18sp"
+            android:textSize="@dimen/x60"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:text=""
@@ -62,7 +60,18 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:paddingRight="5dp"/>
+            android:layout_marginRight="@dimen/x48"/>
+
+        <TextView
+            android:id="@+id/headRight_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/x60"
+            android:layout_marginRight="@dimen/x48"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
 
         <!--ImageView
             android:id="@+id/addFriend"

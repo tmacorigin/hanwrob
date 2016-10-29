@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/y1364"
         android:layout_below="@+id/detail_layout"
         android:background="@color/white"
         android:paddingLeft="10dp"
@@ -349,55 +349,58 @@
     <RelativeLayout 
         android:id="@+id/nobegin_layout_bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/y342"
         android:gravity="center"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp">
+        >
         
         <Button 
             android:id="@+id/upload_pre_image"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/upload_pre_construct_btn"
+            android:layout_width="@dimen/x476"
+            android:layout_height="@dimen/y156"
+            android:background="@color/common_yellow"
             android:text="@string/upload_pre_img"
             android:textColor="@color/white"
-            android:textSize="@dimen/detail_nobegin_task_btn"/>
+            android:textSize="@dimen/x48"/>
         
         <Button 
             android:id="@+id/upload_end_image"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x476"
+            android:layout_height="@dimen/y156"
             android:visibility="gone"
             android:background="@color/upload_end_construct_btn"
             android:text="@string/upload_end_img"
             android:textColor="@color/white"
-            android:textSize="@dimen/detail_nobegin_task_btn"/>
+            android:textSize="@dimen/x48"/>
         
         <RelativeLayout 
             android:id="@+id/nobegin_layout_bottom_1"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/y156"
+            android:paddingLeft="@dimen/x48"
+            android:paddingRight="@dimen/x48"
             android:visibility="gone"
             >
             
             <!-- 施工完成 -->
             <Button 
                 android:id="@+id/contrust_finish"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
                 android:text="@string/task_finish"
+                android:textSize="@dimen/x48"
                 android:textColor="@color/white"
-                android:background="@color/upload_pre_construct_btn"
+                android:background="@color/common_yellow"
                 />
             
             <!-- 未能完成 -->
             <Button 
                 android:id="@+id/contrust_no_finish"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:text="@string/task_nofinish"
                 android:textColor="@color/white"
+                android:textSize="@dimen/x48"
                 android:background="@color/upload_end_construct_btn"
                 />
             
@@ -407,26 +410,30 @@
         <RelativeLayout 
             android:id="@+id/nobegin_layout_bottom_2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/y156"
+            android:paddingLeft="@dimen/x48"
+            android:paddingRight="@dimen/x48"
             android:visibility="gone"
             >
 			
             <!-- 施工图片 -->
             <Button 
                 android:id="@+id/contrust_img_btn"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
                 android:text="@string/task_finish"
+                android:textSize="@dimen/x48"
                 android:textColor="@color/white"
-                android:background="@color/upload_pre_construct_btn"
+                android:background="@color/common_yellow"
                 />
             
             <!-- 录音时间 00:28 -->
             <Button 
                 android:id="@+id/record_time_btn"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
+                android:textSize="@dimen/x48"
                 android:textColor="@color/white"
                 android:background="@color/upload_end_construct_btn"
                 />
@@ -434,11 +441,12 @@
             <!-- 查看原因 -->
             <Button 
                 android:id="@+id/check_reason_btn"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:text="@string/check_reason"
                 android:textColor="@color/white"
+                android:textSize="@dimen/x48"
                 android:background="@color/upload_end_construct_btn"
                 android:visibility="gone"
                 />

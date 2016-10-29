@@ -8,20 +8,21 @@
         android:id="@+id/dialog_title"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:textSize="17sp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
+        android:textSize="@dimen/x46"
+        android:textColor="@color/black"
+        android:paddingLeft="@dimen/x58"
+        android:paddingRight="@dimen/x58"
         android:background="@color/white"
         android:gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/audio_hint_text"/>
+        android:layout_height="@dimen/y2"
+        android:background="@drawable/sliding_underline"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/y144"
         android:orientation="horizontal">
 
         <Button
@@ -30,13 +31,14 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:textColor="@color/upload_pre_construct_btn"
+            android:textColor="@color/common_yellow"
+            android:textSize="@dimen/x42"
             android:gravity="center"/>
 
         <TextView
-            android:layout_width="1dp"
+            android:layout_width="@dimen/x2"
             android:layout_height="match_parent"
-            android:background="@color/audio_hint_text"/>
+            android:background="@drawable/sliding_underline_vertical"/>
 
         <Button
             android:id="@+id/negative_btn"
@@ -45,6 +47,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:background="@color/white"
+            android:textSize="@dimen/x42"
+            android:textColor="@color/common_dialog_btn_text"
             />
 
     </LinearLayout>

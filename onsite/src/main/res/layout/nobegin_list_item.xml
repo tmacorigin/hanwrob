@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="@dimen/y430"
     android:background="@color/white"
-    android:padding="@dimen/noBegin_item_padding">
+    >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/lv_head_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/y132"
+        >
 
         <TextView
             android:id="@+id/tv_type"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x72"
             android:text="@string/no_begin_task"
             android:textColor="@color/nobegin_text_type"
-            android:textSize="@dimen/noBegin_text"
+            android:textSize="@dimen/x46"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="@dimen/x280"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x72">
+
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/remain_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
                 android:text="@string/remain_time"
-                android:textSize="@dimen/noBegin_text"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/x46"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,71 +44,91 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="02"
+                android:layout_toRightOf="@+id/remain_time"
                 android:textColor="@color/nobegin_text_type"
-                android:textSize="@dimen/noBegin_text"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/x46"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_toRightOf="@id/tv_time"
                 android:text="@string/day"
-                android:textSize="@dimen/noBegin_text"
+                android:textSize="@dimen/x46"
                 android:textStyle="bold" />
-        </LinearLayout>
 
-    </LinearLayout>
+        </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="@dimen/nobegin_margin_top"
-        android:background="@color/black"></LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/lv_item_underline"
+        android:layout_width="@dimen/x988"
+        android:layout_height="@dimen/y2"
+        android:layout_below="@+id/lv_head_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/send_lv_item_line"/>
+
+    <RelativeLayout
+        android:id="@+id/num_layout"
+        android:layout_below="@+id/lv_item_underline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/nobegin_margin_top"
+        android:layout_marginTop="@dimen/x30"
+        android:layout_marginLeft="@dimen/x72"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:text="@string/project_number"
-            android:textSize="@dimen/noBegin_text"
+            android:textSize="@dimen/x46"
+            android:includeFontPadding="false"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/tv_tv"
             android:text="CRJ22624"
-            android:textSize="@dimen/noBegin_text"
+            android:textSize="@dimen/x46"
+            android:includeFontPadding="false"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:src="@drawable/my_1_setting" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/nobegin_margin_top"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lv_item_underline"
+        android:layout_marginTop="@dimen/y30"
+        android:layout_marginRight="@dimen/x46"
+        android:src="@drawable/rob_img" />
+
+
+    <LinearLayout
+        android:id="@+id/address_layout"
+        android:layout_below="@+id/num_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x26"
+        android:layout_marginLeft="@dimen/x72"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/construct_address"
-            android:textSize="@dimen/noBegin_text_small" />
+            android:textSize="@dimen/x42"
+            android:includeFontPadding="false"
+            android:textColor="@color/rob_item_text"/>
 
         <TextView
             android:id="@+id/tv_workarea"
@@ -115,29 +136,37 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="黄浦区淮海东路８５号淮南商业大厦"
-            android:textSize="@dimen/noBegin_text_small" />
+            android:textSize="@dimen/x42"
+            android:includeFontPadding="false"
+            android:textColor="@color/rob_item_text"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/x43"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/nobegin_margin_top"
+        android:layout_marginLeft="@dimen/x72"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/last_time"
-            android:textSize="@dimen/noBegin_text_small" />
+            android:textSize="@dimen/x42"
+            android:includeFontPadding="false"
+            android:textColor="@color/rob_item_text"/>
 
         <TextView
             android:id="@+id/tv_finishtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2016.03.27"
-            android:textSize="@dimen/noBegin_text_small" />
+            android:textSize="@dimen/x42"
+            android:includeFontPadding="false"
+            android:textColor="@color/rob_item_text"/>
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
 

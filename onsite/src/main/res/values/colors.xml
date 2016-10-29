@@ -8,6 +8,8 @@
     <color name="common_yellow">#ff7200</color>
     <color name="common_yellow_press">#aaff7200</color>
     <color name="base_bg_grey">#505663</color>
+    <color name="common_dialog_btn_text">#494848</color>
+    <color name="rob_task_item_num">#494848</color>
 
     <color name="grey_btn_bg">#afafaf</color>
 
@@ -24,11 +26,13 @@
     
     <color name="light_blue">#6593cb</color>
     <color name="load_more_gray">#585858</color>
-    
-    <color name="rob_item_text">#969696</color>
+
+    <color name="send_task_rb_checked">#454b5a</color>
+    <color name="send_task_rb_unchecked">#999999</color>
+    <color name="rob_item_text">#999999</color>
     
     <color name="send_rg_bg">#F5F5F5</color>
-    <color name="nobegin_text_type">#F73809</color>
+    <color name="nobegin_text_type">#FF0000</color>
     
     <color name="layout_detail_background">#F5F5F5</color>
     <color name="upload_pre_construct_btn">#FF7200</color>

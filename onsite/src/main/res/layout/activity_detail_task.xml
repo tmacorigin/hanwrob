@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/y1364"
         android:layout_below="@+id/header"
         android:background="@color/white"
         android:paddingLeft="10dp"
@@ -356,14 +356,15 @@
 	
     <Button
         android:id="@+id/main_button"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/x476"
+        android:layout_height="@dimen/y156"
         android:layout_alignParentBottom="true"
-        android:text="我要抢单"
-        android:padding="10dp"
-        android:layout_marginBottom="20dp"
+        android:text="@string/me_rob_order"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/y93"
         android:layout_centerHorizontal="true"
-        android:textColor="#FFFFFFFF"
-        android:background="#FF7200"/>
+        android:textColor="@color/white"
+        android:textSize="@dimen/x48"
+        android:background="@color/common_yellow"/>
 											    
 </RelativeLayout>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:padding="10dp"
+    android:layout_height="@dimen/y222"
     android:background="@color/white"
     >
 
@@ -10,6 +9,10 @@
         android:id="@+id/msg_item_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y40"
+        android:layout_marginLeft="@dimen/x72"
+        android:textSize="@dimen/x46"
+        android:includeFontPadding="false"
         android:text="你的项目申请未被通过"
         />
 
@@ -18,17 +21,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/x40"
+        android:layout_marginLeft="@dimen/x72"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/x42"
+            android:textColor="@color/rob_item_text"
             android:text="@string/pro_number"/>
 
         <TextView
             android:id="@+id/msg_item_num"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/x42"
+            android:textColor="@color/rob_item_text"
             android:text="CRJ22555"/>
 
     </LinearLayout>
@@ -39,14 +50,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:includeFontPadding="false"
+        android:textColor="@color/rob_item_text"
+        android:textSize="@dimen/x42"
+        android:layout_marginRight="@dimen/x52"
         android:text="03-22 15:00:21"/>
 
     <ImageView
         android:id="@+id/msg_item_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/x81"
+        android:layout_height="@dimen/y81"
         android:src="@drawable/delete"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x56"
         android:layout_centerVertical="true"
         android:visibility="gone"
         />

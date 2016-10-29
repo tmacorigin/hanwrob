@@ -46,15 +46,16 @@
     <string name="more">查看更多</string>
 
     <!-- Rob_Item -->
-    <string name="project_number">项目编号 :</string>
-    <string name="construct_address">施工地址 :</string>
-    <string name="last_time">施工最后完成时间 :</string>
+    <string name="project_number">项目编号 : </string>
+    <string name="construct_address">施工地址 : </string>
+    <string name="last_time">施工最后完成时间 : </string>
 
     <!-- Detail_Task -->
     <string name="task_detail">工单详情</string>
     <string name="detail_dialog_message">确定要抢该工单吗？</string>
     <string name="ensure">是</string>
     <string name="cancle">否</string>
+    <string name="me_rob_order">我要抢单</string>
 
     <!-- Send_RG -->
     <string name="no_begin_task">还未施工</string>

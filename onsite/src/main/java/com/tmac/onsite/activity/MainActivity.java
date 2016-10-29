@@ -183,7 +183,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		//4.淡入淡出的透明度效果的调整(调整透明度最小的值)
 		sm.setFadeDegree(0.1f);
 		//5.设置SlidingMenu距离右侧的距离大小
-        sm.setBehindOffset((int) getResources().getDimension(R.dimen.menu_margin_right));
+        sm.setBehindOffset((int) getResources().getDimension(R.dimen.x360));
 		
 	}
 

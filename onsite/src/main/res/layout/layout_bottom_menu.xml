@@ -31,6 +31,7 @@
         <cn.bingoogolapple.badgeview.BGABadgeRadioButton
             android:id="@+id/rb_send_task"
             style="@style/rb_style"
+            android:drawablePadding="@dimen/x10"
             android:textStyle="bold"
             android:text="@string/send_task"
             android:drawableTop="@drawable/send_task_sele"

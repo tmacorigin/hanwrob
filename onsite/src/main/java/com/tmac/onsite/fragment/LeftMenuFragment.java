@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.tmac.onsite.view.CommonDialog;
 
@@ -30,7 +31,7 @@ import com.tmac.onsite.view.CommonDialog;
  */
 public class LeftMenuFragment extends Fragment implements View.OnClickListener, CommonDialog.OnDialogListenerInterface{
 
-	private LinearLayout check_update;
+	private RelativeLayout check_update;
 	private LinearLayout use_direction;
 	private LinearLayout exit_avai;
 	private static final boolean DBG = true;
@@ -51,7 +52,7 @@ public class LeftMenuFragment extends Fragment implements View.OnClickListener, 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		check_update = (LinearLayout) view.findViewById(R.id.update_layout);
+		check_update = (RelativeLayout) view.findViewById(R.id.update_layout);
 		use_direction = (LinearLayout) view.findViewById(R.id.use_layout);
 		exit_avai = (LinearLayout) view.findViewById(R.id.exit_avai);
 		initEvents();

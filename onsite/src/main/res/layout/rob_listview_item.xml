@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/y300"
     android:orientation="vertical"
     android:background="@color/white">
     
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/rob_item_margin_lr"
-        android:layout_marginTop="@dimen/rob_item_margin_tb"
+        android:layout_marginLeft="@dimen/x72"
+        android:layout_marginTop="@dimen/y36"
         android:orientation="horizontal">
         
         <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textSize="@dimen/rob_item_title_text_size" 
+	        android:textSize="@dimen/x46"
+			android:includeFontPadding="false"
+			android:textColor="@color/rob_task_item_num"
 	        android:text="@string/project_number"/>
         
         <TextView 
 	        android:id="@+id/tv_number"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="@dimen/rob_item_margin_left_title"
-	        android:textSize="@dimen/rob_item_title_text_size"
+			android:includeFontPadding="false"
+			android:textSize="@dimen/x46"
+			android:textColor="@color/rob_task_item_num"
 	        android:text="CRJ1223"/>
         
     </LinearLayout>
@@ -31,51 +34,53 @@
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/rob_item_margin_lr"
-	    android:layout_marginTop="@dimen/rob_item_margin_tb"
+        android:layout_marginLeft="@dimen/x72"
+	    android:layout_marginTop="@dimen/y32"
         android:orientation="horizontal">
         
         <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textColor="@color/rob_item_text"
-	        android:textSize="@dimen/rob_item_text_size" 
+			android:includeFontPadding="false"
+			android:textColor="@color/rob_item_text"
+	        android:textSize="@dimen/x42"
 	        android:text="@string/construct_address"/>
         
         <TextView 
 	        android:id="@+id/tv_address"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="@dimen/rob_item_margin_left_title"
-	        android:textColor="@color/rob_item_text"
-	        android:textSize="@dimen/rob_item_text_size" 
-	        android:text="上海市"/>
+			android:includeFontPadding="false"
+			android:textColor="@color/rob_item_text"
+			android:textSize="@dimen/x42"
+			android:text="上海市"/>
         
     </LinearLayout>
 	
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/rob_item_margin_lr"
-        android:layout_marginTop="@dimen/rob_item_con_margin_top"
-        android:layout_marginBottom="@dimen/rob_item_margin_tb"
+		android:layout_marginLeft="@dimen/x72"
+		android:layout_marginTop="@dimen/y32"
         android:orientation="horizontal"
         >
         
         <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textColor="@color/rob_item_text"
-	        android:textSize="@dimen/rob_item_text_size"
-	        android:text="@string/last_time"/>
+			android:includeFontPadding="false"
+			android:textColor="@color/rob_item_text"
+			android:textSize="@dimen/x42"
+			android:text="@string/last_time"/>
         
         <TextView 
 	        android:id="@+id/tv_time"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="@dimen/rob_item_margin_left_title"
+			android:includeFontPadding="false"
+			android:layout_marginLeft="@dimen/rob_item_margin_left_title"
 	        android:textColor="@color/rob_item_text"
-	        android:textSize="@dimen/rob_item_text_size"
+			android:textSize="@dimen/x42"
 	        android:text="2016-06-12"
             />
         
