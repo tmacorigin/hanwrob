@@ -27,6 +27,10 @@
     <color name="light_blue">#6593cb</color>
     <color name="load_more_gray">#585858</color>
 
+    <color name="display_img_indicator_checked">#454b5a</color>
+    <color name="display_img_indicator_unchecked">#999999</color>
+
+
     <color name="send_task_rb_checked">#454b5a</color>
     <color name="send_task_rb_unchecked">#999999</color>
     <color name="rob_item_text">#999999</color>
@@ -38,7 +42,7 @@
     <color name="upload_pre_construct_btn">#FF7200</color>
  	<color name="task_nofinish_btn">#00558E</color>
  	<color name="upload_end_construct_btn">#005492</color>   
- 	<color name="audio_hint_text">#9F9F9F</color>
+ 	<color name="audio_hint_text">#000000</color>
  	<color name="audio_underline">#EBEBEB</color>
  	<color name="audio_bottom_btn_press">#666666</color>
  	

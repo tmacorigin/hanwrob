@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:padding="@dimen/detail_task_title_padding"
+    android:layout_height="@dimen/y138"
     android:background="@color/layout_title_bg" >
     
     <ImageView 
@@ -11,14 +10,15 @@
          android:layout_height="wrap_content"
          android:src="@drawable/back_white"
          android:layout_centerVertical="true"
-         android:padding="@dimen/detail_task_iv_padding"/>
+         android:layout_marginLeft="@dimen/x54"
+         />
     
     <TextView 
          android:id="@+id/base_tv"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:text="@string/task_detail"
-         android:textSize="@dimen/detail_task_text"
+         android:textSize="@dimen/x60"
          android:textColor="@color/white"
          android:layout_centerInParent="true"/>
 

@@ -152,7 +152,8 @@ public class PhotoGridAdapter extends SelectableAdapter<PhotoGridAdapter.PhotoVi
       });
 
     } else {
-      holder.ivPhoto.setImageResource(R.drawable.__picker_camera);
+      holder.ivPhoto.setImageResource(R.drawable.__picker_take_pic);
+      holder.ivPhoto.setScaleType(ImageView.ScaleType.FIT_XY);
     }
   }
 

@@ -13,8 +13,9 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.toolset.activity.basicActivity;
 
-public class CannotFinishActivity extends Activity implements OnClickListener, CommonDialog.OnDialogListenerInterface{
+public class CannotFinishActivity extends basicActivity implements OnClickListener, CommonDialog.OnDialogListenerInterface{
 	
 	private EditText edit_reason;
 	private ImageView iv_back;
@@ -25,8 +26,8 @@ public class CannotFinishActivity extends Activity implements OnClickListener, C
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cannot_finish);
+		super.onCreate(savedInstanceState);
 
 		initViews(getIntent());
 		initEvents();
@@ -36,14 +37,15 @@ public class CannotFinishActivity extends Activity implements OnClickListener, C
 	private void initViews(Intent intent) {
 		// TODO Auto-generated method stub
 		edit_reason = (EditText) findViewById(R.id.edit_reason);
-		iv_back = (ImageView) findViewById(R.id.cannot_finish_iv_back);
-		iv_send = (ImageView) findViewById(R.id.cannot_finish_send);
+		//iv_back = (ImageView) findViewById(R.id.cannot_finish_iv_back);
+		//iv_send = (ImageView) findViewById(R.id.cannot_finish_send);
+		hc.setHeaderRightImage(R.drawable.share);
 		tv_show = (TextView) findViewById(R.id.tv_show_reason);
 		boolean isShowReason = intent.getBooleanExtra(DetailNoBeginActivity.SHOW_REASON, false);
 		String reasonString = intent.getStringExtra(DetailNoBeginActivity.CANNOT_REASON);
 		if(isShowReason){
 			edit_reason.setVisibility(View.GONE);
-			iv_send.setVisibility(View.GONE);
+			hc.headerRight.setVisibility(View.GONE);
 			tv_show.setVisibility(View.VISIBLE);
 			tv_show.setText(reasonString);
 		}
@@ -52,8 +54,8 @@ public class CannotFinishActivity extends Activity implements OnClickListener, C
 
 	private void initEvents() {
 		// TODO Auto-generated method stub
-		iv_back.setOnClickListener(this);
-		iv_send.setOnClickListener(this);
+		//iv_back.setOnClickListener(this);
+		//iv_send.setOnClickListener(this);
 		edit_reason.addTextChangedListener(new TextWatcher() {
 			
 			@Override
@@ -81,14 +83,14 @@ public class CannotFinishActivity extends Activity implements OnClickListener, C
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.cannot_finish_iv_back:
-			finish();
+		/*case R.id.cannot_finish_iv_back:
+			//finish();
 			break;
 		case R.id.cannot_finish_send:
-			CommonDialog commonDialog = new CommonDialog(this, getResources().getString(R.string.ensure_send_reason), getResources().getString(R.string.ensure_send),
+			*//*CommonDialog commonDialog = new CommonDialog(this, getResources().getString(R.string.ensure_send_reason), getResources().getString(R.string.ensure_send),
 					getResources().getString(R.string.cancel_send), R.id.cannot_finish_send, this);
-			commonDialog.show();
-			break;
+			commonDialog.show();*//*
+			break;*/
 		default:
 			break;
 		}
@@ -97,7 +99,7 @@ public class CannotFinishActivity extends Activity implements OnClickListener, C
 	@Override
 	public void doConfirm(int situation) {
 		switch (situation) {
-			case R.id.cannot_finish_send:
+			case R.id.headRight:
 				Intent intent = new Intent();
 				intent.putExtra(DetailNoBeginActivity.RETURN_STATE, DetailNoBeginActivity.EDIT_REASON);
 				intent.putExtra(DetailNoBeginActivity.CANNOT_REASON, reasonStr);
@@ -106,6 +108,18 @@ public class CannotFinishActivity extends Activity implements OnClickListener, C
 				break;
 
 			default:
+				break;
+		}
+	}
+
+	@Override
+	public void onMenuClick(int menuId) {
+		super.onMenuClick(menuId);
+		switch (menuId){
+			case R.id.headRight:
+				CommonDialog commonDialog = new CommonDialog(this, getResources().getString(R.string.ensure_send_reason), getResources().getString(R.string.ensure_send),
+						getResources().getString(R.string.cancel_send), R.id.headRight, this);
+				commonDialog.show();
 				break;
 		}
 	}

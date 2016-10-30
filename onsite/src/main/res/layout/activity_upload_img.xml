@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="@color/layout_detail_background" >
     
-    <RelativeLayout 
+    <!--<RelativeLayout
         android:id="@+id/cam_layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,13 +37,15 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
         
-    </RelativeLayout>
+    </RelativeLayout>-->
+
+    <include layout="@layout/zdn_header"/>
     
-    <ListView
+    <!--<ListView
         android:id="@+id/display_img_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-       />
+       />-->
     
     <android.support.v7.widget.RecyclerView
       android:id="@+id/recycler_view"
@@ -54,10 +56,10 @@
 	<Button 
 	    android:id="@+id/add_img_btn"
 	    android:layout_gravity="center_horizontal"
-	    android:layout_marginTop="30dp"
+	    android:layout_marginTop="@dimen/y50"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:background="@drawable/add_img"/>
+	    android:background="@drawable/add_img_selector"/>
     
     
 </LinearLayout>

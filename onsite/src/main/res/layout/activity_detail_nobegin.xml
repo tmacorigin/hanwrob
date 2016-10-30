@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:id="@+id/detail_no_begin_layout"
     android:background="@color/layout_detail_background" >
     
     	
     <!--<include layout="@layout/detail_nobegin_title"/>-->
-    <include layout="@layout/zdn_header"/>
+    <include
+        layout="@layout/zdn_header"/>
     
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1364"
-        android:layout_below="@+id/detail_layout"
+        android:layout_below="@+id/header"
         android:background="@color/white"
         android:paddingLeft="10dp"
     	android:paddingRight="10dp"
@@ -346,7 +347,8 @@
             android:textSize="14sp" />
     </LinearLayout>
     
-    <RelativeLayout 
+    <RelativeLayout
+        android:layout_below="@+id/linearlayout"
         android:id="@+id/nobegin_layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y342"
@@ -456,4 +458,4 @@
     </RelativeLayout>
     
 
-</LinearLayout>
+</RelativeLayout>

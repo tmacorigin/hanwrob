@@ -3,7 +3,7 @@
 
   <item android:state_selected="true">
     <shape>
-      <stroke android:color="@color/__picker_item_photo_border_selected"
+      <stroke android:color="@color/__picker_common_yellow"
           android:width="1dip"/>
     </shape>
   </item>

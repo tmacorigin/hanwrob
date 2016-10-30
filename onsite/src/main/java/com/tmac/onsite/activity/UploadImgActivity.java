@@ -5,6 +5,7 @@ import java.util.List;
 
 import me.tmac.photopicker.PhotoPicker;
 import me.tmac.photopicker.PhotoPreview;
+import com.toolset.activity.basicActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -31,7 +32,7 @@ import com.tmac.onsite.utils.LightControl;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.CommonDialog;
 
-public class UploadImgActivity extends Activity implements CommonDialog.OnDialogListenerInterface{
+public class UploadImgActivity extends basicActivity implements CommonDialog.OnDialogListenerInterface{
 	
 	private static final String TAG = "LC-UploadImgActivity";
 	private static boolean DBG = true;
@@ -47,32 +48,34 @@ public class UploadImgActivity extends Activity implements CommonDialog.OnDialog
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_upload_img);
-		initViews(getIntent());
+		super.onCreate(savedInstanceState);
 		selectedPhotos = new ArrayList<String>();
 		adapter = new RecyclerViewAdapter(this, selectedPhotos);
-		
+		initViews(getIntent());
+
 		RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 		recyclerView.setLayoutManager(layoutManager);
 		recyclerView.setAdapter(adapter);
-		
+
 		initEvents();
 	}
 	
 	private void initViews(Intent intent) {
 		// TODO Auto-generated method stub
 		btn_add_img = (Button) findViewById(R.id.add_img_btn);
-		btn_send_img = (Button) findViewById(R.id.send_img_btn);
+		//btn_send_img = (Button) findViewById(R.id.send_img_btn);
 		recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-		tvView = (TextView) findViewById(R.id.upload_tv_title);
+		//tvView = (TextView) findViewById(R.id.upload_tv_title);
 		value = intent.getIntExtra(DetailNoBeginActivity.RETURN_STATE, DetailNoBeginActivity.DEFAULT_VALUE);
 
 		if(value == DetailNoBeginActivity.UPLOAD_PRE){
-			tvView.setText(R.string.upload_pre_img);
+			if (DBG) Log.d(TAG, "setTitle");
+			hc.setTitle(getResources().getString(R.string.upload_pre_img));
 		}else {
-			tvView.setText(R.string.upload_end_img);
+			hc.setTitle(getResources().getString(R.string.upload_end_img));
 		}
+		hc.setHeaderRightImage(R.drawable.upload);
 	}
 
 
@@ -106,13 +109,13 @@ public class UploadImgActivity extends Activity implements CommonDialog.OnDialog
 					}
 				}));*/
 		
-		btn_send_img.setOnClickListener(new OnClickListener() {
+		/*btn_send_img.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				//LightControl.lightOff(getWindow());
 				// TODO Auto-generated method stub
-				/*AlertDialog.Builder builder = new AlertDialog.Builder(UploadImgActivity.this);
+				*//*AlertDialog.Builder builder = new AlertDialog.Builder(UploadImgActivity.this);
 				builder.setMessage(R.string.upload_message)
 						.setPositiveButton(R.string.wait_upload, new DialogInterface.OnClickListener() {
 							
@@ -141,12 +144,12 @@ public class UploadImgActivity extends Activity implements CommonDialog.OnDialog
 							}
 						})
 						.create()
-						.show();*/
+						.show();*//*
 				CommonDialog commonDialog = new CommonDialog(UploadImgActivity.this, getResources().getString(R.string.upload_message),
 						getResources().getString(R.string.ensure_upload), getResources().getString(R.string.wait_upload), 0, UploadImgActivity.this);
 				commonDialog.show();
 			}
-		});
+		});*/
 	}
 	
 	@Override
@@ -183,5 +186,17 @@ public class UploadImgActivity extends Activity implements CommonDialog.OnDialog
 		intent.putExtra(DetailNoBeginActivity.RETURN_STATE, value);
 		setResult(RESULT_OK, intent);
 		finish();
+	}
+
+	@Override
+	public void onMenuClick(int menuId) {
+		super.onMenuClick(menuId);
+		switch (menuId){
+			case R.id.headRight:
+				CommonDialog commonDialog = new CommonDialog(UploadImgActivity.this, getResources().getString(R.string.upload_message),
+						getResources().getString(R.string.ensure_upload), getResources().getString(R.string.wait_upload), 0, UploadImgActivity.this);
+				commonDialog.show();
+				break;
+		}
 	}
 }

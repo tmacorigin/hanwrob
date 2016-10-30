@@ -24,6 +24,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -52,6 +53,7 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 	private RelativeLayout layout;
 	private RelativeLayout layout_bottom_1;
 	private RelativeLayout layout_bottom_2;
+	private LinearLayout linearLayout;
 	private ImageView iv_back;
 	private static String reasonStr;
 	public static final int DEFAULT_VALUE = -1;
@@ -80,6 +82,7 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 		hc.setTitle(getResources().getString(R.string.task_detail));
 		btn_upload_pre_img = (Button) findViewById(R.id.upload_pre_image);
 		btn_upload_end_img = (Button) findViewById(R.id.upload_end_image);
+		linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
 		layout = (RelativeLayout) findViewById(R.id.nobegin_layout_bottom);
 		layout_bottom_1 = (RelativeLayout) findViewById(R.id.nobegin_layout_bottom_1);
 		layout_bottom_2 = (RelativeLayout) findViewById(R.id.nobegin_layout_bottom_2);
@@ -220,7 +223,8 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 				int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
 		        int height = getResources().getDimensionPixelSize(resourceId);
 		        popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
-		        popupWindow.showAsDropDown(layout, 0, -popupWindow.getHeight());
+		        popupWindow.showAsDropDown(findViewById(R.id.detail_no_begin_layout), 0, -popupWindow.getHeight());
+				//popupWindow.showAtLocation(findViewById(R.id.detail_no_begin_layout), Gravity.TOP, 0, 300);
 		        popupWindow.setOnDismissListener(new OnDismissListener() {
 					
 					@Override

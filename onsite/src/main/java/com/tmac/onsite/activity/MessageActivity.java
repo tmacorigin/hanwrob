@@ -4,6 +4,7 @@ import com.tmac.onsite.adapter.MessageAdapter;
 import com.tmac.onsite.bean.MessageBean;
 import com.toolset.activity.basicActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -15,16 +16,14 @@ import java.util.List;
 
 public class MessageActivity extends basicActivity {
 
-    private LinearLayout zdnHeaderLayout;
-    private headerCtrl hc;
     private ListView msg_Lv;
     private MessageAdapter adapter;
     private List<MessageBean> allList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        super.onCreate(savedInstanceState);
         initViews();
         initDatas();
         initEvents();
@@ -43,15 +42,27 @@ public class MessageActivity extends basicActivity {
     }
 
     private void initViews() {
-        zdnHeaderLayout = (LinearLayout) findViewById(R.id.header);
-        if(zdnHeaderLayout != null){
-            hc = new headerCtrl(zdnHeaderLayout, this);
-            hc.setTitle("消息");
-            hc.setHeaderRightImage(R.drawable.msg_edit);
-        }
-
+        hc.setTitle("消息");
+        hc.setHeaderRightText("完成");
+        hc.setHeaderRightImage(R.drawable.msg_edit);
         msg_Lv = (ListView) findViewById(R.id.msgListView);
     }
 
 
+    @Override
+    public void onMenuClick(int menuId) {
+        super.onMenuClick(menuId);
+        switch (menuId){
+            case R.id.headRight:
+                adapter.setEditVisiable(true);
+                hc.headerRight.setVisibility(View.GONE);
+                hc.headerRight_tv.setVisibility(View.VISIBLE);
+                break;
+            case R.id.headRight_tv:
+                adapter.setEditVisiable(false);
+                hc.headerRight.setVisibility(View.VISIBLE);
+                hc.headerRight_tv.setVisibility(View.GONE);
+                break;
+        }
+    }
 }

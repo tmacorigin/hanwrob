@@ -23,8 +23,9 @@ public class headerCtrl {
 
     private ImageView navigationButton = null;
     private ImageView backoff = null;
-    private ImageView headerRight = null;
+    public ImageView headerRight = null;
     private TextView headerTitle = null;
+    public TextView headerRight_tv = null;
 
     private ImageView ShowFriendListButton = null;
     private ImageView addFriend = null;
@@ -37,6 +38,7 @@ public class headerCtrl {
 
         headerTitle = (TextView) header.findViewById(R.id.headerTitle);
         headerRight = (ImageView) header.findViewById(R.id.headRight);
+        headerRight_tv = (TextView) header.findViewById(R.id.headRight_tv);
         RelativeLayout rl = (RelativeLayout)(header.findViewById(R.id.title_bar));
         int buttonCount = rl.getChildCount();
 
@@ -85,10 +87,16 @@ public class headerCtrl {
     }
 
     public void setHeaderRightImage(int srcId){
-        if(headerRight != null){}
-        headerRight.setImageResource(srcId);
+        if(headerRight != null){
+            headerRight.setImageResource(srcId);
+        }
     }
 
+    public void setHeaderRightText(String text){
+        if(headerRight_tv != null){
+            headerRight_tv.setText(text);
+        }
+    }
 
     public interface menuStateChange
     {

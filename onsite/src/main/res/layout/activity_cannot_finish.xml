@@ -6,7 +6,7 @@
     android:background="@color/layout_detail_background">
     
     
-    <RelativeLayout
+    <!--<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:background="@color/layout_title_bg"
@@ -29,7 +29,9 @@
             android:layout_alignParentRight="true"/>
         
         
-    </RelativeLayout>
+    </RelativeLayout>-->
+
+	<include layout="@layout/zdn_header"/>
 
 
     <RelativeLayout 

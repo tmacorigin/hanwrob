@@ -320,7 +320,7 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 	 * 播放录音结束后重置
 	 */
 	private void resetPlay(){
-		Log.d(TAG, "Audio Duration " + AudioManager.mMediaPlayer.getDuration());
+		//Log.d(TAG, "Audio Duration " + AudioManager.mMediaPlayer.getDuration());
 		iv_play_audio.setVisibility(View.VISIBLE);
 		iv_pause_audio.setVisibility(View.GONE);
 		AudioManager.releasePlayer();

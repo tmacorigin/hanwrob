@@ -9,24 +9,28 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40.9dp"
         android:background="@color/__picker_title_layout_bg"
-        android:padding="5dp">
+        >
 
         <ImageView
             android:id="@+id/back_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
             android:src="@drawable/__picker_back_white"/>
 
         <Button
             android:id="@+id/ensure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="52.15dp"
+            android:layout_height="25.48dp"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="9.5dp"
             android:layout_centerVertical="true"
             android:text="@string/__picker_ensure"
+            android:textColor="@color/__picker_white"
+            android:background="@color/__picker_common_yellow"
             />
 
     </RelativeLayout>
