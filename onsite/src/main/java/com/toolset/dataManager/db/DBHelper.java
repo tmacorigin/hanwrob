@@ -47,6 +47,9 @@ public class DBHelper  extends SQLiteOpenHelper{
 		 for (Field field : ClassFs )
 		 {
 			 //Log.d( this.getClass().getSimpleName(),field.getType().getSimpleName() );
+			 if(field.getName().equals("$change")){
+				 continue;
+			 }
 			 variableCombin +="," + field.getName() + " " + "STRING";
 		 }
 		 variableCombin +=")";

@@ -45,10 +45,39 @@ public class InternetApiTest extends InstrumentationTestCase {
         }
 
         ArrayList<TaskBean> taskBeanArrayList = new ArrayList<TaskBean>();
-        TaskBean taskBean1 = new TaskBean("001","0","hhhh","20161026");
+        TaskBean taskBean1 = new TaskBean("001","0","上海","20161026");
         taskBeanArrayList.add(taskBean1);
-        TaskBean taskBean2 = new TaskBean("002","1","wwww","20161027");
+        TaskBean taskBean2 = new TaskBean("002","1","北京","20161027");
         taskBeanArrayList.add(taskBean2);
+        TaskBean taskBean3 = new TaskBean("003","2","广州","20161025");
+        taskBeanArrayList.add(taskBean3);
+        TaskBean taskBean4 = new TaskBean("004","3","深圳","20161024");
+        taskBeanArrayList.add(taskBean4);
+        TaskBean taskBean5 = new TaskBean("005","4","浙江","20161023");
+        taskBeanArrayList.add(taskBean5);
+        TaskBean taskBean6 = new TaskBean("006","0","江苏","20161022");
+        taskBeanArrayList.add(taskBean6);
+        TaskBean taskBean7 = new TaskBean("007","1","成都","20161021");
+        taskBeanArrayList.add(taskBean7);
+        TaskBean taskBean8 = new TaskBean("008","2","安徽","20161020");
+        taskBeanArrayList.add(taskBean8);
+
+        TaskBean taskBean9 = new TaskBean("009","3","合肥","20161019");
+        taskBeanArrayList.add(taskBean9);
+        TaskBean taskBean10 = new TaskBean("010","4","湖南","20161018");
+        taskBeanArrayList.add(taskBean10);
+        TaskBean taskBean11 = new TaskBean("011","0","湖北","20161017");
+        taskBeanArrayList.add(taskBean11);
+        TaskBean taskBean12 = new TaskBean("012","1","巢湖","20161016");
+        taskBeanArrayList.add(taskBean12);
+        TaskBean taskBean13 = new TaskBean("013","2","武汉","20161015");
+        taskBeanArrayList.add(taskBean13);
+        TaskBean taskBean14 = new TaskBean("014","3","广东","20161014");
+        taskBeanArrayList.add(taskBean14);
+        TaskBean taskBean15 = new TaskBean("015","4","杭州","20161013");
+        taskBeanArrayList.add(taskBean15);
+        TaskBean taskBean16 = new TaskBean("016","0","苏州","20161012");
+        taskBeanArrayList.add(taskBean16);
 
         String json = null;
         try {
