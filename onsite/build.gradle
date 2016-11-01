@@ -14,6 +14,12 @@ android {
         // exclude 'META-INF/notice.txt'
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     defaultConfig {
         applicationId "com.tmac.onsite"
         minSdkVersion 17
@@ -53,4 +59,5 @@ dependencies {
     compile files('libs/jackson-databind-2.2.2.jar')
     compile files('libs/jackson-core-2.2.2.jar')
     compile files('libs/jackson-annotations-2.1.4.jar')
+    compile files('libs/BaiduLBS_Android.jar')
 }

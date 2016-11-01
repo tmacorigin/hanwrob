@@ -15,8 +15,16 @@ public class dataManager {
     //              tag      dataSet
    // private Map< String, ArrayList<dataManagerdataBase> > dataMap =  new HashMap< String, ArrayList<dataManagerdataBase>>();
     DBManager db ;
+    public static dataManager mdataManager = null;
 
-    public dataManager( Context context  )
+    public static dataManager getInstance(Context context){
+        if(mdataManager == null){
+            mdataManager = new dataManager( context );
+        }
+        return mdataManager;
+    }
+
+    private dataManager( Context context  )
     {
         db = new DBManager( context );
     }

@@ -63,7 +63,7 @@ public class stateMachine implements stateControlInterface {
         if (eventName != null) {
             if (eventName.equals("loginRequest")) {
                 //send regist
-                dataManager dm = new dataManager(mContext);
+                dataManager dm = dataManager.getInstance(mContext);
                 dm.addA_Class(TelNumInfo.class);
                 ArrayList<dataManagerdataBase> telNumInfoList = new ArrayList<dataManagerdataBase>();
 
@@ -84,7 +84,7 @@ public class stateMachine implements stateControlInterface {
                 case stateMachine.STATE_NULL:
                     if (eventName.equals("startUp")) {
                         //send regist
-                        dataManager dm = new dataManager(mContext);
+                        dataManager dm = dataManager.getInstance(mContext);
                         dm.addA_Class(TelNumInfo.class);
                         ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 
@@ -138,10 +138,10 @@ public class stateMachine implements stateControlInterface {
                         if(successValue != null) {
                             if (successValue.equals("1")) {
                                 setState(stateMachine.STATE_NORMAL);
-//                                dataManager dm = new dataManager(mContext);
-//                                dm.addA_Class(TelNumInfo.class);
-//                                ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
-//                                TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
+                                dataManager dm = dataManager.getInstance(mContext);
+                                dm.addA_Class(TelNumInfo.class);
+                                ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+                                TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
                                 ExpCommandE getTaskE = new ExpCommandE();
                                 e.AddAProperty(new Property("mobile", ""));
                                 WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
@@ -215,9 +215,14 @@ public class stateMachine implements stateControlInterface {
                     robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime));
 
                 }
-                dataManager dm = new dataManager(mContext);
+                dataManager dm = dataManager.getInstance(mContext);
                 dm.addA_Class(TaskBean.class);
                 dm.resetdbData(TaskBean.class, robotList);
+                ExpCommandE expCommandE = new ExpCommandE("GET_DATA_COMMAND");
+//                expCommandE.AddAExpProperty(new Property("internalMessageName","loginRequest"));
+//                expCommandE.AddAProperty(new Property("phone", ""));
+//                expCommandE.AddAProperty(new Property("password", ""));
+                EventBus.getDefault().post(expCommandE);
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
