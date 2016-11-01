@@ -28,7 +28,7 @@
         android:theme="@style/customTheme">
         <activity
             android:name=".activity.WelcomeActivity"
-            android:theme="@style/ColorTranslucentTheme">
+            android:theme="@style/AppBaseTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

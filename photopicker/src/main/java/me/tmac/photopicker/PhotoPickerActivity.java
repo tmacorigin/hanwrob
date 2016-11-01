@@ -66,15 +66,6 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Build.VERSION.SDK_INT >= 23){
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED){
-                Log.d("LC-PhotoPickerActivity", "checkPermission");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
-                                        , Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS}, CODE_FOR_WRITE_PERMISSION);
-            }
-        }
-
         showCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, true);
         boolean showGif = getIntent().getBooleanExtra(EXTRA_SHOW_GIF, false);
         previewEnabled = getIntent().getBooleanExtra(EXTRA_PREVIEW_ENABLED, true);
@@ -103,6 +94,18 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
         maxCount = getIntent().getIntExtra(EXTRA_MAX_COUNT, DEFAULT_MAX_COUNT);
         columnNumber = getIntent().getIntExtra(EXTRA_GRID_COLUMN, DEFAULT_COLUMN_NUMBER);
         originalPhotos = getIntent().getStringArrayListExtra(EXTRA_ORIGINAL_PHOTOS);
+
+        if(Build.VERSION.SDK_INT >= 23){
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED){
+                Log.d("LC-PhotoPickerActivity", "checkPermission");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+                                        , Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS}, CODE_FOR_WRITE_PERMISSION);
+            }
+        }else {
+            initFragment();
+        }
+
 
     }
 

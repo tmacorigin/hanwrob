@@ -103,25 +103,44 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			break;
 		case R.id.task_over:
 			setSelectedTab(rbFinished);
-			setFragment(finishedFragment, 1);
+			if(finishedFragment.isAdded()){
+				setFragment(finishedFragment, task_over);
+			}else {
+				task_over = mPosition;
+				setFragment(finishedFragment, mPosition);
+			}
 			break;
 		case R.id.task_fail:
 			setSelectedTab(rbNofinish);
-			setFragment(noFinishedFragment, 2);
+			if(noFinishedFragment.isAdded()){
+				setFragment(noFinishedFragment, task_fail);
+			}else {
+				task_fail = mPosition;
+				setFragment(noFinishedFragment, mPosition);
+			}
 			break;
 		case R.id.task_abondon:
 			setSelectedTab(rbCancle);
-			setFragment(cancleFragment, 3);
+			if(cancleFragment.isAdded()){
+				setFragment(cancleFragment, task_abondon);
+			}else {
+				task_abondon = mPosition;
+				setFragment(cancleFragment, mPosition);
+			}
 			break;
 		default:
 			break;
 		}
 	}
-	
+
+	private int mPosition = 1;
+	private int task_over;
+	private int task_fail;
+	private int task_abondon;
+
 	/**
 	 * 设置显示的Fragment
 	 * @param fragment
-	 * @param position
 	 */
 	private void setFragment(Fragment fragment, int position){
 		ft = fm.beginTransaction();
@@ -132,6 +151,7 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			fragList.add(position, fragment);
 			ft.add(R.id.fl_send_task, fragment);
 			hideFragment(position);
+			mPosition += 1;
 		}
 		ft.commit();
 	}
