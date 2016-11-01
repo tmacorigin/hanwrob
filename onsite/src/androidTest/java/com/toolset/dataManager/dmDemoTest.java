@@ -36,7 +36,7 @@ public class dmDemoTest extends InstrumentationTestCase {
 
 
         Context appContext = InstrumentationRegistry.getTargetContext();
-        dataManager dm = new dataManager(appContext );
+        dataManager dm = dataManager.getInstance(appContext );
         dm.addA_Class( dmdataDemo.class );
 
 //        dm.resetdbData(dmdataDemo.class, dmdataList);

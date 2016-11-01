@@ -57,7 +57,6 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		super.onDestroy();
 	}
 
-
 	public void onEvent(Object event) {
 
 		/*

@@ -12,28 +12,39 @@ import com.tmac.onsite.R;
 import com.tmac.onsite.activity.DetailTaskActivity;
 import com.tmac.onsite.adapter.RobAdapter;
 import com.tmac.onsite.bean.RobBean;
+import com.tmac.onsite.bean.TaskBean;
 import com.tmac.onsite.utils.FindViewById;
 import com.tmac.onsite.utils.RefreshUtils;
 import com.tmac.onsite.view.PullToRefreshLayout;
 import com.tmac.onsite.view.PullableListView;
 import com.tmac.onsite.view.PullToRefreshLayout.OnRefreshListener;
+import com.toolset.CommandParser.ExpCommandE;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import de.greenrobot.event.EventBus;
+import com.toolset.dataManager.dataManager;
+import com.toolset.state.dataBean.TelNumInfo;
+
 /**
  * @author tmac
  */
 public class RobTaskFragment extends Fragment {
-	
+
+	private static final boolean DBG = true;
+	private static final String TAG = "LC-RobTaskFragment";
+
 	private PullToRefreshLayout pull_layout;
 	private PullableListView pull_listview;
 	private List<RobBean> allList;
@@ -62,7 +73,13 @@ public class RobTaskFragment extends Fragment {
         }
 		};
 	};
-	
+
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		EventBus.getDefault().register(this);
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -128,5 +145,19 @@ public class RobTaskFragment extends Fragment {
 		});
 		
 	}
-	
+
+	public void onEvent(Object event) {
+		assert( event instanceof ExpCommandE);
+		ExpCommandE e = (ExpCommandE) event;
+		String command = e.GetCommand();
+
+		if( command.equals("GET_DATA_COMMAND") )
+		{
+			dataManager dm = dataManager.getInstance(getActivity());
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
+		}
+	}
+
 }

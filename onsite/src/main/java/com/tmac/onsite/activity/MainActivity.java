@@ -6,6 +6,7 @@ import java.util.List;
 import cn.bingoogolapple.badgeview.BGABadgeRadioButton;
 import cn.bingoogolapple.badgeview.BGABadgeable;
 import cn.bingoogolapple.badgeview.BGADragDismissDelegate;
+import de.greenrobot.event.EventBus;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
@@ -206,4 +207,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		if(DBG) Log.d(TAG, "Exit MainActivity");
 		finish();
 	}
+
+
 }
