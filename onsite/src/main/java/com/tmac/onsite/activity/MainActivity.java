@@ -14,6 +14,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tmac.onsite.R;
 import com.tmac.onsite.adapter.MainViewPageAdapter;
+import com.tmac.onsite.bean.TaskBean;
 import com.tmac.onsite.fragment.LeftMenuFragment;
 import com.tmac.onsite.fragment.RobTaskFragment;
 import com.tmac.onsite.fragment.SendTaskFragment;
@@ -21,6 +22,8 @@ import com.tmac.onsite.utils.FindViewById;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.DraggableFlagView;
 import com.tmac.onsite.view.DraggableFlagView.OnDraggableFlagViewListener;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.dataManager.dataManager;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -58,10 +61,13 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private FrameLayout messages;
 	private ImageView iv_set_tip;
 	private ImageView iv_msg_tip;
+	private RobTaskFragment robTaskFragment;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		EventBus.getDefault().register(this);
+		//robTaskFragment = new RobTaskFragment();
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		/*//透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -206,6 +212,21 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	public void onExitAvai() {
 		if(DBG) Log.d(TAG, "Exit MainActivity");
 		finish();
+	}
+
+	public void onEvent(Object event) {
+		if(DBG) Log.d(TAG, "getDataList................");
+		assert( event instanceof ExpCommandE);
+		ExpCommandE e = (ExpCommandE) event;
+		String command = e.GetCommand();
+
+		if( command.equals("GET_DATA_COMMAND") )
+		{
+			dataManager dm = dataManager.getInstance(getApplicationContext());
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
+		}
 	}
 
 

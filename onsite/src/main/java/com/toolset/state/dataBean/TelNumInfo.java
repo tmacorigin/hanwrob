@@ -7,16 +7,12 @@ import com.toolset.dataManager.dataManagerdataBase;
  * Created by pactera on 2016/10/13.
  */
 public class TelNumInfo extends dataManagerdataBase {
-    private String tel;
-    private String passWord;
-    private String imei;
-    private String imsi;
+    public String tel;
+    public String passWord;
+    public String imei;
+    public String imsi;
 
-    public TelNumInfo(String tel, String imei, String imsi){
-        this.tel = tel;
-        this.imei = imei;
-        this.imsi = imsi;
-    }
+    public TelNumInfo(){};
 
     public TelNumInfo(String tel, String passWord, String imei, String imsi){
         this.tel = tel;

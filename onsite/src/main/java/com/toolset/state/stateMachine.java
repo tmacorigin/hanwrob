@@ -43,6 +43,7 @@ public class stateMachine implements stateControlInterface {
     private Context mContext = null;
 
     public stateMachine(Context mContext){
+        EventBus.getDefault().register(this);
         this.mContext = mContext;
     }
 
@@ -144,11 +145,12 @@ public class stateMachine implements stateControlInterface {
                                 TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
                                 ExpCommandE getTaskE = new ExpCommandE();
                                 e.AddAProperty(new Property("mobile", ""));
-                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
-                                //start normal ACTIVITY
                                 Intent intent = new Intent(mContext, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 mContext.startActivity(intent);
+                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
+                                //start normal ACTIVITY
+
                             } else if (successValue.equals("0")) {
                                 setState(stateMachine.STATE_NULL);
                                 //start login ACTIVITY
@@ -215,13 +217,12 @@ public class stateMachine implements stateControlInterface {
                     robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime));
 
                 }
+
                 dataManager dm = dataManager.getInstance(mContext);
                 dm.addA_Class(TaskBean.class);
                 dm.resetdbData(TaskBean.class, robotList);
+
                 ExpCommandE expCommandE = new ExpCommandE("GET_DATA_COMMAND");
-//                expCommandE.AddAExpProperty(new Property("internalMessageName","loginRequest"));
-//                expCommandE.AddAProperty(new Property("phone", ""));
-//                expCommandE.AddAProperty(new Property("password", ""));
                 EventBus.getDefault().post(expCommandE);
             } catch (JSONException e1) {
                 e1.printStackTrace();
@@ -269,5 +270,8 @@ public class stateMachine implements stateControlInterface {
         Log.d( "stateMachine","setState " + newState );
 
 
+    }
+
+    public void onEvent(Object event) {
     }
 }

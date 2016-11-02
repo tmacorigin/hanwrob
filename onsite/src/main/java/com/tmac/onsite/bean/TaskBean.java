@@ -7,10 +7,12 @@ import com.toolset.dataManager.dataManagerdataBase;
  */
 public class TaskBean extends dataManagerdataBase {
 
-    private String taskId;
-    private String taskState;
-    private String preformAddress;
-    private String finishedTime;
+    public String taskId;
+    public String taskState;
+    public String preformAddress;
+    public String finishedTime;
+
+    public TaskBean(){};
 
     public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime) {
         this.taskId = taskId;

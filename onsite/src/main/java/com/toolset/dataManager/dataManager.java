@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class dataManager {
     //              tag      dataSet
    // private Map< String, ArrayList<dataManagerdataBase> > dataMap =  new HashMap< String, ArrayList<dataManagerdataBase>>();
-    DBManager db ;
+    public static DBManager db = null;
     public static dataManager mdataManager = null;
 
     public static dataManager getInstance(Context context){
@@ -26,7 +26,9 @@ public class dataManager {
 
     private dataManager( Context context  )
     {
-        db = new DBManager( context );
+        if(db == null) {
+            db = new DBManager(context);
+        }
     }
 
     //增加一个class类型的额数据进入数据管理模块

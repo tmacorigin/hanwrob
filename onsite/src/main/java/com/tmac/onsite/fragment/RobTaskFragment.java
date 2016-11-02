@@ -74,9 +74,14 @@ public class RobTaskFragment extends Fragment {
 		};
 	};
 
+	public RobTaskFragment(){
+
+	}
+
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(DBG) Log.d(TAG, "onCreate");
 		EventBus.getDefault().register(this);
 	}
 
@@ -147,6 +152,7 @@ public class RobTaskFragment extends Fragment {
 	}
 
 	public void onEvent(Object event) {
+		if(DBG) Log.d(TAG, "getDataList = ");
 		assert( event instanceof ExpCommandE);
 		ExpCommandE e = (ExpCommandE) event;
 		String command = e.GetCommand();

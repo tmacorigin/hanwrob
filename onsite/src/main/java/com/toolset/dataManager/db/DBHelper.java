@@ -201,10 +201,10 @@ public class DBHelper  extends SQLiteOpenHelper{
 	        ExecSQL("DELETE FROM "+table );
 	        Log.i(TAG, "clear data");
 	    }
-	    
+
 	    /**
 	     *
-	     * 
+	     *
 	     * @param name
 	     */
 	    public ArrayList<Object> searchData(final String what , String value ) {
@@ -254,8 +254,10 @@ public class DBHelper  extends SQLiteOpenHelper{
 				}
 	        	 
 	        	 for (Field field : ClassFs ) {
-	             	String value = null;
-	             	
+					 String value = null;
+					 if(field.getName().equals("$change")){
+						 continue;
+					 }
 	             	try {
 	             		
 	             		Object middle = stringToType( field.getType() ,c.getString(c.getColumnIndex( field.getName())) );
