@@ -87,7 +87,8 @@ public class stateMachine implements stateControlInterface {
                         //send regist
                         dataManager dm = dataManager.getInstance(mContext);
                         dm.addA_Class(TelNumInfo.class);
-                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+                        ArrayList<Object> getDataList = null;
+//                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 
                         if (getDataList == null || getDataList.size() == 0) {
                             Intent intent = new Intent(mContext, LoginActivity.class);
@@ -139,16 +140,17 @@ public class stateMachine implements stateControlInterface {
                         if(successValue != null) {
                             if (successValue.equals("1")) {
                                 setState(stateMachine.STATE_NORMAL);
-                                dataManager dm = dataManager.getInstance(mContext);
-                                dm.addA_Class(TelNumInfo.class);
-                                ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
-                                TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
-                                ExpCommandE getTaskE = new ExpCommandE();
-                                e.AddAProperty(new Property("mobile", ""));
+//                                dataManager dm = dataManager.getInstance(mContext);
+//                                dm.addA_Class(TelNumInfo.class);
+//                                ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+//                                TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
+
                                 Intent intent = new Intent(mContext, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 mContext.startActivity(intent);
-                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
+//                                ExpCommandE getTaskE = new ExpCommandE();
+//                                e.AddAProperty(new Property("mobile", ""));
+//                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
                                 //start normal ACTIVITY
 
                             } else if (successValue.equals("0")) {

@@ -5,5 +5,5 @@ package com.toolset.MainControl;
  */
 public class TestControl {
 
-    public static boolean isTest = true;
+    public static boolean isTest = false;
 }

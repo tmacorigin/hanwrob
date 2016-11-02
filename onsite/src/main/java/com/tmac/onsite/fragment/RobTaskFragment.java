@@ -34,7 +34,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import de.greenrobot.event.EventBus;
+
+import com.toolset.CommandParser.Property;
+import com.toolset.MainControl.TestControl;
 import com.toolset.dataManager.dataManager;
+import com.toolset.state.WebApiII;
 import com.toolset.state.dataBean.TelNumInfo;
 
 /**
@@ -47,7 +51,7 @@ public class RobTaskFragment extends Fragment {
 
 	private PullToRefreshLayout pull_layout;
 	private PullableListView pull_listview;
-	private List<RobBean> allList;
+	private List<RobBean> allList = new ArrayList<RobBean>();
 	private RobAdapter adapter;
 	private int state;
 	private Handler myHandler = new Handler(){
@@ -82,7 +86,6 @@ public class RobTaskFragment extends Fragment {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if(DBG) Log.d(TAG, "onCreate");
-		EventBus.getDefault().register(this);
 	}
 
 	@Override
@@ -96,7 +99,14 @@ public class RobTaskFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		initViews(view);
-		initDatas();
+		if(TestControl.isTest){
+			EventBus.getDefault().register(this);
+			ExpCommandE getTaskE = new ExpCommandE();
+			getTaskE.AddAProperty(new Property("mobile", ""));
+			WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
+		}else {
+			initDatas();
+		}
 		initEvents();
 	}
 
@@ -104,7 +114,7 @@ public class RobTaskFragment extends Fragment {
 		// TODO Auto-generated method stub
 		pull_layout = (PullToRefreshLayout) view.findViewById(R.id.ptrl);
 		pull_listview = (PullableListView) view.findViewById(R.id.plv);
-		allList = new ArrayList<RobBean>();
+//		allList = new ArrayList<RobBean>();
 		adapter = new RobAdapter(getActivity(), allList);
 	}
 	
@@ -162,6 +172,10 @@ public class RobTaskFragment extends Fragment {
 			dataManager dm = dataManager.getInstance(getActivity());
 			dm.addA_Class(TaskBean.class);
 			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			for (int index = 0;index < getDataList.size(); index ++){
+				allList.add((RobBean) getDataList.get(index));
+			}
+			adapter.notifyDataSetChanged();
 			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
 		}
 	}
