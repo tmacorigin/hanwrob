@@ -29,6 +29,18 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "27d43a48ffec43b3e199ce24", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+
     }
     buildTypes {
         release {
@@ -46,6 +58,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'cn.jiguang:jpush:2.2.0'
     testCompile 'junit:junit:4.12'
     compile project(':badgeview_library')
     compile project(':photopicker')
