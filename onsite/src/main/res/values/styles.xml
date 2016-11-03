@@ -5,10 +5,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
      <style name="AppBaseTheme" parent="android:Theme.Light.NoTitleBar">
-        
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+         <item name="android:windowBackground">@drawable/start_page</item>
      </style>
     
     <!--<style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar.TranslucentDecor" type="text/css">
@@ -60,8 +57,10 @@
       <item name="actionBarSize">@dimen/actionBarSize</item>
     </style>
 
+    <!-- <item name="android:windowIsTranslucent">true</item>> -->
     <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
-      <item name="actionBarTheme">@style/actionBarTheme</item>
+        <item name="android:windowBackground">@drawable/start_page</item>
+        <item name="actionBarTheme">@style/actionBarTheme</item>
       <!--<item name="colorPrimary">#FFA500</item>-->
       <item name="actionBarSize">@dimen/actionBarSize</item>
       <item name="colorPrimaryDark">#505664</item>

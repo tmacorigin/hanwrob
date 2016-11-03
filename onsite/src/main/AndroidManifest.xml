@@ -50,6 +50,7 @@
         android:theme="@style/customTheme">
         <activity
             android:name=".activity.WelcomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,16 +61,20 @@
 
         <activity
             android:name=".activity.DisplayConstructImgActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/StyledIndicators" />
         <activity android:name="com.toolset.activity.basicActivity" />
         <activity
             android:name="me.tmac.photopicker.PhotoPickerActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/customTheme" />
         <activity
             android:name="me.tmac.photopicker.PhotoPagerActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/customTheme" />
         <activity
             android:name="me.tmac.photopicker.PhotoCamDisplayActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/customTheme" />
 
         <service
@@ -91,28 +96,52 @@
             android:value="27d43a48ffec43b3e199ce24" />-->
 
         <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme"></activity>
         <activity
             android:name=".activity.GuideActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.ActivationActivity"
-            android:theme="@style/AppBaseTheme" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBaseTheme"
+             />
         <activity
             android:name=".activity.IdentifyActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppBaseTheme" />
         <activity
             android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme" />
-        <activity android:name=".activity.DetailTaskActivity" />
-        <activity android:name=".activity.DetailNoBeginActivity" />
-        <activity android:name=".activity.UploadImgActivity" />
-        <activity android:name=".activity.SelectImgActivity" />
-        <activity android:name=".activity.LoginActivityAbandon" />
-        <activity android:name=".activity.CannotFinishActivity" />
-        <activity android:name=".activity.UseDirectionActivity" />
-        <activity android:name=".activity.UseAgreementActivity" />
-        <activity android:name=".activity.MessageActivity" />\
+        <activity android:name=".activity.DetailTaskActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.DetailNoBeginActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.UploadImgActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.SelectImgActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.LoginActivityAbandon"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.CannotFinishActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.UseDirectionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.UseAgreementActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.MessageActivity"
+            android:screenOrientation="portrait"
+            />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="gjxVALaZO7cRVKQLbm07uE58yhhWEIL9" />

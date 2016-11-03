@@ -51,7 +51,7 @@ public class RobTaskFragment extends Fragment {
 
 	private PullToRefreshLayout pull_layout;
 	private PullableListView pull_listview;
-	private List<RobBean> allList = new ArrayList<RobBean>();
+	private List<TaskBean> allList = new ArrayList<TaskBean>();
 	private RobAdapter adapter;
 	private int state;
 	private Handler myHandler = new Handler(){
@@ -63,7 +63,7 @@ public class RobTaskFragment extends Fragment {
                 if (state == 0) {
                     allList.clear();
                 }
-                allList.addAll((List<RobBean>) msg.obj);
+                allList.addAll((List<TaskBean>) msg.obj);
                 adapter.notifyDataSetChanged();
                 RefreshUtils.getResultByState(state, pull_layout, true);
                 break;
@@ -122,9 +122,12 @@ public class RobTaskFragment extends Fragment {
 		// TODO Auto-generated method stub
 		SimpleDateFormat format = new SimpleDateFormat("yyyy,MM,dd");
         String date = format.format(new Date());
-		allList.add(new RobBean("CJG23423", "上海市宝山区", date));
+		/*allList.add(new RobBean("CJG23423", "上海市宝山区", date));
 		allList.add(new RobBean("CJG78787", "上海市宝山区", date));
-		allList.add(new RobBean("CJG09090", "上海市宝山区", date));
+		allList.add(new RobBean("CJG09090", "上海市宝山区", date));*/
+		allList.add(new TaskBean("CJG23423", "0", "上海市宝山区", date));
+		allList.add(new TaskBean("CJG78787", "1", "上海市宝山区", date));
+		allList.add(new TaskBean("CJG09090", "3", "上海市宝山区", date));
 	}
 	
 	private void initEvents() {
@@ -173,7 +176,7 @@ public class RobTaskFragment extends Fragment {
 			dm.addA_Class(TaskBean.class);
 			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
 			for (int index = 0;index < getDataList.size(); index ++){
-				allList.add((RobBean) getDataList.get(index));
+				allList.add((TaskBean) getDataList.get(index));
 			}
 			adapter.notifyDataSetChanged();
 			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());

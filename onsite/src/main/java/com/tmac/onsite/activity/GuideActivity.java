@@ -32,7 +32,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 	private ViewPagerAdapter vpAdapter;
 	private List<View> views;
 	private ImageView[] dots;
-	private int[] ids = { R.id.iv1, R.id.iv2 };
+	//private int[] ids = { R.id.iv1, R.id.iv2 };
 	private Button start_btn;
 	
 	@Override
@@ -40,9 +40,9 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guide);
-		StatusBarUtil.setTranslucent(this, 0);
+		//StatusBarUtil.setTranslucent(this, 0);
 		initViews();
-		initDots();
+		//initDots();
 
 	}
 	
@@ -71,12 +71,12 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		vp.setOnPageChangeListener(this);
 	}
 
-	private void initDots() {
+	/*private void initDots() {
 		dots = new ImageView[views.size()];
 		for (int i = 0; i < views.size(); i++) {
 			dots[i] = (ImageView) findViewById(ids[i]);
 		}
-	}
+	}*/
 
 	@Override
 	public void onPageScrollStateChanged(int arg0) {
@@ -93,13 +93,13 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 	@Override
 	public void onPageSelected(int arg0) {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < ids.length; i++) {
+		/*for (int i = 0; i < ids.length; i++) {
 			if (arg0 == i) {
-				dots[i].setImageResource(R.drawable.login_point_selected);
+				//dots[i].setImageResource(R.drawable.login_point_selected);
 			} else {
-				dots[i].setImageResource(R.drawable.login_point);
+				//dots[i].setImageResource(R.drawable.login_point);
 			}
-		}
+		}*/
 	}
 	
 }

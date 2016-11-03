@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.bean.RobBean;
+import com.tmac.onsite.bean.TaskBean;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,10 +20,10 @@ import android.widget.TextView;
  * 通用的文字列表适配器，便于扩展。
  * @author tmac
  */
-public class RobAdapter extends CommonAdapter<RobBean>{
+public class RobAdapter extends CommonAdapter<TaskBean>{
 
 	
-	public RobAdapter(Context context, List<RobBean> list) {
+	public RobAdapter(Context context, List<TaskBean> list) {
 		super(context, list);
 		// TODO Auto-generated constructor stub
 	}
@@ -41,9 +42,9 @@ public class RobAdapter extends CommonAdapter<RobBean>{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.tv_number.setText(list.get(position).getNumber());
-		holder.tv_address.setText(list.get(position).getAddress());
-		holder.tv_time.setText(list.get(position).getTime());
+		holder.tv_number.setText(list.get(position).getTaskId());
+		holder.tv_address.setText(list.get(position).getPreformAddress());
+		holder.tv_time.setText(list.get(position).getFinishedTime());
 		return convertView;
 	}
 

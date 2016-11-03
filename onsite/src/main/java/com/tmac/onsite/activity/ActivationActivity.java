@@ -45,6 +45,7 @@ public class ActivationActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activation);
 		StatusBarUtil.setTranslucent(this, 0);
+		//StatusBarUtil.setColor(this, R.color.base_bg_grey);
 		WindowManager windowManager = getWindowManager();
 		Display display = windowManager.getDefaultDisplay();
 		int screenWidth = display.getWidth();

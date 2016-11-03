@@ -10,7 +10,7 @@
         android:background="@color/white" >
     </android.support.v4.view.ViewPager>
 	
-    <LinearLayout
+    <!--&lt;!&ndash;<LinearLayout
         android:id="@+id/ll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -31,9 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/login_point"
-            android:layout_marginLeft="@dimen/x21" />
+            android:layout_marginLeft="@dimen/x21" />&ndash;&gt;
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </RelativeLayout>

@@ -91,9 +91,9 @@ public class stateMachine implements stateControlInterface {
 //                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 
                         if (getDataList == null || getDataList.size() == 0) {
-                            Intent intent = new Intent(mContext, LoginActivity.class);
+                            /*Intent intent = new Intent(mContext, LoginActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            mContext.startActivity(intent);
+                            mContext.startActivity(intent);*/
                         } else {
                             TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
                             TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);

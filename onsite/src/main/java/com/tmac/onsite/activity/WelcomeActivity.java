@@ -12,6 +12,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
+
+import com.tmac.onsite.R;
+import com.tmac.onsite.utils.StatusBarUtil;
 
 /**
  * @author tmac
@@ -42,7 +46,9 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_welcome);
+		setContentView(R.layout.activity_welcome);
+		StatusBarUtil.setTranslucent(this, 0);
+		//SystemClock.sleep(1500);
 		init();
 	}
 
@@ -53,6 +59,7 @@ public class WelcomeActivity extends Activity {
 			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
 			sp.isFirstIN(false);
 		}else {
+			SystemClock.sleep(1000);
 			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){

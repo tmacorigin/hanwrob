@@ -4,9 +4,11 @@
     android:layout_height="match_parent" >
     
 
-    <TextView 
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="欢迎"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/start_page"
+        />
     
 </RelativeLayout>
