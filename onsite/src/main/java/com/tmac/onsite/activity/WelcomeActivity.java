@@ -63,7 +63,9 @@ public class WelcomeActivity extends Activity {
 			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
-			startService(new Intent(this, MainService.class));
+			Intent intent = new Intent(this, MainService.class);
+			intent.putExtra("launcher","unauto");
+			startService(intent);
 		}
 
 	}

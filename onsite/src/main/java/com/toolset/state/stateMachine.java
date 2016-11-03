@@ -51,6 +51,7 @@ public class stateMachine implements stateControlInterface {
     {
         boolean ret = true;
         String eventName  = null;
+        String userDataStr = (String) e.getUserData();
         if(e.GetExpProperty("rspFunctionName") != null){
             eventName = (String)(e.GetExpProperty("rspFunctionName").GetPropertyContext());
         }
@@ -94,6 +95,13 @@ public class stateMachine implements stateControlInterface {
                             /*Intent intent = new Intent(mContext, LoginActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             mContext.startActivity(intent);*/
+                            if(userDataStr.equals("unauto")) {
+                                Intent intent = new Intent(mContext, LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                mContext.startActivity(intent);
+                            }else{
+                                setState(stateMachine.STATE_NULL);
+                            }
                         } else {
                             TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
                             TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
@@ -109,11 +117,26 @@ public class stateMachine implements stateControlInterface {
                                 ExpCommandE login = new ExpCommandE();
                                 login.AddAProperty(new Property("phone", telNumInfo.getTel()));
                                 login.AddAProperty(new Property("password", telNumInfo.getPassWord()));
-                                WebApiII.getInstance(mContext.getMainLooper()).user_loginReq(login);
-                                setState(stateMachine.STATE_WAIT_LOGIN);
+
                                 //start trans activity
+                                if(userDataStr.equals("unauto")) {
+                                    WebApiII.getInstance(mContext.getMainLooper()).user_loginReq(login);
+                                    setState(stateMachine.STATE_WAIT_LOGIN);
+//                                    Intent intent = new Intent(mContext, LoginActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    mContext.startActivity(intent);
+                                }else{
+                                    setState(stateMachine.STATE_NULL);
+                                }
                             } else {
                                 //start login ACTIVITY
+                                if(userDataStr.equals("unauto")) {
+                                    Intent intent = new Intent(mContext, LoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    mContext.startActivity(intent);
+                                }else{
+                                    setState(stateMachine.STATE_NULL);
+                                }
                             }
                             //
                         }

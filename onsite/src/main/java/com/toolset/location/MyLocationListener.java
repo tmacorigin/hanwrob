@@ -1,17 +1,30 @@
 package com.toolset.location;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
+import com.toolset.state.WebApiII;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by pactera on 2016/11/1.
  */
 public class MyLocationListener implements BDLocationListener {
+
+    private Context mContext = null;
+
+    public MyLocationListener(Context mContext){
+        this.mContext = mContext;
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     public void onReceiveLocation(BDLocation location) {
@@ -27,7 +40,7 @@ public class MyLocationListener implements BDLocationListener {
         sb.append(location.getLongitude());
         sb.append("\nradius : ");
         sb.append(location.getRadius());
-        if (location.getLocType() == BDLocation.TypeGpsLocation) {// GPS定位结果
+        if (location.getLocType() == BDLocation.TypeGpsLocation){// GPS定位结果
             sb.append("\nspeed : ");
             sb.append(location.getSpeed());// 单位：公里每小时
             sb.append("\nsatellite : ");
@@ -41,7 +54,7 @@ public class MyLocationListener implements BDLocationListener {
             sb.append("\ndescribe : ");
             sb.append("gps定位成功");
 
-        } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
+        } else if (location.getLocType() == BDLocation.TypeNetWorkLocation){// 网络定位结果
             sb.append("\naddr : ");
             sb.append(location.getAddrStr());
             //运营商信息
@@ -74,5 +87,36 @@ public class MyLocationListener implements BDLocationListener {
             }
         }
         Log.i("BaiduLocationApiDem", sb.toString());
+
+
+//        ExpCommandE updateLocE = new ExpCommandE();
+//        updateLocE.AddAProperty(new Property("mobile", ""));
+//        if (location.getLocType() == BDLocation.TypeGpsLocation) {// GPS定位结果
+//            updateLocE.AddAProperty(new Property("lng", location.getLongitude()+""));
+//            updateLocE.AddAProperty(new Property("lat", location.getLatitude()+""));
+//            WebApiII.getInstance(mContext.getMainLooper()).updateLocationReq(updateLocE);
+//        } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
+//            updateLocE.AddAProperty(new Property("lng", location.getLongitude()+""));
+//            updateLocE.AddAProperty(new Property("lat", location.getLatitude()+""));
+//            WebApiII.getInstance(mContext.getMainLooper()).updateLocationReq(updateLocE);
+//        } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
+//            updateLocE.AddAProperty(new Property("lng", location.getLongitude()+""));
+//            updateLocE.AddAProperty(new Property("lat", location.getLatitude()+""));
+//            WebApiII.getInstance(mContext.getMainLooper()).updateLocationReq(updateLocE);
+//        } else if (location.getLocType() == BDLocation.TypeServerError) {
+//
+//        } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
+//
+//        } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
+//
+//        }
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        EventBus.getDefault().unregister(this);
+        super.finalize();
+    }
+
+    public void onEvent(Object event) {}
 }

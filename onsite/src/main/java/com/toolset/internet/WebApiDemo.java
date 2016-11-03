@@ -73,5 +73,15 @@ public class WebApiDemo extends  InternetComponent{
 
     }
 
+    @Override
+    public void updateLocationReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void updateLocationRsp(ExpCommandE e) {
+
+    }
+
 
 }

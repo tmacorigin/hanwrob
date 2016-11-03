@@ -16,4 +16,7 @@ public interface WebApiInterface {
 
     public void getTaskListReq(ExpCommandE e);
     public void getTaskListRsp(ExpCommandE e);
+
+    public void updateLocationReq(ExpCommandE e);
+    public void updateLocationRsp(ExpCommandE e);
 }

@@ -7,6 +7,9 @@ import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
 import com.toolset.internet.InternetComponent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import de.greenrobot.event.EventBus;
 
 
@@ -93,6 +96,28 @@ public class WebApiII extends  InternetComponent{
 //        ExpCommandE pe = e.clone();
         e.SetCommand("STATE_CONTROL_COMMAND");
         EventBus.getDefault().post(e);
+    }
+
+    @Override
+    public void updateLocationReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void updateLocationRsp(ExpCommandE e) {
+//        String reState = (String) (e.GetProperty("HTTP_REQ_RSP").GetPropertyContext());
+//        String successValue = null;
+//        try {
+//            JSONObject jsonObject = new JSONObject(reState);
+//            successValue = jsonObject.getString("status");
+//            if (successValue.equals("0")){
+//
+//            }else{
+//
+//            }
+//        } catch (JSONException e1) {
+//            e1.printStackTrace();
+//        }
     }
 
     @Override
