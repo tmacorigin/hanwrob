@@ -90,6 +90,10 @@
     <string name="upload_record_success">录音上传成功</string>
     <string name="construct_img">施工图片</string>
 
+    <!-- Detail_Finish -->
+    <string name="finshed_task">已经完成任务</string>
+    <string name="finished_time">完成时间</string>
+
     <!-- Login -->
     <string name="login_title">输入公司提供的登录密码</string>
     <string name="login">登录</string>

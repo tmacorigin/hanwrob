@@ -62,7 +62,7 @@ public class IdentifyActivity extends Activity {
 		phoneNum = getIntent().getStringExtra(ActivationActivity.INTENT_NAME);
 		SMSSDK.getInstance().initSdk(this);
 		SMSSDK.getInstance().setDebugMode(true);
-		getSMSCode();
+		//getSMSCode();
 		initView();
 		timeCount = new TimeCount(60000, 1000, agin);
 		setEditChanged();
@@ -161,6 +161,8 @@ public class IdentifyActivity extends Activity {
 					public void checkCodeSuccess(String s) {
 						Toast.makeText(getApplicationContext(), "验证码输入正确！",
 								Toast.LENGTH_SHORT).show();
+						/*Intent intent = new Intent(IdentifyActivity.this, LoginActivity.class);
+						startActivity(intent);*/
 					}
 
 					@Override
