@@ -46,8 +46,7 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_welcome);
-		StatusBarUtil.setTranslucent(this, 0);
+		//StatusBarUtil.setTranslucent(this, 0);
 		//SystemClock.sleep(1500);
 		init();
 	}
@@ -59,6 +58,7 @@ public class WelcomeActivity extends Activity {
 			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
 			sp.isFirstIN(false);
 		}else {
+			//setContentView(R.layout.activity_welcome);
 			SystemClock.sleep(1000);
 			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}

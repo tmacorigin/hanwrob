@@ -93,6 +93,9 @@
     <!-- Detail_Finish -->
     <string name="finshed_task">已经完成任务</string>
     <string name="finished_time">完成时间</string>
+    <string name="cannot_finshed_task">未能完成任务</string>
+    <string name="task_abondoned">已经撤销任务</string>
+    <string name="text_task_abondon">该任务已被撤销</string>
 
     <!-- Login -->
     <string name="login_title">输入公司提供的登录密码</string>

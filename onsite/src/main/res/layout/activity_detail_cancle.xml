@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/detail_finished_layout"
+    android:background="@color/layout_detail_background" >
+
+
+    <include
+        layout="@layout/zdn_header"/>
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1364"
+        android:layout_below="@+id/header"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="业务变更："
+            android:textColor="#FF000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="项目编号：CRJ22664"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="施工地址：黄浦区淮海东路85号淮海商业大厦17楼CD库"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="工单完成时间：2016.03.20"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="客户名称：上海创乐人企业发展有限公司"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="客户联系人：张平"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="联系电话：13918276999"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="原设备信息："
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="序号"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="设备名称"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="单位"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="原出"
+                    android:background="@drawable/table_frame_gray"
+                    android:textColor="#FF000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="本持"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="本源"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="12345678901"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="台"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="0"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:padding="2dp"
+            android:text="本次出货信息："
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="序号"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="设备名称"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="单位"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="原出"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="12345678901"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="台"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="1"
+                    android:textColor="#FF000000"
+                    android:background="@drawable/table_frame_gray"
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:padding="2dp"
+            android:text="备注：暂无"
+            android:textColor="#FF000000"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/linearlayout"
+        android:id="@+id/nobegin_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y342"
+        android:gravity="center"
+        >
+
+        <RelativeLayout
+            android:id="@+id/nobegin_layout_bottom_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y156"
+            android:paddingLeft="@dimen/x48"
+            android:paddingRight="@dimen/x48"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text_task_abondon"
+                android:textSize="@dimen/x48"
+                android:textColor="@color/send_task_rb_unchecked"
+                android:layout_centerInParent="true"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
