@@ -11,6 +11,8 @@ public class TaskBean extends dataManagerdataBase {
     public String taskState;
     public String preformAddress;
     public String finishedTime;
+    public String readState;
+    public String robState;
 
     public TaskBean(){};
 
@@ -19,6 +21,23 @@ public class TaskBean extends dataManagerdataBase {
         this.taskState = taskState;
         this.preformAddress = preformAddress;
         this.finishedTime = finishedTime;
+    }
+
+    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String readState, String robState) {
+        this.taskId = taskId;
+        this.taskState = taskState;
+        this.preformAddress = preformAddress;
+        this.finishedTime = finishedTime;
+        this.readState = readState;
+        this.robState = robState;
+    }
+
+    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String readState) {
+        this.taskId = taskId;
+        this.taskState = taskState;
+        this.preformAddress = preformAddress;
+        this.finishedTime = finishedTime;
+        this.readState = readState;
     }
 
     public String getTaskId() {
@@ -53,6 +72,22 @@ public class TaskBean extends dataManagerdataBase {
         this.finishedTime = finishedTime;
     }
 
+    public String getReadState() {
+        return readState;
+    }
+
+    public void setReadState(String readState) {
+        this.readState = readState;
+    }
+
+    public String getRobState() {
+        return robState;
+    }
+
+    public void setRobState(String robState) {
+        this.robState = robState;
+    }
+
     @Override
     public String toString() {
         return "TaskBean{" +
@@ -60,6 +95,8 @@ public class TaskBean extends dataManagerdataBase {
                 ", taskState='" + taskState + '\'' +
                 ", preformAddress='" + preformAddress + '\'' +
                 ", finishedTime='" + finishedTime + '\'' +
+                ", readState='" + readState + '\'' +
+                ", robState='" + robState + '\'' +
                 '}';
     }
 }

@@ -6,7 +6,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.lidroid.xutils.db.sqlite.DbModelSelector;
-import com.tmac.onsite.activity.LoginActivity;
+import com.tmac.onsite.activity.ActivationActivity;
 import com.tmac.onsite.activity.MainActivity;
 import com.tmac.onsite.bean.TaskBean;
 import com.toolset.CommandParser.CommandE;
@@ -92,11 +92,11 @@ public class stateMachine implements stateControlInterface {
 //                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 
                         if (getDataList == null || getDataList.size() == 0) {
-                            /*Intent intent = new Intent(mContext, LoginActivity.class);
+                            /*Intent intent = new Intent(mContext, ActivationActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             mContext.startActivity(intent);*/
                             if(userDataStr.equals("unauto")) {
-                                Intent intent = new Intent(mContext, LoginActivity.class);
+                                Intent intent = new Intent(mContext, ActivationActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 mContext.startActivity(intent);
                             }else{
@@ -122,7 +122,7 @@ public class stateMachine implements stateControlInterface {
                                 if(userDataStr.equals("unauto")) {
                                     WebApiII.getInstance(mContext.getMainLooper()).user_loginReq(login);
                                     setState(stateMachine.STATE_WAIT_LOGIN);
-//                                    Intent intent = new Intent(mContext, LoginActivity.class);
+//                                    Intent intent = new Intent(mContext, ActivationActivity.class);
 //                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                    mContext.startActivity(intent);
                                 }else{
@@ -131,7 +131,7 @@ public class stateMachine implements stateControlInterface {
                             } else {
                                 //start login ACTIVITY
                                 if(userDataStr.equals("unauto")) {
-                                    Intent intent = new Intent(mContext, LoginActivity.class);
+                                    Intent intent = new Intent(mContext, ActivationActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     mContext.startActivity(intent);
                                 }else{
@@ -171,9 +171,10 @@ public class stateMachine implements stateControlInterface {
                                 Intent intent = new Intent(mContext, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 mContext.startActivity(intent);
-//                                ExpCommandE getTaskE = new ExpCommandE();
-//                                e.AddAProperty(new Property("mobile", ""));
-//                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
+
+                                ExpCommandE getTaskE = new ExpCommandE();
+                                e.AddAProperty(new Property("mobile", ""));
+                                WebApiII.getInstance(mContext.getMainLooper()).getTaskListReq(getTaskE);
                                 //start normal ACTIVITY
 
                             } else if (successValue.equals("0")) {
@@ -226,6 +227,10 @@ public class stateMachine implements stateControlInterface {
         }
 
         if (status == 0) {
+            dataManager dm = dataManager.getInstance(mContext);
+            dm.addA_Class(TaskBean.class);
+            ArrayList<Object> originData = dm.getAll(TaskBean.class);
+
             ArrayList<dataManagerdataBase> robotList = new ArrayList<dataManagerdataBase>();
             JSONArray robotsArray = null;
             try {
@@ -238,13 +243,20 @@ public class stateMachine implements stateControlInterface {
                     String taskState = obj.getString("taskState");
                     String preformAddress = obj.getString("preformAddress");
                     String finishedTime = obj.getString("finishedTime");
-
-                    robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime));
+                    String readState = obj.getString("readState");
+                    String robState = obj.getString("robState");
+                    if(originData != null && originData.size() > 0){
+                        for (int k = 0; k < originData.size(); k ++){
+                            TaskBean tmpBean = (TaskBean)originData.get(k);
+                            if(taskId.equals(tmpBean.getTaskId())){
+                                readState = tmpBean.getReadState();
+                            }
+                        }
+                    }
+                    robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime, readState, robState));
 
                 }
 
-                dataManager dm = dataManager.getInstance(mContext);
-                dm.addA_Class(TaskBean.class);
                 dm.resetdbData(TaskBean.class, robotList);
 
                 ExpCommandE expCommandE = new ExpCommandE("GET_DATA_COMMAND");

@@ -92,6 +92,7 @@ public class RobTaskFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.fragment_rob_task, container, false);
 	}
 	
@@ -100,10 +101,18 @@ public class RobTaskFragment extends Fragment {
 		// TODO Auto-generated method stub
 		initViews(view);
 		if(TestControl.isTest){
-			EventBus.getDefault().register(this);
-			ExpCommandE getTaskE = new ExpCommandE();
-			getTaskE.AddAProperty(new Property("mobile", ""));
-			WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
+			dataManager dm = dataManager.getInstance(getActivity());
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			for (int index = 0;index < getDataList.size(); index ++){
+				TaskBean taskBean = (TaskBean) getDataList.get(index);
+				if(taskBean.getTaskState().equals("0")){
+					allList.add(taskBean);
+				}
+			}
+//			ExpCommandE getTaskE = new ExpCommandE();
+//			getTaskE.AddAProperty(new Property("mobile", ""));
+//			WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
 		}else {
 			initDatas();
 		}
@@ -138,8 +147,8 @@ public class RobTaskFragment extends Fragment {
 			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
 				// TODO Auto-generated method stub
 				state=0;
-				List<RobBean> result = new ArrayList<RobBean>();
-                RobBean n = new RobBean("HGJ98989", "上海市浦东西区", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				List<TaskBean> result = new ArrayList<TaskBean>();
+				TaskBean n = new TaskBean("HGJ98989", "0","上海市浦东西区", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                 result.add(n);
                 RefreshUtils.loadSucceed(result, myHandler);
 			}
@@ -164,6 +173,12 @@ public class RobTaskFragment extends Fragment {
 		
 	}
 
+	@Override
+	public void onDestroy() {
+		EventBus.getDefault().unregister(this);
+		super.onDestroy();
+	}
+
 	public void onEvent(Object event) {
 		if(DBG) Log.d(TAG, "getDataList = ");
 		assert( event instanceof ExpCommandE);
@@ -176,7 +191,10 @@ public class RobTaskFragment extends Fragment {
 			dm.addA_Class(TaskBean.class);
 			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
 			for (int index = 0;index < getDataList.size(); index ++){
-				allList.add((TaskBean) getDataList.get(index));
+				TaskBean taskBean = (TaskBean) getDataList.get(index);
+				if(taskBean.getTaskState().equals("0")){
+					allList.add(taskBean);
+				}
 			}
 			adapter.notifyDataSetChanged();
 			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());

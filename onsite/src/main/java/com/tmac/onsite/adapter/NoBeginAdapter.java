@@ -3,10 +3,14 @@
  */
 package com.tmac.onsite.adapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.bean.NoBeginBean;
+import com.tmac.onsite.bean.TaskBean;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -18,9 +22,9 @@ import android.widget.TextView;
 /**
  * @author tmac
  */
-public class NoBeginAdapter extends CommonAdapter<NoBeginBean> {
+public class NoBeginAdapter extends CommonAdapter<TaskBean> {
 
-	public NoBeginAdapter(Context context, List<NoBeginBean> list) {
+	public NoBeginAdapter(Context context, List<TaskBean> list) {
 		super(context, list);
 		// TODO Auto-generated constructor stub
 	}
@@ -33,6 +37,7 @@ public class NoBeginAdapter extends CommonAdapter<NoBeginBean> {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.nobegin_list_item, parent, false);
 			holder.imageView = (ImageView) convertView.findViewById(R.id.img);
+			holder.read_state_img = (ImageView) convertView.findViewById(R.id.read_state_img);
 			holder.timeRemin = (TextView) convertView.findViewById(R.id.tv_time);
 			holder.number = (TextView) convertView.findViewById(R.id.tv_number);
 			holder.area = (TextView) convertView.findViewById(R.id.tv_workarea);
@@ -42,20 +47,34 @@ public class NoBeginAdapter extends CommonAdapter<NoBeginBean> {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		if(list.get(position).isRob()){
+		if(list.get(position).getRobState().equals("0")){
 			holder.imageView.setVisibility(View.VISIBLE);
 		}else {
 			holder.imageView.setVisibility(View.INVISIBLE);
 		}
-		holder.timeRemin.setText(list.get(position).getTimeRemin());
-		holder.number.setText(list.get(position).getNumber());
-		holder.area.setText(list.get(position).getWorkArea());
-		holder.finishTime.setText(list.get(position).getFinishTime());
+		if(list.get(position).getReadState().equals("0")){
+			holder.read_state_img.setVisibility(View.VISIBLE);
+		}else {
+			holder.read_state_img.setVisibility(View.INVISIBLE);
+		}
+		holder.number.setText(list.get(position).getTaskId());
+		holder.area.setText(list.get(position).getPreformAddress());
+		holder.finishTime.setText(list.get(position).getFinishedTime());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date date1 = sdf.parse(list.get(position).getFinishedTime());
+			Date date2 = new Date();
+			int days = (int)((date1.getTime() - date2.getTime())/86400000);
+			holder.timeRemin.setText(days + "");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return convertView;
 	}
 	
 	static class ViewHolder{
 		public ImageView imageView;
+		public ImageView read_state_img;
         public TextView timeRemin;
         public TextView number;
         public TextView area;

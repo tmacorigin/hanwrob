@@ -26,8 +26,10 @@ import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.DraggableFlagView;
 import com.tmac.onsite.view.DraggableFlagView.OnDraggableFlagViewListener;
 import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 import com.toolset.dataManager.dataManager;
 import com.toolset.location.MyLocationListener;
+import com.toolset.state.WebApiII;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -69,7 +71,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private FrameLayout messages;
 	private ImageView iv_set_tip;
 	private ImageView iv_msg_tip;
-	private RobTaskFragment robTaskFragment;
+	private RobTaskFragment robTaskFragment = new RobTaskFragment();
+	private SendTaskFragment sendTaskFragment = new SendTaskFragment();
 
 	public LocationClient mLocationClient = null;
 	public BDLocationListener myListener = new MyLocationListener(this);
@@ -78,6 +81,9 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		EventBus.getDefault().register(this);
+//		ExpCommandE getTaskE = new ExpCommandE();
+//		getTaskE.AddAProperty(new Property("mobile", ""));
+//		WebApiII.getInstance(getMainLooper()).getTaskListReq(getTaskE);
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
 				!= PackageManager.PERMISSION_GRANTED){
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
@@ -85,14 +91,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
 				!= PackageManager.PERMISSION_GRANTED){
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-		}
-		if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-				!= PackageManager.PERMISSION_GRANTED){
-			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 0);
-		}
-		if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				!= PackageManager.PERMISSION_GRANTED){
-			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
 		}
 		mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
 		mLocationClient.registerLocationListener( myListener );    //注册监听函数
@@ -116,8 +114,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		addLeftMenu();
 		// 初始化View
 		initViews();
-		// 初始化事件
-		initEvents();
+
 		
 	}
 
@@ -151,12 +148,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		rb_send_task = FindViewById.getView(this, R.id.rb_send_task);
 		
         fragmentList = new ArrayList<Fragment>();
-        fragmentList.add(new RobTaskFragment());
-        fragmentList.add(new SendTaskFragment());
+        fragmentList.add(robTaskFragment);
+        fragmentList.add(sendTaskFragment);
         
         vp = (ViewPager) findViewById(R.id.viewpager);
         vp.setAdapter(new MainViewPageAdapter(getSupportFragmentManager(), fragmentList));
-        vp.setCurrentItem(0);
+
         
 	}
 	
@@ -169,6 +166,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		rb_rob_task.showDrawableBadge(BitmapFactory.decodeResource(getResources(), R.drawable.badge_view));
 		rb_rob_task.showTextBadge("5");
 
+		rb_send_task.showDrawableBadge(BitmapFactory.decodeResource(getResources(), R.drawable.badge_view));
+		rb_send_task.hiddenBadge();
 		rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -179,10 +178,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 					vp.setCurrentItem(0);
 					// 隐藏提示				
 					rb_rob_task.showTextBadge("12");
+					rb_send_task.hiddenBadge();
 					break;
 				case R.id.rb_send_task:
 					vp.setCurrentItem(1);
 					rb_rob_task.hiddenBadge();
+					rb_send_task.showTextBadge("12");
 					break;
 				default:
 					break;
@@ -263,6 +264,13 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		finish();
 	}
 
+	@Override
+	protected void onDestroy() {
+		EventBus.getDefault().unregister(this);
+		mLocationClient.stop();
+		super.onDestroy();
+	}
+
 	public void onEvent(Object event) {
 		if(DBG) Log.d(TAG, "getDataList................");
 		assert( event instanceof ExpCommandE);
@@ -271,10 +279,14 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-			dataManager dm = dataManager.getInstance(getApplicationContext());
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
+//			dataManager dm = dataManager.getInstance(this);
+//			dm.addA_Class(TaskBean.class);
+//			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+//			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
+			vp.setCurrentItem(0);
+			// 初始化事件
+			initEvents();
+
 		}
 	}
 

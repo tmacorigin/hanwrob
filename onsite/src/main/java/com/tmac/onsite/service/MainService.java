@@ -55,7 +55,7 @@ public class MainService extends Service {
         }else {
             ExpCommandE expCommandE = new ExpCommandE("startUp");
             expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
-            expCommandE.setUserData("auto");
+            expCommandE.setUserData("unauto");
             sm.mainControl(expCommandE);
         }
         return START_STICKY;
