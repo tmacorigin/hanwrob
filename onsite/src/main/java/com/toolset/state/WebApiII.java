@@ -121,6 +121,16 @@ public class WebApiII extends  InternetComponent{
     }
 
     @Override
+    public void tryToShootTaskReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void tryToShootTaskRsp(ExpCommandE e) {
+
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         EventBus.getDefault().unregister(this);
         super.finalize();

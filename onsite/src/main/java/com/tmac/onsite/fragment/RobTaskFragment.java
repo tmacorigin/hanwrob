@@ -119,6 +119,24 @@ public class RobTaskFragment extends Fragment {
 		initEvents();
 	}
 
+//	@Override
+//	public void onResume() {
+//		super.onResume();
+//		if(TestControl.isTest){
+//			allList.clear();
+//			dataManager dm = dataManager.getInstance(getActivity());
+//			dm.addA_Class(TaskBean.class);
+//			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+//			for (int index = 0;index < getDataList.size(); index ++){
+//				TaskBean taskBean = (TaskBean) getDataList.get(index);
+//				if(taskBean.getTaskState().equals("0")){
+//					allList.add(taskBean);
+//				}
+//			}
+//			adapter.notifyDataSetChanged();
+//		}
+//	}
+
 	private void initViews(View view) {
 		// TODO Auto-generated method stub
 		pull_layout = (PullToRefreshLayout) view.findViewById(R.id.ptrl);
@@ -167,7 +185,10 @@ public class RobTaskFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(getActivity(), DetailTaskActivity.class));
+				TaskBean tarBean = allList.get(position);
+				Intent intent = new Intent(getActivity(), DetailTaskActivity.class);
+				intent.putExtra("tarTaskId",tarBean.getTaskId());
+				startActivity(intent);
 			}
 		});
 		

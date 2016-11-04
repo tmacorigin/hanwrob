@@ -243,8 +243,8 @@ public class stateMachine implements stateControlInterface {
                     String taskState = obj.getString("taskState");
                     String preformAddress = obj.getString("preformAddress");
                     String finishedTime = obj.getString("finishedTime");
-                    String readState = obj.getString("readState");
                     String robState = obj.getString("robState");
+                    String readState = "0";
                     if(originData != null && originData.size() > 0){
                         for (int k = 0; k < originData.size(); k ++){
                             TaskBean tmpBean = (TaskBean)originData.get(k);
@@ -253,7 +253,7 @@ public class stateMachine implements stateControlInterface {
                             }
                         }
                     }
-                    robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime, readState, robState));
+                    robotList.add(new TaskBean(taskId, taskState, preformAddress, finishedTime, robState, readState));
 
                 }
 

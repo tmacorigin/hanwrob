@@ -23,20 +23,20 @@ public class TaskBean extends dataManagerdataBase {
         this.finishedTime = finishedTime;
     }
 
-    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String readState, String robState) {
+    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String robState) {
         this.taskId = taskId;
         this.taskState = taskState;
         this.preformAddress = preformAddress;
         this.finishedTime = finishedTime;
-        this.readState = readState;
         this.robState = robState;
     }
 
-    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String readState) {
+    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String robState, String readState) {
         this.taskId = taskId;
         this.taskState = taskState;
         this.preformAddress = preformAddress;
         this.finishedTime = finishedTime;
+        this.robState = robState;
         this.readState = readState;
     }
 

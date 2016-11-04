@@ -19,4 +19,9 @@ public interface WebApiInterface {
 
     public void updateLocationReq(ExpCommandE e);
     public void updateLocationRsp(ExpCommandE e);
+
+    public void tryToShootTaskReq(ExpCommandE e);
+    public void tryToShootTaskRsp(ExpCommandE e);
+
+
 }

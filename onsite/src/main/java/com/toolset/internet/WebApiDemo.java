@@ -83,5 +83,15 @@ public class WebApiDemo extends  InternetComponent{
 
     }
 
+    @Override
+    public void tryToShootTaskReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void tryToShootTaskRsp(ExpCommandE e) {
+
+    }
+
 
 }
