@@ -28,12 +28,17 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import static android.R.attr.value;
 
 /**
  * @author tmac
@@ -55,6 +60,9 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 	private RelativeLayout layout_bottom_2;
 	private LinearLayout linearLayout;
 	private ImageView iv_back;
+	private ImageView upload_img;
+	private ImageView window_back;
+	private Animation operatingAnim;
 	private static String reasonStr;
 	public static final int DEFAULT_VALUE = -1;
 	private static final int REQUEST_CODE = 0; 
@@ -80,6 +88,8 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 	private void initViews() {
 		// TODO Auto-generated method stub
 		hc.setTitle(getResources().getString(R.string.task_detail));
+		upload_img = (ImageView) findViewById(R.id.uploading_img);
+		window_back = (ImageView) findViewById(R.id.window_background);
 		btn_upload_pre_img = (Button) findViewById(R.id.upload_pre_image);
 		btn_upload_end_img = (Button) findViewById(R.id.upload_end_image);
 		linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
@@ -107,7 +117,11 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 		btn_record_time.setOnClickListener(this);
 		btn_check_reason.setOnClickListener(this);
 		//iv_back.setOnClickListener(this);
-		
+
+		operatingAnim = AnimationUtils.loadAnimation(this, R.anim.uploading_img);
+		LinearInterpolator lin = new LinearInterpolator();
+		operatingAnim.setInterpolator(lin);
+
 	}
 
 	@Override
@@ -276,7 +290,20 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 					startActivityForResult(new Intent(DetailNoBeginActivity.this, CannotFinishActivity.class), REQUEST_CODE);
 				break;
 			case UPLOAD_RECORD:
-				finish();
+				window_back.setVisibility(View.VISIBLE);
+				upload_img.setVisibility(View.VISIBLE);
+				upload_img.startAnimation(operatingAnim);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(2000);
+							finish();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
 				break;
 			default:
 				break;

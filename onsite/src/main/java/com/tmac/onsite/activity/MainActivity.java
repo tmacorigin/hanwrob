@@ -27,6 +27,7 @@ import com.tmac.onsite.view.DraggableFlagView;
 import com.tmac.onsite.view.DraggableFlagView.OnDraggableFlagViewListener;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
+import com.toolset.MainControl.TestControl;
 import com.toolset.dataManager.dataManager;
 import com.toolset.location.MyLocationListener;
 import com.toolset.state.WebApiII;
@@ -114,8 +115,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		addLeftMenu();
 		// 初始化View
 		initViews();
+		if(!TestControl.isTest){
+			initEvents();
+		}
 
-		
 	}
 
 	private void initLocation(){
@@ -153,8 +156,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
         
         vp = (ViewPager) findViewById(R.id.viewpager);
         vp.setAdapter(new MainViewPageAdapter(getSupportFragmentManager(), fragmentList));
+		if(!TestControl.isTest){
+			vp.setCurrentItem(0);
+		}
 
-        
 	}
 	
 	private void initEvents() {
@@ -283,9 +288,9 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 //			dm.addA_Class(TaskBean.class);
 //			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
 //			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
-			vp.setCurrentItem(0);
+			//vp.setCurrentItem(0);
 			// 初始化事件
-			initEvents();
+			//initEvents();
 
 		}
 	}

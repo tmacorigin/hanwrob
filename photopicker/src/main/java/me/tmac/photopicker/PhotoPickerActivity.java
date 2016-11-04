@@ -96,11 +96,13 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
         originalPhotos = getIntent().getStringArrayListExtra(EXTRA_ORIGINAL_PHOTOS);
 
         if(Build.VERSION.SDK_INT >= 23){
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED){
                 Log.d("LC-PhotoPickerActivity", "checkPermission");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
-                                        , Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS}, CODE_FOR_WRITE_PERMISSION);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+                                        , Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS}, CODE_FOR_WRITE_PERMISSION);
+            }else {
+                initFragment();
             }
         }else {
             initFragment();
@@ -265,4 +267,5 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
             }
         }
     }
+
 }

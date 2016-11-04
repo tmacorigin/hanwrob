@@ -94,6 +94,8 @@ public class NoBeginFragment extends Fragment {
 //			ExpCommandE getTaskE = new ExpCommandE();
 //			getTaskE.AddAProperty(new Property("mobile", ""));
 //			WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
+		}else {
+			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
 		}
 		initViews(view);
 		initEvents();
