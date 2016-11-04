@@ -182,16 +182,18 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 				btn_upload_pre_img.setVisibility(View.GONE);
 				layout_bottom_1.setVisibility(View.VISIBLE);
 			}else if(state == EDIT_REASON){
-				layout_bottom_2.setVisibility(View.VISIBLE);
+				finish();
+				/*layout_bottom_2.setVisibility(View.VISIBLE);
 				btn_record_time.setVisibility(View.GONE);
 				btn_construct_no_finish.setVisibility(View.GONE);
 				btn_check_reason.setVisibility(View.VISIBLE);
-				reasonStr = data.getStringExtra(CANNOT_REASON);
+				reasonStr = data.getStringExtra(CANNOT_REASON);*/
 				if(DBG) Log.i(TAG, "reasonStr = " + reasonStr);
 			}
 		}
 	}
 
+	private final int UPLOAD_RECORD = 100;
 	/**
 	 * 上传录音成功的回调
 	 */
@@ -199,12 +201,14 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 	public void onUpload(String time) {
 		// TODO Auto-generated method stub
 		Toast.makeText(this, getResources().getString(R.string.upload_record_success), Toast.LENGTH_SHORT).show();
-
-		layout_bottom_1.setVisibility(View.GONE);
+		CommonDialog dialog = new CommonDialog(this, getResources().getString(R.string.ensure_upload_record), getResources().getString(R.string.ensure),
+				getResources().getString(R.string.cancle), UPLOAD_RECORD, this);
+		dialog.show();
+		/*layout_bottom_1.setVisibility(View.GONE);
 		layout_bottom_2.setVisibility(View.VISIBLE);
 		btn_construct_img.setText(R.string.construct_img);
 		
-		btn_record_time.setText(time);
+		btn_record_time.setText(time);*/
 		
 	}
 
@@ -270,6 +274,9 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 				break;
 			case R.id.contrust_no_finish:
 					startActivityForResult(new Intent(DetailNoBeginActivity.this, CannotFinishActivity.class), REQUEST_CODE);
+				break;
+			case UPLOAD_RECORD:
+				finish();
 				break;
 			default:
 				break;

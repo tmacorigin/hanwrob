@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/layout_detail_background" >
     
     <!--<RelativeLayout
@@ -39,27 +38,59 @@
         
     </RelativeLayout>-->
 
-    <include layout="@layout/zdn_header"/>
+	<include layout="@layout/zdn_header"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<!--<ListView
+                android:id="@+id/display_img_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               />-->
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/recycler_view"
+				android:layout_below="@+id/header"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				/>
+
+			<ImageView
+				android:id="@+id/add_img_btn"
+				android:layout_centerHorizontal="true"
+				android:layout_below="@+id/recycler_view"
+				android:layout_marginTop="@dimen/y50"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/x50"
+				android:background="@drawable/add_img_selector"/>
+
+
+		</RelativeLayout>
+
+	</ScrollView>
+
+	<ImageView
+		android:id="@+id/window_background"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/enter_base_bg"
+		android:visibility="gone"
+		android:alpha="0.4"/>
+
+	<ImageView
+		android:id="@+id/uploading_img"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:visibility="gone"
+		android:src="@drawable/uploading_img"/>
     
-    <!--<ListView
-        android:id="@+id/display_img_lv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-       />-->
     
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycler_view"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      />
-    
-	<Button 
-	    android:id="@+id/add_img_btn"
-	    android:layout_gravity="center_horizontal"
-	    android:layout_marginTop="@dimen/y50"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/add_img_selector"/>
-    
-    
-</LinearLayout>
+</RelativeLayout>

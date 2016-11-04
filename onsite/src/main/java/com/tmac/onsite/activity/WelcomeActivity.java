@@ -59,7 +59,7 @@ public class WelcomeActivity extends Activity {
 			sp.isFirstIN(false);
 		}else {
 			//setContentView(R.layout.activity_welcome);
-			SystemClock.sleep(1000);
+			//SystemClock.sleep(1000);
 			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){

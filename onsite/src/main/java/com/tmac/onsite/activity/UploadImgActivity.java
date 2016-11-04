@@ -5,6 +5,8 @@ import java.util.List;
 
 import me.tmac.photopicker.PhotoPicker;
 import me.tmac.photopicker.PhotoPreview;
+
+import com.tmac.onsite.utils.MyDialog;
 import com.toolset.activity.basicActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,13 +15,18 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,14 +43,17 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 	
 	private static final String TAG = "LC-UploadImgActivity";
 	private static boolean DBG = true;
-	private Button btn_add_img;
+	private ImageView btn_add_img;
 	private Button btn_send_img;
 	private TextView tvView;
 	private ListView mListView;
+	private ImageView upload_img;
+	private ImageView window_back;
 	private ArrayList<String> selectedPhotos;
 	private RecyclerView recyclerView;
 	private RecyclerViewAdapter adapter;
 	private int value;
+	private Animation operatingAnim;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +73,9 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 	
 	private void initViews(Intent intent) {
 		// TODO Auto-generated method stub
-		btn_add_img = (Button) findViewById(R.id.add_img_btn);
+		btn_add_img = (ImageView) findViewById(R.id.add_img_btn);
+		upload_img = (ImageView) findViewById(R.id.uploading_img);
+		window_back = (ImageView) findViewById(R.id.window_background);
 		//btn_send_img = (Button) findViewById(R.id.send_img_btn);
 		recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 		//tvView = (TextView) findViewById(R.id.upload_tv_title);
@@ -150,6 +162,9 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 				commonDialog.show();
 			}
 		});*/
+		operatingAnim = AnimationUtils.loadAnimation(this, R.anim.uploading_img);
+		LinearInterpolator lin = new LinearInterpolator();
+		operatingAnim.setInterpolator(lin);
 	}
 	
 	@Override
@@ -182,10 +197,24 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 
 	@Override
 	public void doConfirm(int situation) {
-		Intent intent = new Intent();
+		window_back.setVisibility(View.VISIBLE);
+		//MyDialog.lightOff(getWindow());
+		upload_img.setVisibility(View.VISIBLE);
+		upload_img.startAnimation(operatingAnim);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				SystemClock.sleep(2000);
+				Intent intent = new Intent();
+				intent.putExtra(DetailNoBeginActivity.RETURN_STATE, value);
+				setResult(RESULT_OK, intent);
+				finish();
+			}
+		}).start();
+		/*Intent intent = new Intent();
 		intent.putExtra(DetailNoBeginActivity.RETURN_STATE, value);
 		setResult(RESULT_OK, intent);
-		finish();
+		finish();*/
 	}
 
 	@Override

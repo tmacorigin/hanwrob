@@ -8,6 +8,8 @@ import android.widget.Button;
 import com.tmac.onsite.R;
 import com.toolset.activity.basicActivity;
 
+import static com.tmac.onsite.activity.DetailNoBeginActivity.SHOW_REASON;
+
 public class DetailCannotFinishActivity extends basicActivity implements View.OnClickListener{
 
     private Button btn_display_img;
@@ -33,7 +35,9 @@ public class DetailCannotFinishActivity extends basicActivity implements View.On
                 startActivity(new Intent(DetailCannotFinishActivity.this, DisplayConstructImgActivity.class));
                 break;
             case R.id.check_reason_btn:
-                startActivity(new Intent(DetailCannotFinishActivity.this, CannotFinishActivity.class));
+                Intent intent = new Intent(DetailCannotFinishActivity.this, CannotFinishActivity.class);
+                intent.putExtra(SHOW_REASON, true);
+                startActivity(intent);
                 break;
         }
     }
