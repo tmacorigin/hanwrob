@@ -37,7 +37,7 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 	protected void onCreate(Bundle savedInstanceState) {
 
 
-		EventBus.getDefault().register(this);
+		//EventBus.getDefault().register(this);
 
 		super.onCreate(savedInstanceState);
 
@@ -57,9 +57,9 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		super.onDestroy();
 	}
 
-	public void onEvent(Object event) {
+	/*public void onEvent(Object event) {
 
-		/*
+		*//*
 		if( event instanceof networkStatusEvent)
 		{
 			networkStatusEvent e = (networkStatusEvent)event;
@@ -70,9 +70,9 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 			}
 				//Toast.makeText(this,"无网络连接",Toast.LENGTH_SHORT).show();
 		}
-		*/
+		*//*
 
-	}
+	}*/
 
 	@Override
 	public void onMenuClick(int menuId) {

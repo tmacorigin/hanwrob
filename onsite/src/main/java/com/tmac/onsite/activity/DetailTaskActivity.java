@@ -144,4 +144,8 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 		}
 	}
 
+	public void onEvent(Object event){
+
+	}
+
 }

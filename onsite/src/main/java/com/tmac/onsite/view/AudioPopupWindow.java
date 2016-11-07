@@ -148,7 +148,9 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 		switch (v.getId()) {
 		case R.id.cancle_audio:
 			dismiss();
-			audioManager.releaseRecorder();
+			if(audioManager != null){
+				audioManager.releaseRecorder();
+			}
 			break;
 			
 		case R.id.iv_nobegin_audio:

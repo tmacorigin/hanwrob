@@ -258,7 +258,7 @@ public class PhotoPickerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == CODE_FOR_WRITE_PERMISSION){
-            if(permissions[0].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            if(permissions[0].equals(Manifest.permission.READ_EXTERNAL_STORAGE)
                     &&grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 // 权限申请成功
                 initFragment();

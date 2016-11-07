@@ -46,8 +46,9 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_welcome);
 		//StatusBarUtil.setTranslucent(this, 0);
-		//SystemClock.sleep(1500);
+		SystemClock.sleep(1500);
 		init();
 	}
 

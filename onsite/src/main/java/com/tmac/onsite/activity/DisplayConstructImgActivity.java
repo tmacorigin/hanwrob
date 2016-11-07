@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,9 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tmac.onsite.R;
+import com.tmac.onsite.fragment.ConstructEndFragment;
 import com.tmac.onsite.fragment.ConstructPreFragment;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.viewpagerindicator.TabPageIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayConstructImgActivity extends FragmentActivity implements View.OnClickListener{
 
@@ -23,6 +26,9 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
     private TextView textView;
     private TabPageIndicator indicator;
     private ViewPager viewPager;
+    private List<Fragment> list = new ArrayList<>();
+    private Fragment preFragment;
+    private Fragment endFragment;
     private static final String[] TITLE = new String[]{"施工前图片", "施工后图片"};
 
     @Override
@@ -37,6 +43,10 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
         indicator = (TabPageIndicator) findViewById(R.id.tabPageIndicator);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         textView.setText(R.string.construct_img);
+        preFragment = new ConstructPreFragment();
+        endFragment = new ConstructEndFragment();
+        list.add(preFragment);
+        list.add(endFragment);
 
         FragmentPagerAdapter adapter = new TabPagerIndicatorAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
@@ -45,7 +55,7 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Toast.makeText(getApplicationContext(), TITLE[position], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), TITLE[position], Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -70,8 +80,8 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = new ConstructPreFragment();
-            return fragment;
+            //Fragment fragment = new ConstructPreFragment();
+            return list.get(position);
         }
 
         @Override

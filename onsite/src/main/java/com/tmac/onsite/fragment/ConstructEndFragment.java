@@ -21,7 +21,7 @@ import java.util.List;
  * Created by user on 16/10/5.
  */
 
-public class ConstructPreFragment extends Fragment {
+public class ConstructEndFragment extends Fragment {
 
     private ListView listView;
     private DisPlayAdapter adapter;
@@ -42,8 +42,8 @@ public class ConstructPreFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView) view.findViewById(R.id.display_listview);
         list = new ArrayList<>();
-        bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.begin_audio);
-        bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.finish_audio);
+        bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.nobegin_audio);
+        bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.play_audio);
         list.add(new ImageBean(bitmap1));
         list.add(new ImageBean(bitmap2));
         adapter = new DisPlayAdapter(getActivity(), list);

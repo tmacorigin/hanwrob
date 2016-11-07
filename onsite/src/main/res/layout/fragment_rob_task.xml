@@ -17,6 +17,6 @@
         android:listSelector="@android:color/transparent"
         />
     
-    <include layout="@layout/load_more" />
+    <!--<include layout="@layout/load_more" />-->
     
 </com.tmac.onsite.view.PullToRefreshLayout>

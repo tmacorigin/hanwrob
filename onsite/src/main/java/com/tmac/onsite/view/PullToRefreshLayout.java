@@ -157,14 +157,14 @@ public class PullToRefreshLayout extends RelativeLayout {
 				requestLayout();
 			}
 			if (pullUpY > 0) {
-				// 已完成回弹
+				/*// 已完成回弹
 				pullUpY = 0;
 				pullUpView.clearAnimation();
 				// 隐藏上拉头时有可能还在刷新，只有当前状态不是正在刷新时才改变状态
 				if (state != REFRESHING && state != LOADING)
 					changeState(INIT);
 				timer.cancel();
-				requestLayout();
+				requestLayout();*/
 			}
 			Log.d("handle", "handle");
 			// 刷新布局,会自动调用onLayout
@@ -304,10 +304,10 @@ public class PullToRefreshLayout extends RelativeLayout {
 			pullView.clearAnimation();
 			pullView.setVisibility(View.VISIBLE);
 			// 上拉布局初始状态
-			loadStateImageView.setVisibility(View.GONE);
+			/*loadStateImageView.setVisibility(View.GONE);
 			loadStateTextView.setText(R.string.pullup_to_load);
 			pullUpView.clearAnimation();
-			pullUpView.setVisibility(View.VISIBLE);
+			pullUpView.setVisibility(View.VISIBLE);*/
 			break;
 		case RELEASE_TO_REFRESH:
 			// 释放刷新状态
@@ -454,7 +454,7 @@ public class PullToRefreshLayout extends RelativeLayout {
 				}
 				// 上拉操作
 				if (-pullUpY >= loadmoreDist && state == INIT) {
-					changeState(RELEASE_TO_LOAD);
+					//changeState(RELEASE_TO_LOAD);
 				}
 
 			}
@@ -478,11 +478,11 @@ public class PullToRefreshLayout extends RelativeLayout {
 				if (mListener != null)
 					mListener.onRefresh(this);
 			} else if (state == RELEASE_TO_LOAD) {
-				lastCount = absListView.getCount();
+				/*lastCount = absListView.getCount();
 				changeState(LOADING);
 				// 加载操作
 				if (mListener != null)
-					mListener.onLoadMore(this);
+					mListener.onLoadMore(this);*/
 			}
 			hide();
 		default:
@@ -560,11 +560,11 @@ public class PullToRefreshLayout extends RelativeLayout {
 		refreshingView = refreshView.findViewById(R.id.refreshing_icon);
 		refreshStateImageView = refreshView.findViewById(R.id.state_iv);
 		// 初始化上拉布局
-		pullUpView = loadmoreView.findViewById(R.id.pullup_icon);
+		/*pullUpView = loadmoreView.findViewById(R.id.pullup_icon);
 		loadStateTextView = (TextView) loadmoreView
 				.findViewById(R.id.loadstate_tv);
 		loadingView = loadmoreView.findViewById(R.id.loading_icon);
-		loadStateImageView = loadmoreView.findViewById(R.id.loadstate_iv);
+		loadStateImageView = loadmoreView.findViewById(R.id.loadstate_iv);*/
 		
 		//这里写到底加载的逻辑
 	}
@@ -578,13 +578,13 @@ public class PullToRefreshLayout extends RelativeLayout {
 			pullableView = getChildAt(1);
 			// 这里获得AbsListView对象，比如listview、gridview等。
 			absListView = (AbsListView) pullableView;
-			loadmoreView = getChildAt(2);
+			//loadmoreView = getChildAt(2);
 			isLayout = true;
 			initView();
 			refreshDist = ((ViewGroup) refreshView).getChildAt(0)
 					.getMeasuredHeight();
-			loadmoreDist = ((ViewGroup) loadmoreView).getChildAt(0)
-					.getMeasuredHeight();
+			/*loadmoreDist = ((ViewGroup) loadmoreView).getChildAt(0)
+					.getMeasuredHeight();*/
 		}
 		// 改变子控件的布局，这里直接用(pullDownY + pullUpY)作为偏移量，这样就可以不对当前状态作区分
 		// (left, top, right, bottom)
@@ -594,11 +594,11 @@ public class PullToRefreshLayout extends RelativeLayout {
 		pullableView.layout(0, (int) (pullDownY + pullUpY),
 				pullableView.getMeasuredWidth(), (int) (pullDownY + pullUpY)
 						+ pullableView.getMeasuredHeight());
-		loadmoreView.layout(0,
+		/*loadmoreView.layout(0,
 				(int) (pullDownY + pullUpY) + pullableView.getMeasuredHeight(),
 				loadmoreView.getMeasuredWidth(),
 				(int) (pullDownY + pullUpY) + pullableView.getMeasuredHeight()
-						+ loadmoreView.getMeasuredHeight());
+						+ loadmoreView.getMeasuredHeight());*/
 	}
 
 	class MyTimer {

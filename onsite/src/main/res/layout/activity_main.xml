@@ -16,7 +16,12 @@
         android:flipInterval="30"
         android:background="@color/main_viewpager_bg"
         android:persistentDrawingCache="animation" />
-    
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:src="@drawable/main_underline"/>
+
     <include
         layout="@layout/layout_bottom_menu"
         />
