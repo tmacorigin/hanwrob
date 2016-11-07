@@ -65,21 +65,21 @@ public class stateMachine implements stateControlInterface {
         if (eventName != null) {
             if (eventName.equals("loginRequest")) {
                 //send regist
-                dataManager dm = dataManager.getInstance(mContext);
-                dm.addA_Class(TelNumInfo.class);
-                ArrayList<dataManagerdataBase> telNumInfoList = new ArrayList<dataManagerdataBase>();
-
-
-                TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
-                String imei = mTm.getDeviceId();
-                String imsi = mTm.getSubscriberId();
-
-
-                String tel = (String) (e.GetProperty("phone").GetPropertyContext());
-                String passWord = (String) (e.GetProperty("password").GetPropertyContext());
-                TelNumInfo telNumInfo = new TelNumInfo(tel, passWord, imei, imsi);
-                telNumInfoList.add(telNumInfo);
-                dm.resetdbData(TelNumInfo.class, telNumInfoList);
+//                dataManager dm = dataManager.getInstance(mContext);
+//                dm.addA_Class(TelNumInfo.class);
+//                ArrayList<dataManagerdataBase> telNumInfoList = new ArrayList<dataManagerdataBase>();
+//
+//
+//                TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
+//                String imei = mTm.getDeviceId();
+//                String imsi = mTm.getSubscriberId();
+//
+//
+//                String tel = (String) (e.GetProperty("phone").GetPropertyContext());
+//                String passWord = (String) (e.GetProperty("password").GetPropertyContext());
+//                TelNumInfo telNumInfo = new TelNumInfo(tel, passWord, imei, imsi);
+//                telNumInfoList.add(telNumInfo);
+//                dm.resetdbData(TelNumInfo.class, telNumInfoList);
 
             }
             switch (state) {

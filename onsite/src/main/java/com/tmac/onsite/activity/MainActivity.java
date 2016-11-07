@@ -155,11 +155,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
         fragmentList.add(sendTaskFragment);
         
         vp = (ViewPager) findViewById(R.id.viewpager);
-        vp.setAdapter(new MainViewPageAdapter(getSupportFragmentManager(), fragmentList));
+		vp.setAdapter(new MainViewPageAdapter(getSupportFragmentManager(), fragmentList));
 		if(!TestControl.isTest){
 			vp.setCurrentItem(0);
 		}
-
 	}
 	
 	private void initEvents() {
@@ -288,10 +287,11 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 //			dm.addA_Class(TaskBean.class);
 //			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
 //			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
-			//vp.setCurrentItem(0);
-			// 初始化事件
-			//initEvents();
-
+			if(TestControl.isTest){
+				vp.setCurrentItem(0);
+				// 初始化事件
+				initEvents();
+			}
 		}
 	}
 
