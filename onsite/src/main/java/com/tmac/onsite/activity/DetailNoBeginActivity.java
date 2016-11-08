@@ -103,7 +103,7 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 		btn_check_reason = (Button) findViewById(R.id.check_reason_btn);
 		
 		//iv_back = (ImageView) findViewById(R.id.iv_back_detail);
-		popupWindow = new AudioPopupWindow(this, this);
+		//popupWindow = new AudioPopupWindow(this, this);
 	}
 
 	private void initEvents() {
@@ -240,7 +240,7 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 				// 标题栏的高度
 				int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
 		        int height = getResources().getDimensionPixelSize(resourceId);
-		        popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
+				popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
 		        popupWindow.showAsDropDown(findViewById(R.id.detail_no_begin_layout), 0, -popupWindow.getHeight());
 				//popupWindow.showAtLocation(findViewById(R.id.detail_no_begin_layout), Gravity.TOP, 0, 300);
 		        popupWindow.setOnDismissListener(new OnDismissListener() {
@@ -275,6 +275,7 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 					// 标题栏的高度
 					int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
 					int height = getResources().getDimensionPixelSize(resourceId);
+					popupWindow = new AudioPopupWindow(this, this);
 					popupWindow.setAnimationStyle(R.style.dir_popupwindow_anim);
 					popupWindow.showAsDropDown(layout, 0, -popupWindow.getHeight());
 					popupWindow.setOnDismissListener(new OnDismissListener() {

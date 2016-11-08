@@ -40,7 +40,9 @@ import de.greenrobot.event.EventBus;
  * @author tmac
  */
 public class NoBeginFragment extends Fragment {
-	
+
+	private static final boolean DBG = true;
+	private static final String TAG = "LC-NoBeginFrag";
 	private PullToRefreshLayout ptrl;
 	private PullableListView plv;
 	private int state;
@@ -143,10 +145,10 @@ public class NoBeginFragment extends Fragment {
 				// TODO Auto-generated method stub
 				state = 0;	
 				List<TaskBean> result = new ArrayList<TaskBean>();
-				result.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12"));
-				result.add(new TaskBean("01", "JHK6758", "宝山区共康路125号万达", "2015-12-12"));
-				result.add(new TaskBean("22", "LKHIH67", "宝山区共康路126号万达", "2016-04-26"));
-				result.add(new TaskBean("16", "23YUIPK", "宝山区共康路127号万达", "2016-05-19"));
+				result.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "1"));
+				result.add(new TaskBean("01", "JHK6758", "宝山区共康路125号万达", "2015-12-12", "1", "1"));
+				result.add(new TaskBean("22", "LKHIH67", "宝山区共康路126号万达", "2016-04-26", "1", "0"));
+				result.add(new TaskBean("16", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", "0", "0"));
 				RefreshUtils.loadSucceed(result, myHandler);						
 			}
 			
@@ -216,5 +218,8 @@ public class NoBeginFragment extends Fragment {
 		}
 	}
 
+	public void notifyTipChange(){
+		if(DBG) Log.d(TAG, "notifyTipChange");
+	}
 	
 }

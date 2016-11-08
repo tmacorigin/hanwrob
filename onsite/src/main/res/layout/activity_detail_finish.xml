@@ -374,7 +374,7 @@
                 />
 
             <!-- 录音时间 00:28 -->
-            <Button
+            <!--<Button
                 android:id="@+id/record_time_btn"
                 android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
@@ -382,7 +382,34 @@
                 android:textSize="@dimen/x48"
                 android:textColor="@color/white"
                 android:background="@color/upload_end_construct_btn"
-                />
+                />-->
+
+            <RelativeLayout
+                android:id="@+id/record_time_btn"
+                android:layout_width="@dimen/x476"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@color/upload_end_construct_btn"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/noice"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x120"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x142"
+                    android:text="00:10"
+                    android:textSize="@dimen/x48"
+                    android:textColor="@color/white"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

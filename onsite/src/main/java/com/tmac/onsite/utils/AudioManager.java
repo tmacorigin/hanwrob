@@ -89,10 +89,12 @@ public class AudioManager {
 	 * 录制结束，释放资源
 	 */
 	public void releaseRecorder(){
-		mMediaRecorder.stop();
-		mMediaRecorder.release();
-		mMediaRecorder = null;
-		Log.d(TAG, "音频录制结束");
+		if(mMediaRecorder != null){
+			mMediaRecorder.stop();
+			mMediaRecorder.release();
+			mMediaRecorder = null;
+			Log.d(TAG, "音频录制结束");
+		}
 	}
 	
 	

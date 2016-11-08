@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +32,8 @@ import android.widget.RadioGroup;
  */
 public class SendTaskFragment extends Fragment implements OnClickListener{
 
+	private static final boolean DBG = true;
+	private static final String TAG = "LC-SendTaskFrag";
 	private RadioGroup rg;
 	private RadioButton rbNobegain, rbFinished, rbNofinish, rbCancle;
 	private FragmentManager fm;
@@ -99,6 +102,7 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.no_begin_task:
 			setSelectedTab(rbNobegain);
+			noBeginFragment.notifyTipChange();
 			setFragment(noBeginFragment, 0);
 			break;
 		case R.id.task_over:
@@ -187,5 +191,5 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			}
 		}
 	}
-	
+
 }

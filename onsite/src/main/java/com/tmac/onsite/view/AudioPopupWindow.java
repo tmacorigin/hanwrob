@@ -188,7 +188,6 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 			popup_layout_bottom.setVisibility(View.VISIBLE);
 			tv_time.setVisibility(View.VISIBLE);
 			tv_time.setText("00:00/" + record_time);
-			
 			break;
 			
 		case R.id.iv_play_audio:
@@ -242,7 +241,6 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 		// TODO Auto-generated method stub
 		timer = new Timer();	
 		task = new TimerTask() {
-					
 
 			@Override
 			public void run() {
@@ -264,7 +262,6 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 					
 				case PLAY:
 					if(!AudioManager.isPause){
-						play_time_Num++;
 						Message play_msg = new Message();
 						if(play_time_Num < 10){
 							play_time = "00:0" + play_time_Num + "/" + record_time;
@@ -275,6 +272,7 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 							play_msg.obj = play_time;
 							handler.sendMessage(play_msg);
 						}
+						play_time_Num++;
 					}
 					break;
 
@@ -289,7 +287,7 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 		time_state = PLAY;
 		isFirstPlay = false;
 		play_time_Num = 0;
-		timer.schedule(task, 500, 1000);
+		timer.schedule(task, 0, 1000);
 	}
 
 

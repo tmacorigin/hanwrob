@@ -47,7 +47,7 @@ public class CannotFinishActivity extends basicActivity implements OnClickListen
 			edit_reason.setVisibility(View.GONE);
 			hc.headerRight.setVisibility(View.GONE);
 			tv_show.setVisibility(View.VISIBLE);
-			tv_show.setText(reasonString);
+			tv_show.setText("由于时间原因,施工无法完成,抱歉!");
 		}
 		
 	}

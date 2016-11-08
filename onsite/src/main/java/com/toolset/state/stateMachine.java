@@ -134,7 +134,7 @@ public class stateMachine implements stateControlInterface {
                                     Intent intent = new Intent(mContext, ActivationActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     mContext.startActivity(intent);
-                                }else{
+                                } else {
                                     setState(stateMachine.STATE_NULL);
                                 }
                             }

@@ -52,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+			android:text="由于时间原因,施工无法完成,抱歉!"
             android:visibility="gone"/>
         
     </RelativeLayout>
