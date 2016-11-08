@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +33,24 @@ public class DBHelper  extends SQLiteOpenHelper{
 		super(context, DB_NAME, null, DB_VERSION);
 		table = c.getSimpleName();
 		this.dbClass = c;
-		this.ClassFs = c.getDeclaredFields();
+		//ClassFs = c.getFields();
+		ArrayList<Field> classList = new ArrayList<Field>();
+		for (Field field : c.getFields() ) {
+			if( field.getName().equals("$change" ))
+			{
+				continue;
+			}
+			else
+			{
+				classList.add( field );
+			}
+		}
+
+		ClassFs  = new Field[ classList.size() ] ;
+		classList.toArray(ClassFs);
+
+
+
 		dbFmdb = getWritableDatabase();
 		
 		onCreate(dbFmdb); // create table
@@ -47,9 +65,7 @@ public class DBHelper  extends SQLiteOpenHelper{
 		 for (Field field : ClassFs )
 		 {
 			 //Log.d( this.getClass().getSimpleName(),field.getType().getSimpleName() );
-			 if(field.getName().equals("$change")){
-				 continue;
-			 }
+
 			 variableCombin +="," + field.getName() + " " + "STRING";
 		 }
 		 variableCombin +=")";
@@ -178,6 +194,7 @@ public class DBHelper  extends SQLiteOpenHelper{
 	                for( int i = 0 ; i < paraNumber ; i++ )
 	                //for (Field field : friendMemberDataBasicClassFs )
 	            	{
+
 	                	Object object = ClassFs[i].get(mi);
 
 	                	newObjArray[i] = object ;

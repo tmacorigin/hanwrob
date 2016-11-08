@@ -18,9 +18,14 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.tmac.onsite.R;
 import com.tmac.onsite.adapter.MainViewPageAdapter;
 import com.tmac.onsite.bean.TaskBean;
+import com.tmac.onsite.fragment.CancleFragment;
+import com.tmac.onsite.fragment.FinishedFragment;
 import com.tmac.onsite.fragment.LeftMenuFragment;
+import com.tmac.onsite.fragment.NoBeginFragment;
+import com.tmac.onsite.fragment.NoFinishedFragment;
 import com.tmac.onsite.fragment.RobTaskFragment;
 import com.tmac.onsite.fragment.SendTaskFragment;
+import com.tmac.onsite.inter_face.UnreadInfoCallBack;
 import com.tmac.onsite.utils.FindViewById;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.DraggableFlagView;
@@ -77,6 +82,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 	public LocationClient mLocationClient = null;
 	public BDLocationListener myListener = new MyLocationListener(this);
+
+	private int unReadInfo = 0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -111,6 +118,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		tintManager.setStatusBarTintEnabled(false);
 		tintManager.setNavigationBarTintEnabled(false);*/
 
+		NoBeginFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
+		FinishedFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
+		NoFinishedFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
+		CancleFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
+		SendTaskFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
+
 		// 添加SlidingMenu
 		addLeftMenu();
 		// 初始化View
@@ -120,6 +133,18 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		}
 
 	}
+
+	private UnreadInfoCallBack mUnreadInfoCallBack = new UnreadInfoCallBack() {
+		@Override
+		public void getUnreadInfoNum(int infoNum) {
+			unReadInfo = infoNum;
+			if(unReadInfo != 0){
+				rb_send_task.showTextBadge(unReadInfo + "");
+			}else{
+				rb_send_task.hiddenBadge();
+			}
+		}
+	};
 
 	private void initLocation(){
 		LocationClientOption option = new LocationClientOption();
@@ -187,7 +212,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 				case R.id.rb_send_task:
 					vp.setCurrentItem(1);
 					rb_rob_task.hiddenBadge();
-					rb_send_task.showTextBadge("12");
+					if(unReadInfo != 0){
+						rb_send_task.showTextBadge(unReadInfo + "");
+					}else{
+						rb_send_task.hiddenBadge();
+					}
+
 					break;
 				default:
 					break;
@@ -270,7 +300,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 	@Override
 	protected void onDestroy() {
-		EventBus.getDefault().unregister(this);
+
 		mLocationClient.stop();
 		super.onDestroy();
 	}
@@ -283,14 +313,21 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-//			dataManager dm = dataManager.getInstance(this);
-//			dm.addA_Class(TaskBean.class);
-//			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-//			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
+			dataManager dm = dataManager.getInstance(this);
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			unReadInfo = 0;
+			for (int index = 0;index < getDataList.size(); index ++){
+				TaskBean taskBean = (TaskBean) getDataList.get(index);
+				if(taskBean.getTaskState().equals("1") && taskBean.getReadState().equals("0")){
+					unReadInfo ++;
+				}
+			}
 			if(TestControl.isTest){
 				vp.setCurrentItem(0);
 				// 初始化事件
 				initEvents();
+				EventBus.getDefault().unregister(this);
 			}
 		}
 	}

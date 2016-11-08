@@ -13,6 +13,7 @@ public class TaskBean extends dataManagerdataBase {
     public String finishedTime;
     public String readState;
     public String robState;
+    public String endTime;
 
     public TaskBean(){};
 
@@ -38,6 +39,16 @@ public class TaskBean extends dataManagerdataBase {
         this.finishedTime = finishedTime;
         this.robState = robState;
         this.readState = readState;
+    }
+
+    public TaskBean(String taskId, String taskState, String preformAddress, String finishedTime, String readState, String robState, String endTime) {
+        this.taskId = taskId;
+        this.taskState = taskState;
+        this.preformAddress = preformAddress;
+        this.finishedTime = finishedTime;
+        this.readState = readState;
+        this.robState = robState;
+        this.endTime = endTime;
     }
 
     public String getTaskId() {
@@ -87,6 +98,14 @@ public class TaskBean extends dataManagerdataBase {
     public void setRobState(String robState) {
         this.robState = robState;
     }
+
+//    public String getEndTime() {
+//        return endTime;
+//    }
+//
+//    public void setEndTime(String endTime) {
+//        this.endTime = endTime;
+//    }
 
     @Override
     public String toString() {

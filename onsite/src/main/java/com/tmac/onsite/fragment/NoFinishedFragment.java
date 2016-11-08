@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,23 +20,39 @@ import com.tmac.onsite.activity.DetailCannotFinishActivity;
 import com.tmac.onsite.activity.DetailFinishActivity;
 import com.tmac.onsite.adapter.CannotFinishedAdapter;
 import com.tmac.onsite.bean.NoBeginBean;
+import com.tmac.onsite.bean.TaskBean;
+import com.tmac.onsite.inter_face.UnreadInfoCallBack;
 import com.tmac.onsite.utils.RefreshUtils;
 import com.tmac.onsite.view.PullToRefreshLayout;
 import com.tmac.onsite.view.PullableListView;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
+import com.toolset.MainControl.TestControl;
+import com.toolset.dataManager.dataManager;
+import com.toolset.dataManager.dataManagerdataBase;
+import com.toolset.state.WebApiII;
+import com.toolset.state.dataBean.TelNumInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * @author tmac
  */
 public class NoFinishedFragment extends Fragment {
+	private static final boolean DBG = true;
+	private static final String TAG = "LC-NoFinishedFragment";
 
 	private PullToRefreshLayout ptrl;
 	private PullableListView plv;
 	private int state;
-	private List<NoBeginBean> allList;
+	private List<TaskBean> allList = new ArrayList<TaskBean>();
 	private CannotFinishedAdapter adapter;
+	private static UnreadInfoCallBack mUnreadInfoCallBack = null;
+	private int unreadInfoNum = 0;
+	private boolean isCreate = true;
 	private Handler myHandler = new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -43,7 +60,7 @@ public class NoFinishedFragment extends Fragment {
 					if(state == 0){
 						allList.clear();
 					}
-					allList.addAll((List<NoBeginBean>)msg.obj);
+					allList.addAll((List<TaskBean>)msg.obj);
 					adapter.notifyDataSetChanged();
 					RefreshUtils.getResultByState(state, ptrl, true);
 					break;
@@ -58,15 +75,47 @@ public class NoFinishedFragment extends Fragment {
 	};
 
 	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		if(DBG) Log.d(TAG, "onCreate");
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		if(DBG) Log.d(TAG, "onCreateView");
+		EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.cannot_finished_pull_layout, null);
 	}
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		if(DBG) Log.d(TAG, "onViewCreated");
+//		if(TestControl.isTest){
+//			dataManager dm = dataManager.getInstance(getActivity());
+//			dm.addA_Class(TaskBean.class);
+//			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+//			for (int index = 0;index < getDataList.size(); index ++){
+//				TaskBean taskBean = (TaskBean) getDataList.get(index);
+//				if(taskBean.getTaskState().equals("3")){
+//					allList.add(taskBean);
+//				}
+//			}
+//			for (int i = 0; i < allList.size(); i ++){
+//				if(allList.get(i).getReadState().equals("0")){
+//					unreadInfoNum ++;
+//				}
+//			}
+//			mUnreadInfoCallBack.getUnreadInfoNum(unreadInfoNum);
+//			EventBus.getDefault().register(this);
+//			ExpCommandE getTaskE = new ExpCommandE();
+//			getTaskE.AddAProperty(new Property("mobile", ""));
+//			WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
+//		}else {
+//			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
+//		}
 		initViews(view);
 		initEvents();
 	}
@@ -76,9 +125,56 @@ public class NoFinishedFragment extends Fragment {
 		// TODO Auto-generated method stub
 		ptrl = (PullToRefreshLayout) view.findViewById(R.id.cannot_finished_pull_layout);
 		plv = (PullableListView) view.findViewById(R.id.cannot_finished_pull_listview);
-		allList = new ArrayList<NoBeginBean>();
-		allList.add(new NoBeginBean("2016.03.13", "CGH9867", "宝山区共康路124号万达", "2015-09-08", true));
 		adapter = new CannotFinishedAdapter(getActivity(), allList);
+	}
+
+	public static void setUnreadInfoCallBack(UnreadInfoCallBack unreadInfoCallBack){
+		mUnreadInfoCallBack = unreadInfoCallBack;
+	}
+
+	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		if(DBG) Log.d(TAG, "onActivityCreated");
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		if(DBG) Log.d(TAG, "onStart");
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(DBG) Log.d(TAG, "onResume");
+		if(TestControl.isTest){
+			allList.clear();
+			dataManager dm = dataManager.getInstance(getActivity());
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			for (int index = 0;index < getDataList.size(); index ++){
+				TaskBean taskBean = (TaskBean) getDataList.get(index);
+				if(taskBean.getTaskState().equals("3")){
+					allList.add(taskBean);
+				}
+			}
+//			if(!isCreate) {
+			unreadInfoNum = 0;
+				for (int i = 0; i < allList.size(); i++) {
+					if (allList.get(i).getReadState().equals("0")) {
+						unreadInfoNum++;
+					}
+				}
+				mUnreadInfoCallBack.getUnreadInfoNum(unreadInfoNum);
+//			}
+		}else {
+			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
+		}
+		adapter.notifyDataSetChanged();
+		if(isCreate){
+			isCreate = false;
+		}
 	}
 
 	private void initEvents() {
@@ -89,13 +185,22 @@ public class NoFinishedFragment extends Fragment {
 			@Override
 			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
 				// TODO Auto-generated method stub
-				state = 0;
-				List<NoBeginBean> result = new ArrayList<NoBeginBean>();
-				result.add(new NoBeginBean("2016.03.13", "ABGh675", "宝山区共康路124号万达", "2016-03-12", true));
-				result.add(new NoBeginBean("2016.03.13", "JHK6758", "宝山区共康路125号万达", "2015-12-12", false));
-				result.add(new NoBeginBean("2016.03.13", "LKHIH67", "宝山区共康路126号万达", "2016-04-26", true));
-				result.add(new NoBeginBean("2016.03.13", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", false));
-				RefreshUtils.loadSucceed(result, myHandler);
+				if(TestControl.isTest){
+					ExpCommandE getTaskE = new ExpCommandE();
+					dataManager dm = dataManager.getInstance(getActivity());
+					dm.addA_Class(TelNumInfo.class);
+					ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+					getTaskE.AddAProperty(new Property("mobile", ""));
+					WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
+				}else {
+					state = 0;
+					List<TaskBean> result = new ArrayList<TaskBean>();
+					result.add(new TaskBean("2016.03.13", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
+					result.add(new TaskBean("2016.03.13", "JHK6758", "宝山区共康路125号万达", "2015-12-12", "0", "0"));
+					result.add(new TaskBean("2016.03.13", "LKHIH67", "宝山区共康路126号万达", "2016-04-26", "0", "0"));
+					result.add(new TaskBean("2016.03.13", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", "0", "0"));
+					RefreshUtils.loadSucceed(result, myHandler);
+				}
 			}
 
 			@Override
@@ -113,9 +218,54 @@ public class NoFinishedFragment extends Fragment {
 									int position, long id) {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(getActivity(), DetailCannotFinishActivity.class));
+				TaskBean clickBean = allList.get(position);
+				if(clickBean.getReadState().equals("0")){
+					dataManager dm = dataManager.getInstance(getActivity());
+					dm.addA_Class(TaskBean.class);
+					ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+					for (int index = 0;index < getDataList.size(); index ++){
+						TaskBean taskBean = (TaskBean) getDataList.get(index);
+						if(taskBean.getTaskState().equals("3") && taskBean.getTaskId().equals(clickBean.getTaskId())){
+							taskBean.setReadState("1");
+						}
+					}
+					ArrayList<dataManagerdataBase> tmpList = new ArrayList<dataManagerdataBase>();
+					for (int i = 0 ; i < getDataList.size(); i ++){
+						tmpList.add((dataManagerdataBase) getDataList.get(i));
+					}
+					dm.resetdbData(TaskBean.class, tmpList);
+				}
 			}
 		});
 	}
 
+	@Override
+	public void onDestroy() {
+		EventBus.getDefault().unregister(this);
+		super.onDestroy();
+	}
+
+	public void onEvent(Object event) {
+		Log.d("NoFinishedFragment", "onEvent");
+		assert( event instanceof ExpCommandE);
+		ExpCommandE e = (ExpCommandE) event;
+		String command = e.GetCommand();
+
+		if( command.equals("GET_DATA_COMMAND") )
+		{
+			dataManager dm = dataManager.getInstance(getActivity());
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			allList.clear();
+			for (int index = 0;index < getDataList.size(); index ++){
+				TaskBean taskBean = (TaskBean) getDataList.get(index);
+				if(taskBean.getTaskState().equals("3")){
+					allList.add(taskBean);
+				}
+			}
+			adapter.notifyDataSetChanged();
+			RefreshUtils.getResultByState(state, ptrl, true);
+		}
+	}
 
 }

@@ -93,5 +93,55 @@ public class WebApiDemo extends  InternetComponent{
 
     }
 
+    @Override
+    public void getSpecifyTaskDetailReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getSpecifyTaskDetailRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void commitTaskResultReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void commitTaskResultRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getAlertMessageReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getAlertMessageRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void submitFileReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void submitFileRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getLastVersionReq(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getLastVersionRsp(ExpCommandE e) {
+
+    }
+
 
 }

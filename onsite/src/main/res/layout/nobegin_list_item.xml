@@ -23,7 +23,7 @@
             android:textStyle="bold" />
 
         <RelativeLayout
-            android:layout_width="@dimen/x280"
+            android:layout_width="@dimen/x300"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

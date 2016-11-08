@@ -23,5 +23,19 @@ public interface WebApiInterface {
     public void tryToShootTaskReq(ExpCommandE e);
     public void tryToShootTaskRsp(ExpCommandE e);
 
+    public void getSpecifyTaskDetailReq(ExpCommandE e);
+    public void getSpecifyTaskDetailRsp(ExpCommandE e);
+
+    public void commitTaskResultReq(ExpCommandE e);
+    public void commitTaskResultRsp(ExpCommandE e);
+
+    public void getAlertMessageReq(ExpCommandE e);
+    public void getAlertMessageRsp(ExpCommandE e);
+
+    public void submitFileReq(ExpCommandE e);
+    public void submitFileRsp(ExpCommandE e);
+
+    public void getLastVersionReq(ExpCommandE e);
+    public void getLastVersionRsp(ExpCommandE e);
 
 }

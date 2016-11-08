@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tmac.onsite.R;
+import com.tmac.onsite.bean.TaskBean;
+import com.tmac.onsite.inter_face.UnreadInfoCallBack;
 import com.tmac.onsite.utils.DimenConvert;
 import com.tmac.onsite.utils.GetWH;
 import com.tmac.onsite.view.PullToRefreshLayout;
 import com.tmac.onsite.view.PullableListView;
+import com.toolset.dataManager.dataManager;
 
 import android.R.integer;
 import android.content.Context;
@@ -43,17 +46,21 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 	private NoFinishedFragment noFinishedFragment;
 	private CancleFragment cancleFragment;
 	private List<Fragment> fragList;
+
+	private static UnreadInfoCallBack mUnreadInfoCallBack = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		if(DBG) Log.d(TAG, "onCreateView");
 		return inflater.inflate(R.layout.fragment_send_task, container, false);
 	}
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		if(DBG) Log.d(TAG, "onViewCreated");
 		initViews(view);
 		//initDatas();
 		initEvents();
@@ -101,11 +108,13 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.no_begin_task:
+			getUnreadInfo("1");
 			setSelectedTab(rbNobegain);
 			noBeginFragment.notifyTipChange();
 			setFragment(noBeginFragment, 0);
 			break;
 		case R.id.task_over:
+			getUnreadInfo("2");
 			setSelectedTab(rbFinished);
 			if(finishedFragment.isAdded()){
 				setFragment(finishedFragment, task_over);
@@ -115,6 +124,7 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			}
 			break;
 		case R.id.task_fail:
+			getUnreadInfo("3");
 			setSelectedTab(rbNofinish);
 			if(noFinishedFragment.isAdded()){
 				setFragment(noFinishedFragment, task_fail);
@@ -124,6 +134,7 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			}
 			break;
 		case R.id.task_abondon:
+			getUnreadInfo("4");
 			setSelectedTab(rbCancle);
 			if(cancleFragment.isAdded()){
 				setFragment(cancleFragment, task_abondon);
@@ -135,6 +146,24 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 		default:
 			break;
 		}
+	}
+
+	public static void setUnreadInfoCallBack(UnreadInfoCallBack unreadInfoCallBack){
+		mUnreadInfoCallBack = unreadInfoCallBack;
+	}
+
+	private void getUnreadInfo(String tag){
+		dataManager dm = dataManager.getInstance(getActivity());
+		dm.addA_Class(TaskBean.class);
+		ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+		int num = 0;
+		for (int index = 0;index < getDataList.size(); index ++){
+			TaskBean taskBean = (TaskBean) getDataList.get(index);
+			if(taskBean.getTaskState().equals(tag) && taskBean.getReadState().equals("0")){
+				num ++;
+			}
+		}
+		mUnreadInfoCallBack.getUnreadInfoNum(num);
 	}
 
 	private int mPosition = 1;

@@ -12,15 +12,16 @@ import android.widget.TextView;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.bean.NoBeginBean;
+import com.tmac.onsite.bean.TaskBean;
 
 import java.util.List;
 
 /**
  * @author tmac
  */
-public class CannotFinishedAdapter extends CommonAdapter<NoBeginBean> {
+public class CannotFinishedAdapter extends CommonAdapter<TaskBean> {
 
-	public CannotFinishedAdapter(Context context, List<NoBeginBean> list) {
+	public CannotFinishedAdapter(Context context, List<TaskBean> list) {
 		super(context, list);
 		// TODO Auto-generated constructor stub
 	}
@@ -33,6 +34,7 @@ public class CannotFinishedAdapter extends CommonAdapter<NoBeginBean> {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.cannot_finished_list_item, parent, false);
 			holder.imageView = (ImageView) convertView.findViewById(R.id.img);
+			holder.read_state_img = (ImageView) convertView.findViewById(R.id.read_state_img);
 			holder.timeRemin = (TextView) convertView.findViewById(R.id.tv_time);
 			holder.number = (TextView) convertView.findViewById(R.id.tv_number);
 			holder.area = (TextView) convertView.findViewById(R.id.tv_workarea);
@@ -41,21 +43,28 @@ public class CannotFinishedAdapter extends CommonAdapter<NoBeginBean> {
 		}else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-
-		if(list.get(position).isRob()){
+		if(list.get(position).getRobState().equals("0")){
 			holder.imageView.setVisibility(View.VISIBLE);
 		}else {
 			holder.imageView.setVisibility(View.INVISIBLE);
 		}
-		holder.timeRemin.setText(list.get(position).getTimeRemin());
-		holder.number.setText(list.get(position).getNumber());
-		holder.area.setText(list.get(position).getWorkArea());
-		holder.finishTime.setText(list.get(position).getFinishTime());
+		if(list.get(position).getReadState().equals("0")){
+			holder.read_state_img.setVisibility(View.VISIBLE);
+		}else {
+			holder.read_state_img.setVisibility(View.INVISIBLE);
+		}
+		holder.number.setText(list.get(position).getTaskId());
+		holder.area.setText(list.get(position).getPreformAddress());
+		holder.finishTime.setText(list.get(position).getFinishedTime());
+//		if(list.get(position).getEndTime() != null){
+//			holder.timeRemin.setText(list.get(position).getEndTime());
+//		}
 		return convertView;
 	}
 	
 	static class ViewHolder{
 		public ImageView imageView;
+		public ImageView read_state_img;
         public TextView timeRemin;
         public TextView number;
         public TextView area;

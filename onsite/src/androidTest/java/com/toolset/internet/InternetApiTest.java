@@ -7,6 +7,7 @@ import android.test.InstrumentationTestCase;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tmac.onsite.activity.WelcomeActivity;
 import com.tmac.onsite.bean.TaskBean;
 import com.tmac.onsite.service.MainService;
 import com.toolset.CommandParser.ExpCommandE;
@@ -45,38 +46,38 @@ public class InternetApiTest extends InstrumentationTestCase {
         }
 
         ArrayList<TaskBean> taskBeanArrayList = new ArrayList<TaskBean>();
-        TaskBean taskBean1 = new TaskBean("001","0","上海","2016-11-26","1");
+        TaskBean taskBean1 = new TaskBean("h001","0","上海","2016-11-26","1");
         taskBeanArrayList.add(taskBean1);
-        TaskBean taskBean2 = new TaskBean("002","1","北京","2016-11-07","1");
+        TaskBean taskBean2 = new TaskBean("h002","1","北京","2016-11-07","1");
         taskBeanArrayList.add(taskBean2);
-        TaskBean taskBean3 = new TaskBean("003","2","广州","2016-11-25","1");
+        TaskBean taskBean3 = new TaskBean("h003","2","广州","2016-11-25","1");
         taskBeanArrayList.add(taskBean3);
-        TaskBean taskBean4 = new TaskBean("004","3","深圳","2016-10-24","0");
+        TaskBean taskBean4 = new TaskBean("h004","3","深圳","2016-10-24","0");
         taskBeanArrayList.add(taskBean4);
-        TaskBean taskBean5 = new TaskBean("005","4","浙江","2016-10-23","1");
+        TaskBean taskBean5 = new TaskBean("h005","4","浙江","2016-10-23","1");
         taskBeanArrayList.add(taskBean5);
-        TaskBean taskBean6 = new TaskBean("006","0","江苏","2016-10-22","1");
+        TaskBean taskBean6 = new TaskBean("h006","0","江苏","2016-10-22","1");
         taskBeanArrayList.add(taskBean6);
-        TaskBean taskBean7 = new TaskBean("007","1","成都","2016-11-12","0");
+        TaskBean taskBean7 = new TaskBean("h007","1","成都","2016-11-12","0");
         taskBeanArrayList.add(taskBean7);
-        TaskBean taskBean8 = new TaskBean("008","2","安徽","2016-10-20","1");
+        TaskBean taskBean8 = new TaskBean("h008","2","安徽","2016-10-20","1");
         taskBeanArrayList.add(taskBean8);
 
-        TaskBean taskBean9 = new TaskBean("009","3","合肥","2016-10-19","0");
+        TaskBean taskBean9 = new TaskBean("h009","3","合肥","2016-10-19","0");
         taskBeanArrayList.add(taskBean9);
-        TaskBean taskBean10 = new TaskBean("010","4","湖南","2016-10-18","1");
+        TaskBean taskBean10 = new TaskBean("h010","4","湖南","2016-10-18","1");
         taskBeanArrayList.add(taskBean10);
-        TaskBean taskBean11 = new TaskBean("011","0","湖北","2016-10-17","1");
+        TaskBean taskBean11 = new TaskBean("h011","0","湖北","2016-10-17","1");
         taskBeanArrayList.add(taskBean11);
-        TaskBean taskBean12 = new TaskBean("012","1","巢湖","2016-11-10","0");
+        TaskBean taskBean12 = new TaskBean("h012","1","巢湖","2016-11-10","0");
         taskBeanArrayList.add(taskBean12);
-        TaskBean taskBean13 = new TaskBean("013","2","武汉","2016-10-15","1");
+        TaskBean taskBean13 = new TaskBean("h013","2","武汉","2016-10-15","1");
         taskBeanArrayList.add(taskBean13);
-        TaskBean taskBean14 = new TaskBean("014","3","广东","2016-10-14","0");
+        TaskBean taskBean14 = new TaskBean("h014","3","广东","2016-10-14","0");
         taskBeanArrayList.add(taskBean14);
-        TaskBean taskBean15 = new TaskBean("015","4","杭州","2016-10-13","1");
+        TaskBean taskBean15 = new TaskBean("h015","4","杭州","2016-10-13","1");
         taskBeanArrayList.add(taskBean15);
-        TaskBean taskBean16 = new TaskBean("016","0","苏州","2016-10-12","0");
+        TaskBean taskBean16 = new TaskBean("h016","0","苏州","2016-10-12","0");
         taskBeanArrayList.add(taskBean16);
 
         String json = null;
@@ -102,9 +103,9 @@ public class InternetApiTest extends InstrumentationTestCase {
 
         testSetInterfaceII.setReqDataList(resultStructArrayList);
         xUtilsHttp.setTestSetInterface(testSetInterfaceII);
-        Intent intent = new Intent(appContext, MainService.class);
-        intent.putExtra("launcher","unauto");
-        appContext.startService(intent);
+        Intent intent = new Intent(appContext, WelcomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        appContext.startActivity(intent);
 
         while (true){}
 

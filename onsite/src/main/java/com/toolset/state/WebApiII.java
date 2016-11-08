@@ -131,6 +131,56 @@ public class WebApiII extends  InternetComponent{
     }
 
     @Override
+    public void getSpecifyTaskDetailReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void getSpecifyTaskDetailRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void commitTaskResultReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void commitTaskResultRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getAlertMessageReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void getAlertMessageRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void submitFileReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void submitFileRsp(ExpCommandE e) {
+
+    }
+
+    @Override
+    public void getLastVersionReq(ExpCommandE e) {
+        this.commonReq(e);
+    }
+
+    @Override
+    public void getLastVersionRsp(ExpCommandE e) {
+
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         EventBus.getDefault().unregister(this);
         super.finalize();

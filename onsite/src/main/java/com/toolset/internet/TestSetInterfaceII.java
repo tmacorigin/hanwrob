@@ -10,7 +10,13 @@ public class TestSetInterfaceII implements TestSetInterface {
     private ArrayList<ResultStruct> dataList = null;
     @Override
     public ResultStruct getReqData() {
-        return dataList.get(index ++);
+        ResultStruct value = null;
+        if(index == 0){
+            value = dataList.get(index ++);
+        }else{
+            value = dataList.get(index);
+        }
+        return value;
     }
 
     @Override

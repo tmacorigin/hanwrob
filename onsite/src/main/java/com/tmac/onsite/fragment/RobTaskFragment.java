@@ -95,7 +95,7 @@ public class RobTaskFragment extends Fragment {
 		EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.fragment_rob_task, container, false);
 	}
-	
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -119,29 +119,10 @@ public class RobTaskFragment extends Fragment {
 		initEvents();
 	}
 
-//	@Override
-//	public void onResume() {
-//		super.onResume();
-//		if(TestControl.isTest){
-//			allList.clear();
-//			dataManager dm = dataManager.getInstance(getActivity());
-//			dm.addA_Class(TaskBean.class);
-//			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-//			for (int index = 0;index < getDataList.size(); index ++){
-//				TaskBean taskBean = (TaskBean) getDataList.get(index);
-//				if(taskBean.getTaskState().equals("0")){
-//					allList.add(taskBean);
-//				}
-//			}
-//			adapter.notifyDataSetChanged();
-//		}
-//	}
-
 	private void initViews(View view) {
 		// TODO Auto-generated method stub
 		pull_layout = (PullToRefreshLayout) view.findViewById(R.id.ptrl);
 		pull_listview = (PullableListView) view.findViewById(R.id.plv);
-//		allList = new ArrayList<RobBean>();
 		adapter = new RobAdapter(getActivity(), allList);
 	}
 	
@@ -211,6 +192,7 @@ public class RobTaskFragment extends Fragment {
 			dataManager dm = dataManager.getInstance(getActivity());
 			dm.addA_Class(TaskBean.class);
 			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			allList.clear();
 			for (int index = 0;index < getDataList.size(); index ++){
 				TaskBean taskBean = (TaskBean) getDataList.get(index);
 				if(taskBean.getTaskState().equals("0")){
@@ -218,6 +200,7 @@ public class RobTaskFragment extends Fragment {
 				}
 			}
 			adapter.notifyDataSetChanged();
+			RefreshUtils.getResultByState(state, pull_layout, true);
 			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
 		}
 	}

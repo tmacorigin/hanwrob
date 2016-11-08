@@ -8,14 +8,25 @@ import com.tmac.onsite.service.ServiceWorkUtils;
 import com.tmac.onsite.utils.SharePreferens;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.telephony.TelephonyManager;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.utils.StatusBarUtil;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
+import com.toolset.MainControl.TestControl;
+import com.toolset.dataManager.dataManager;
+import com.toolset.state.WebApiII;
+import com.toolset.state.dataBean.TelNumInfo;
+import com.toolset.state.stateMachine;
+
+import java.util.ArrayList;
 
 /**
  * @author tmac
@@ -47,6 +58,7 @@ public class WelcomeActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+		TestControl.saveDataToDB(this);
 		//StatusBarUtil.setTranslucent(this, 0);
 		SystemClock.sleep(1500);
 		init();
@@ -54,15 +66,53 @@ public class WelcomeActivity extends Activity {
 
 	private void init() {
 		// TODO Auto-generated method stub
-		sp = new SharePreferens(getApplicationContext());
-		if(sp.isFirstIN()){
-			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
-			sp.isFirstIN(false);
-		}else {
-			//setContentView(R.layout.activity_welcome);
-			//SystemClock.sleep(1000);
-			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
+		dataManager dm = dataManager.getInstance(this);
+		dm.addA_Class(TelNumInfo.class);
+//                        ArrayList<Object> getDataList = null;
+		ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+
+		if (getDataList == null || getDataList.size() == 0) {
+                            /*Intent intent = new Intent(mContext, ActivationActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(intent);*/
+				Intent intent = new Intent(this, ActivationActivity.class);
+				startActivity(intent);
+		} else {
+			TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
+			TelephonyManager mTm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+			String imei = mTm.getDeviceId();
+			String imsi = mTm.getSubscriberId();
+
+
+			if ((imei != null)
+					&& (imei.equals(telNumInfo.getImei()))
+					&& (imsi != null)
+					&& (imsi.equals(telNumInfo.getImsi()))
+					) {
+				ExpCommandE login = new ExpCommandE();
+				login.AddAProperty(new Property("phone", telNumInfo.getTel()));
+				login.AddAProperty(new Property("password", telNumInfo.getPassWord()));
+
+				//start trans activity
+					WebApiII.getInstance(getMainLooper()).user_loginReq(login);
+//                                    Intent intent = new Intent(mContext, ActivationActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    mContext.startActivity(intent);
+			} else {
+					Intent intent = new Intent(this, ActivationActivity.class);
+					startActivity(intent);
+			}
+			//
 		}
+//		sp = new SharePreferens(getApplicationContext());
+//		if(sp.isFirstIN()){
+//			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
+//			sp.isFirstIN(false);
+//		}else {
+//			//setContentView(R.layout.activity_welcome);
+//			//SystemClock.sleep(1000);
+//			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
+//		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
 			Intent intent = new Intent(this, MainService.class);
 			intent.putExtra("launcher","unauto");
