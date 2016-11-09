@@ -54,6 +54,7 @@ public class NoBeginFragment extends Fragment {
 	private int unreadInfoNum = 0;
 	private List<TaskBean> allList = new ArrayList<TaskBean>();
 	private NoBeginAdapter adapter;
+	public static boolean isNoBeginSend = true;
 	private boolean isCreate = true;
 	private Handler myHandler = new Handler(){
 		public void handleMessage(Message msg) {
@@ -154,7 +155,7 @@ public class NoBeginFragment extends Fragment {
 					allList.add(taskBean);
 				}
 			}
-			if(!isCreate) {
+			if(isNoBeginSend && !isCreate) {
 				unreadInfoNum = 0;
 				for (int i = 0; i < allList.size(); i++) {
 					if (allList.get(i).getReadState().equals("0")) {
@@ -167,7 +168,7 @@ public class NoBeginFragment extends Fragment {
 			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
 		}
 		adapter.notifyDataSetChanged();
-		if(isCreate){
+		if (isCreate){
 			isCreate = false;
 		}
 	}

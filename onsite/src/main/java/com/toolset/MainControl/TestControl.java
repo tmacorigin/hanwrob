@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class TestControl {
 
-    public static boolean isTest = false;
+    public static boolean isTest = true;
 
     public static void saveDataToDB(Context mContext){
         ArrayList<dataManagerdataBase> taskBeanArrayList = new ArrayList<dataManagerdataBase>();

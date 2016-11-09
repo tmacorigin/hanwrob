@@ -53,7 +53,7 @@ public class FinishedFragment extends Fragment {
 	private int unreadInfoNum = 0;
 	private List<TaskBean> allList = new ArrayList<TaskBean>();
 	private FinishedAdapter adapter;
-	private boolean isCreate = true;
+	public static boolean isFinishedSend = false;
 	private Handler myHandler = new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -160,7 +160,7 @@ public class FinishedFragment extends Fragment {
 					allList.add(taskBean);
 				}
 			}
-//			if(!isCreate) {
+			if(isFinishedSend) {
 			unreadInfoNum = 0;
 				for (int i = 0; i < allList.size(); i++) {
 					if (allList.get(i).getReadState().equals("0")) {
@@ -168,14 +168,11 @@ public class FinishedFragment extends Fragment {
 					}
 				}
 				mUnreadInfoCallBack.getUnreadInfoNum(unreadInfoNum);
-//			}
+			}
 		}else {
 			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
 		}
 		adapter.notifyDataSetChanged();
-		if(isCreate){
-			isCreate = false;
-		}
 	}
 
 	private void initEvents() {

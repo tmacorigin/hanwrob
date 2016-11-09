@@ -109,12 +109,20 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.no_begin_task:
 			getUnreadInfo("1");
+			NoBeginFragment.isNoBeginSend = true;
+			FinishedFragment.isFinishedSend = false;
+			NoFinishedFragment.isNoFinishedSend = false;
+			CancleFragment.isCancleSend = false;
 			setSelectedTab(rbNobegain);
 			noBeginFragment.notifyTipChange();
 			setFragment(noBeginFragment, 0);
 			break;
 		case R.id.task_over:
 			getUnreadInfo("2");
+			NoBeginFragment.isNoBeginSend = false;
+			FinishedFragment.isFinishedSend = true;
+			NoFinishedFragment.isNoFinishedSend = false;
+			CancleFragment.isCancleSend = false;
 			setSelectedTab(rbFinished);
 			if(finishedFragment.isAdded()){
 				setFragment(finishedFragment, task_over);
@@ -125,6 +133,10 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			break;
 		case R.id.task_fail:
 			getUnreadInfo("3");
+			NoBeginFragment.isNoBeginSend = false;
+			FinishedFragment.isFinishedSend = false;
+			NoFinishedFragment.isNoFinishedSend = true;
+			CancleFragment.isCancleSend = false;
 			setSelectedTab(rbNofinish);
 			if(noFinishedFragment.isAdded()){
 				setFragment(noFinishedFragment, task_fail);
@@ -135,6 +147,10 @@ public class SendTaskFragment extends Fragment implements OnClickListener{
 			break;
 		case R.id.task_abondon:
 			getUnreadInfo("4");
+			NoBeginFragment.isNoBeginSend = false;
+			FinishedFragment.isFinishedSend = false;
+			NoFinishedFragment.isNoFinishedSend = false;
+			CancleFragment.isCancleSend = true;
 			setSelectedTab(rbCancle);
 			if(cancleFragment.isAdded()){
 				setFragment(cancleFragment, task_abondon);

@@ -35,7 +35,7 @@ public class DBHelper  extends SQLiteOpenHelper{
 		this.dbClass = c;
 		//ClassFs = c.getFields();
 		ArrayList<Field> classList = new ArrayList<Field>();
-		for (Field field : c.getFields() ) {
+		for (Field field : c.getDeclaredFields() ) {
 			if( field.getName().equals("$change" ))
 			{
 				continue;
@@ -272,9 +272,6 @@ public class DBHelper  extends SQLiteOpenHelper{
 	        	 
 	        	 for (Field field : ClassFs ) {
 					 String value = null;
-					 if(field.getName().equals("$change")){
-						 continue;
-					 }
 	             	try {
 	             		
 	             		Object middle = stringToType( field.getType() ,c.getString(c.getColumnIndex( field.getName())) );
