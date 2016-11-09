@@ -46,18 +46,9 @@ public class MainService extends Service {
         if (DBG) Log.d(TAG, "onStartCommand");
         Log.d(TAG, "MainService onStartCommand");
         thread.start();
-//        String launcherStr = ;
-        if(intent.getStringExtra("launcher") != null) {
-            ExpCommandE expCommandE = new ExpCommandE("startUp");
-            expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
-            expCommandE.setUserData("unauto");
-            sm.mainControl(expCommandE);
-        }else {
-            ExpCommandE expCommandE = new ExpCommandE("startUp");
-            expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
-            expCommandE.setUserData("auto");
-            sm.mainControl(expCommandE);
-        }
+        ExpCommandE expCommandE = new ExpCommandE("startUp");
+        expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
+        sm.mainControl(expCommandE);
         return START_STICKY;
     }
 

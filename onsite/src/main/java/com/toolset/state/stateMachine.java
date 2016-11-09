@@ -51,7 +51,6 @@ public class stateMachine implements stateControlInterface {
     {
         boolean ret = true;
         String eventName  = null;
-        String userDataStr = (String) e.getUserData();
         if(e.GetExpProperty("rspFunctionName") != null){
             eventName = (String)(e.GetExpProperty("rspFunctionName").GetPropertyContext());
         }
@@ -86,12 +85,12 @@ public class stateMachine implements stateControlInterface {
                 case stateMachine.STATE_NULL:
                     if (eventName.equals("startUp")) {
                         //send regist
-//                        dataManager dm = dataManager.getInstance(mContext);
-//                        dm.addA_Class(TelNumInfo.class);
-////                        ArrayList<Object> getDataList = null;
+                        dataManager dm = dataManager.getInstance(mContext);
+                        dm.addA_Class(TelNumInfo.class);
+                        ArrayList<Object> getDataList = null;
 //                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 //
-//                        if (getDataList == null || getDataList.size() == 0) {
+                        if (getDataList == null || getDataList.size() == 0) {
 //                            /*Intent intent = new Intent(mContext, ActivationActivity.class);
 //                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                            mContext.startActivity(intent);*/
@@ -100,20 +99,20 @@ public class stateMachine implements stateControlInterface {
 //                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                mContext.startActivity(intent);
 //                            }else{
-//                                setState(stateMachine.STATE_NULL);
+                                setState(stateMachine.STATE_NULL);
 //                            }
-//                        } else {
-//                            TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
-//                            TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
-//                            String imei = mTm.getDeviceId();
-//                            String imsi = mTm.getSubscriberId();
-//
-//
-//                            if ((imei != null)
-//                                    && (imei.equals(telNumInfo.getImei()))
-//                                    && (imsi != null)
-//                                    && (imsi.equals(telNumInfo.getImsi()))
-//                                    ) {
+                        } else {
+                            TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
+                            TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
+                            String imei = mTm.getDeviceId();
+                            String imsi = mTm.getSubscriberId();
+
+
+                            if ((imei != null)
+                                    && (imei.equals(telNumInfo.getImei()))
+                                    && (imsi != null)
+                                    && (imsi.equals(telNumInfo.getImsi()))
+                                    ) {
 //                                ExpCommandE login = new ExpCommandE();
 //                                login.AddAProperty(new Property("phone", telNumInfo.getTel()));
 //                                login.AddAProperty(new Property("password", telNumInfo.getPassWord()));
@@ -121,13 +120,13 @@ public class stateMachine implements stateControlInterface {
 //                                //start trans activity
 //                                if(userDataStr.equals("unauto")) {
 //                                    WebApiII.getInstance(mContext.getMainLooper()).user_loginReq(login);
-//                                    setState(stateMachine.STATE_WAIT_LOGIN);
+                                    setState(stateMachine.STATE_NORMAL);
 ////                                    Intent intent = new Intent(mContext, ActivationActivity.class);
 ////                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 ////                                    mContext.startActivity(intent);
-//                                }else{
-//                                    setState(stateMachine.STATE_NULL);
-//                                }
+                                }else{
+                                    setState(stateMachine.STATE_NULL);
+                                }
 //                            } else {
 //                                //start login ACTIVITY
 //                                if(userDataStr.equals("unauto")) {
@@ -139,7 +138,7 @@ public class stateMachine implements stateControlInterface {
 //                                }
 //                            }
 //                            //
-//                        }
+                        }
 
 //
                     }
@@ -310,5 +309,6 @@ public class stateMachine implements stateControlInterface {
     }
 
     public void onEvent(Object event) {
+
     }
 }
