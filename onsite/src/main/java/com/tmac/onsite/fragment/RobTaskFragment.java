@@ -41,6 +41,11 @@ import com.toolset.dataManager.dataManager;
 import com.toolset.state.WebApiII;
 import com.toolset.state.dataBean.TelNumInfo;
 
+import static com.toolset.MainControl.TestControl.DATA_SOURCE;
+import static com.toolset.MainControl.TestControl.DB_SOURCE;
+import static com.toolset.MainControl.TestControl.INTERNET_SOURCE;
+import static com.toolset.MainControl.TestControl.TEST_SOURCE;
+
 /**
  * @author tmac
  */
@@ -100,7 +105,7 @@ public class RobTaskFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		initViews(view);
-		if(TestControl.isTest){
+		if(!TestControl.isTest){
 			dataManager dm = dataManager.getInstance(getActivity());
 			dm.addA_Class(TaskBean.class);
 			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
@@ -145,11 +150,17 @@ public class RobTaskFragment extends Fragment {
 			@Override
 			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
 				// TODO Auto-generated method stub
-				state=0;
-				List<TaskBean> result = new ArrayList<TaskBean>();
-				TaskBean n = new TaskBean("HGJ98989", "0","上海市浦东西区", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-                result.add(n);
-                RefreshUtils.loadSucceed(result, myHandler);
+				if(DATA_SOURCE == TEST_SOURCE){
+					state=0;
+					List<TaskBean> result = new ArrayList<TaskBean>();
+					TaskBean n = new TaskBean("HGJ98989", "0","上海市浦东西区", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+					result.add(n);
+					RefreshUtils.loadSucceed(result, myHandler);
+				}else if(DATA_SOURCE == INTERNET_SOURCE){
+
+				}else if(DATA_SOURCE == DB_SOURCE){
+
+				}
 			}
 			
 			@Override

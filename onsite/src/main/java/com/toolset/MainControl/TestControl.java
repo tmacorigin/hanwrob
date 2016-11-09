@@ -14,7 +14,12 @@ import java.util.ArrayList;
  */
 public class TestControl {
 
-    public static boolean isTest = true;
+    public static boolean isTest = false;
+    public static final int INTERNET_SOURCE = 1;
+    public static final int DB_SOURCE = 2;
+    public static final int TEST_SOURCE = 3;
+    public static final int DATA_SOURCE = DB_SOURCE;
+
 
     public static void saveDataToDB(Context mContext){
         ArrayList<dataManagerdataBase> taskBeanArrayList = new ArrayList<dataManagerdataBase>();

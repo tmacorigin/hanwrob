@@ -38,6 +38,11 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
+import static com.toolset.MainControl.TestControl.DATA_SOURCE;
+import static com.toolset.MainControl.TestControl.DB_SOURCE;
+import static com.toolset.MainControl.TestControl.INTERNET_SOURCE;
+import static com.toolset.MainControl.TestControl.TEST_SOURCE;
+
 /**
  * @author tmac
  */
@@ -148,7 +153,7 @@ public class NoFinishedFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		if(DBG) Log.d(TAG, "onResume");
-		if(TestControl.isTest){
+		if(!TestControl.isTest){
 			allList.clear();
 			dataManager dm = dataManager.getInstance(getActivity());
 			dm.addA_Class(TaskBean.class);
@@ -182,14 +187,14 @@ public class NoFinishedFragment extends Fragment {
 			@Override
 			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
 				// TODO Auto-generated method stub
-				if(TestControl.isTest){
+				if(DATA_SOURCE == INTERNET_SOURCE){
 					ExpCommandE getTaskE = new ExpCommandE();
 					dataManager dm = dataManager.getInstance(getActivity());
 					dm.addA_Class(TelNumInfo.class);
 					ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 					getTaskE.AddAProperty(new Property("mobile", ""));
 					WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
-				}else {
+				}else if(DATA_SOURCE == TEST_SOURCE){
 					state = 0;
 					List<TaskBean> result = new ArrayList<TaskBean>();
 					result.add(new TaskBean("2016.03.13", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
@@ -197,6 +202,8 @@ public class NoFinishedFragment extends Fragment {
 					result.add(new TaskBean("2016.03.13", "LKHIH67", "宝山区共康路126号万达", "2016-04-26", "0", "0"));
 					result.add(new TaskBean("2016.03.13", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", "0", "0"));
 					RefreshUtils.loadSucceed(result, myHandler);
+				}else if(DATA_SOURCE == DB_SOURCE){
+
 				}
 			}
 
