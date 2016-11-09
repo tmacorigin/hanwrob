@@ -84,6 +84,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	public BDLocationListener myListener = new MyLocationListener(this);
 
 	private int unReadInfo = 0;
+	private boolean isCreate = true;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -191,9 +192,9 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		settings.setOnClickListener(this);
 		messages.setOnClickListener(this);
 		
-		// 设置底部RadioButton中气泡提示的数量	
-		rb_rob_task.showDrawableBadge(BitmapFactory.decodeResource(getResources(), R.drawable.badge_view));
-		rb_rob_task.showTextBadge("5");
+//		// 设置底部RadioButton中气泡提示的数量
+//		rb_rob_task.showDrawableBadge(BitmapFactory.decodeResource(getResources(), R.drawable.badge_view));
+//		rb_rob_task.showTextBadge("5");
 
 		rb_send_task.showDrawableBadge(BitmapFactory.decodeResource(getResources(), R.drawable.badge_view));
 		rb_send_task.hiddenBadge();
@@ -206,12 +207,16 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 				case R.id.rb_get_task:
 					vp.setCurrentItem(0);
 					// 隐藏提示				
-					rb_rob_task.showTextBadge("12");
+//					rb_rob_task.showTextBadge("12");
 					rb_send_task.hiddenBadge();
 					break;
 				case R.id.rb_send_task:
 					vp.setCurrentItem(1);
 					rb_rob_task.hiddenBadge();
+					if(!TestControl.isTest && isCreate){
+						getListData();
+						isCreate = false;
+					}
 					if(unReadInfo != 0){
 						rb_send_task.showTextBadge(unReadInfo + "");
 					}else{
@@ -304,6 +309,18 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		mLocationClient.stop();
 		super.onDestroy();
 	}
+	private void getListData(){
+		dataManager dm = dataManager.getInstance(this);
+		dm.addA_Class(TaskBean.class);
+		ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+		unReadInfo = 0;
+		for (int index = 0;index < getDataList.size(); index ++){
+			TaskBean taskBean = (TaskBean) getDataList.get(index);
+			if(taskBean.getTaskState().equals("1") && taskBean.getReadState().equals("0")){
+				unReadInfo ++;
+			}
+		}
+	}
 
 	public void onEvent(Object event) {
 		if(DBG) Log.d(TAG, "getDataList................");
@@ -313,16 +330,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-			dataManager dm = dataManager.getInstance(this);
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			unReadInfo = 0;
-			for (int index = 0;index < getDataList.size(); index ++){
-				TaskBean taskBean = (TaskBean) getDataList.get(index);
-				if(taskBean.getTaskState().equals("1") && taskBean.getReadState().equals("0")){
-					unReadInfo ++;
-				}
-			}
+			getListData();
 			if(TestControl.isTest){
 				vp.setCurrentItem(0);
 				// 初始化事件

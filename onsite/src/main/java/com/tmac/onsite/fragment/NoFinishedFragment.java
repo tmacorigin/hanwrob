@@ -154,16 +154,7 @@ public class NoFinishedFragment extends Fragment {
 		super.onResume();
 		if(DBG) Log.d(TAG, "onResume");
 		if(!TestControl.isTest){
-			allList.clear();
-			dataManager dm = dataManager.getInstance(getActivity());
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			for (int index = 0;index < getDataList.size(); index ++){
-				TaskBean taskBean = (TaskBean) getDataList.get(index);
-				if(taskBean.getTaskState().equals("3")){
-					allList.add(taskBean);
-				}
-			}
+			getListData();
 			if(isNoFinishedSend) {
 			unreadInfoNum = 0;
 				for (int i = 0; i < allList.size(); i++) {
@@ -175,8 +166,8 @@ public class NoFinishedFragment extends Fragment {
 			}
 		}else {
 			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
+			adapter.notifyDataSetChanged();
 		}
-		adapter.notifyDataSetChanged();
 	}
 
 	private void initEvents() {
@@ -203,7 +194,8 @@ public class NoFinishedFragment extends Fragment {
 					result.add(new TaskBean("2016.03.13", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", "0", "0"));
 					RefreshUtils.loadSucceed(result, myHandler);
 				}else if(DATA_SOURCE == DB_SOURCE){
-
+					getListData();
+					RefreshUtils.getResultByState(state, ptrl, true);
 				}
 			}
 
@@ -243,6 +235,20 @@ public class NoFinishedFragment extends Fragment {
 		});
 	}
 
+	private void getListData(){
+		allList.clear();
+		dataManager dm = dataManager.getInstance(getActivity());
+		dm.addA_Class(TaskBean.class);
+		ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+		for (int index = 0;index < getDataList.size(); index ++){
+			TaskBean taskBean = (TaskBean) getDataList.get(index);
+			if(taskBean.getTaskState().equals("3")){
+				allList.add(taskBean);
+			}
+		}
+		adapter.notifyDataSetChanged();
+	}
+
 	@Override
 	public void onDestroy() {
 		EventBus.getDefault().unregister(this);
@@ -257,17 +263,7 @@ public class NoFinishedFragment extends Fragment {
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-			dataManager dm = dataManager.getInstance(getActivity());
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			allList.clear();
-			for (int index = 0;index < getDataList.size(); index ++){
-				TaskBean taskBean = (TaskBean) getDataList.get(index);
-				if(taskBean.getTaskState().equals("3")){
-					allList.add(taskBean);
-				}
-			}
-			adapter.notifyDataSetChanged();
+			getListData();
 			RefreshUtils.getResultByState(state, ptrl, true);
 		}
 	}

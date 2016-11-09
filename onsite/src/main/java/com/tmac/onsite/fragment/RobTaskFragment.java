@@ -106,15 +106,7 @@ public class RobTaskFragment extends Fragment {
 		// TODO Auto-generated method stub
 		initViews(view);
 		if(!TestControl.isTest){
-			dataManager dm = dataManager.getInstance(getActivity());
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			for (int index = 0;index < getDataList.size(); index ++){
-				TaskBean taskBean = (TaskBean) getDataList.get(index);
-				if(taskBean.getTaskState().equals("0")){
-					allList.add(taskBean);
-				}
-			}
+			getListData();
 //			ExpCommandE getTaskE = new ExpCommandE();
 //			getTaskE.AddAProperty(new Property("mobile", ""));
 //			WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
@@ -157,9 +149,15 @@ public class RobTaskFragment extends Fragment {
 					result.add(n);
 					RefreshUtils.loadSucceed(result, myHandler);
 				}else if(DATA_SOURCE == INTERNET_SOURCE){
-
+					ExpCommandE getTaskE = new ExpCommandE();
+					dataManager dm = dataManager.getInstance(getActivity());
+					dm.addA_Class(TelNumInfo.class);
+					ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+					getTaskE.AddAProperty(new Property("mobile", ""));
+					WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
 				}else if(DATA_SOURCE == DB_SOURCE){
-
+					getListData();
+					RefreshUtils.getResultByState(state, pull_layout, true);
 				}
 			}
 			
@@ -186,6 +184,20 @@ public class RobTaskFragment extends Fragment {
 		
 	}
 
+	private void getListData(){
+		allList.clear();
+		dataManager dm = dataManager.getInstance(getActivity());
+		dm.addA_Class(TaskBean.class);
+		ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+		for (int index = 0;index < getDataList.size(); index ++){
+			TaskBean taskBean = (TaskBean) getDataList.get(index);
+			if(taskBean.getTaskState().equals("0")){
+				allList.add(taskBean);
+			}
+		}
+		adapter.notifyDataSetChanged();
+	}
+
 	@Override
 	public void onDestroy() {
 		EventBus.getDefault().unregister(this);
@@ -200,19 +212,8 @@ public class RobTaskFragment extends Fragment {
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-			dataManager dm = dataManager.getInstance(getActivity());
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			allList.clear();
-			for (int index = 0;index < getDataList.size(); index ++){
-				TaskBean taskBean = (TaskBean) getDataList.get(index);
-				if(taskBean.getTaskState().equals("0")){
-					allList.add(taskBean);
-				}
-			}
-			adapter.notifyDataSetChanged();
+			getListData();
 			RefreshUtils.getResultByState(state, pull_layout, true);
-			if(DBG) Log.d(TAG, "getDataList = " + getDataList.toString());
 		}
 	}
 
