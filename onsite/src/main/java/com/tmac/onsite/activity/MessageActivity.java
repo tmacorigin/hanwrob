@@ -44,7 +44,7 @@ public class MessageActivity extends basicActivity {
     private void initViews() {
         hc.setTitle("消息");
         hc.setHeaderRightText("完成");
-        hc.setHeaderRightImage(R.drawable.msg_edit);
+        //hc.setHeaderRightImage(R.drawable.msg_edit);
         msg_Lv = (ListView) findViewById(R.id.msgListView);
     }
 

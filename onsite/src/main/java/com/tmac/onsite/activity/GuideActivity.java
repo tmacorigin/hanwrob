@@ -64,7 +64,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 			public void onClick(View arg0) {
 				Intent i = new Intent(GuideActivity.this, ActivationActivity.class);
 				startActivity(i);
-				finish();
+				//finish();
 			}
 		});
 

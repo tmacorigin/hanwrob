@@ -20,7 +20,7 @@
             android:text="@string/task_fail"
             android:textColor="@color/task_nofinish_btn"
             android:textSize="@dimen/x46"
-            android:textStyle="bold" />
+            />
 
         <RelativeLayout
             android:layout_width="@dimen/x440"
@@ -37,7 +37,7 @@
                 android:text="@string/finished_time"
                 android:includeFontPadding="false"
                 android:textSize="@dimen/x46"
-                android:textStyle="bold" />
+                />
 
             <TextView
                 android:id="@+id/tv_time"
@@ -48,7 +48,7 @@
                 android:includeFontPadding="false"
                 android:textSize="@dimen/x46"
                 android:layout_marginLeft="@dimen/x10"
-                android:textStyle="bold" />
+                />
 
         </RelativeLayout>
 
@@ -78,7 +78,7 @@
             android:text="@string/project_number"
             android:textSize="@dimen/x46"
             android:includeFontPadding="false"
-            android:textStyle="bold" />
+            />
 
         <TextView
             android:id="@+id/tv_number"
@@ -88,7 +88,7 @@
             android:text="CRJ22624"
             android:textSize="@dimen/x46"
             android:includeFontPadding="false"
-            android:textStyle="bold" />
+            />
 
         <ImageView
             android:id="@+id/read_state_img"

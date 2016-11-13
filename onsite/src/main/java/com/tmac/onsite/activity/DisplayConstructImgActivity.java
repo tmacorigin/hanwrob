@@ -69,6 +69,8 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
             }
         });
 
+        iv_back.setOnClickListener(this);
+
     }
 
 

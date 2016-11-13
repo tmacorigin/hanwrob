@@ -20,7 +20,7 @@
             android:text="@string/no_begin_task"
             android:textColor="@color/nobegin_text_type"
             android:textSize="@dimen/x46"
-            android:textStyle="bold" />
+            />
 
         <RelativeLayout
             android:layout_width="@dimen/x300"
@@ -37,7 +37,7 @@
                 android:text="@string/remain_time"
                 android:includeFontPadding="false"
                 android:textSize="@dimen/x46"
-                android:textStyle="bold" />
+                />
 
             <TextView
                 android:id="@+id/tv_time"
@@ -88,7 +88,7 @@
             android:text="@string/project_number"
             android:textSize="@dimen/x46"
             android:includeFontPadding="false"
-            android:textStyle="bold" />
+            />
 
         <TextView
             android:id="@+id/tv_number"
@@ -98,7 +98,7 @@
             android:text="CRJ22624"
             android:textSize="@dimen/x46"
             android:includeFontPadding="false"
-            android:textStyle="bold" />
+            />
 
         <ImageView
             android:id="@+id/read_state_img"

@@ -191,9 +191,11 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 			break;
 			
 		case R.id.iv_play_audio:
+			Log.d(TAG, "iv_play_audio");
 			iv_play_audio.setVisibility(View.GONE);
 			iv_pause_audio.setVisibility(View.VISIBLE);
 			if(isFirstPlay){
+				Log.d(TAG, "isFirstPlay");
 				initTimerTask();
 				playAudio(true);
 				/*AudioManager.playAudio(audioManager.getAudioPath(), new OnCompletionListener() {
@@ -320,15 +322,17 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 	 * 播放录音结束后重置
 	 */
 	private void resetPlay(){
-		//Log.d(TAG, "Audio Duration " + AudioManager.mMediaPlayer.getDuration());
+		Log.d(TAG, "Audio Duration " + AudioManager.mMediaPlayer.getDuration());
 		iv_play_audio.setVisibility(View.VISIBLE);
 		iv_pause_audio.setVisibility(View.GONE);
 		AudioManager.releasePlayer();
 		isFirstPlay = true;
-		timer.cancel();
-		task.cancel();
-		timer = null;
-		task = null;
+		if(timer != null && task != null){
+			timer.cancel();
+			task.cancel();
+			timer = null;
+			task = null;
+		}
 		isPlayOver = true;
 	}
 	
@@ -359,13 +363,17 @@ public class AudioPopupWindow extends PopupWindow implements OnClickListener, On
 	}
 	
 	public void playAudio(final boolean isReset){
+		Log.d(TAG, "playAudio");
 		AudioManager.playAudio(audioManager.getAudioPath(), new OnCompletionListener() {
 			
 			@Override
 			public void onCompletion(MediaPlayer mp) {
 				// TODO Auto-generated method stub
-				if(isReset)
+				Log.d(TAG, "onCompletion");
+				if(isReset){
+					Log.d(TAG, "isReset");
 					resetPlay();
+				}
 			}
 		});
 	}

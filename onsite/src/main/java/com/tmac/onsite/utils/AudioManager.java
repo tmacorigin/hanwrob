@@ -6,6 +6,7 @@ package com.tmac.onsite.utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 import android.R.integer;
 import android.media.MediaPlayer;
@@ -90,9 +91,14 @@ public class AudioManager {
 	 */
 	public void releaseRecorder(){
 		if(mMediaRecorder != null){
-			mMediaRecorder.stop();
-			mMediaRecorder.release();
-			mMediaRecorder = null;
+			try {
+				mMediaRecorder.stop();
+				mMediaRecorder.release();
+				mMediaRecorder = null;
+			}catch (Exception e){
+				mMediaRecorder = null;
+			}
+
 			Log.d(TAG, "音频录制结束");
 		}
 	}
