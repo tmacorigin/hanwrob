@@ -30,6 +30,7 @@ import com.tmac.onsite.utils.FindViewById;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.DraggableFlagView;
 import com.tmac.onsite.view.DraggableFlagView.OnDraggableFlagViewListener;
+import com.tmac.onsite.view.NoScrollViewPager;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
 import com.toolset.MainControl.TestControl;
@@ -68,7 +69,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-MainActivity";
-	private ViewPager vp;
+	//private ViewPager vp;
+	private NoScrollViewPager vp;
 	private List<Fragment> fragmentList;
 	private RadioGroup rg;
 	private BGABadgeRadioButton rb_rob_task;
@@ -180,7 +182,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
         fragmentList.add(robTaskFragment);
         fragmentList.add(sendTaskFragment);
         
-        vp = (ViewPager) findViewById(R.id.viewpager);
+        //vp = (ViewPager) findViewById(R.id.viewpager);
+		vp = (NoScrollViewPager) findViewById(R.id.viewpager);
 		vp.setAdapter(new MainViewPageAdapter(getSupportFragmentManager(), fragmentList));
 		if(!TestControl.isTest){
 			vp.setCurrentItem(0);
