@@ -38,12 +38,12 @@
         	/>
 	    
 	</RadioGroup>
-	
-    <FrameLayout
-        android:id="@+id/fl_send_task"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
-    </FrameLayout>
-	
+
+	<FrameLayout
+		android:id="@+id/fl_send_task"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+	</FrameLayout>
+
 </LinearLayout>

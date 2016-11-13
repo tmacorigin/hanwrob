@@ -25,12 +25,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import cn.jpush.sms.SMSSDK;
+import cn.jpush.sms.listener.SmscodeListener;
+
 /**
  * @author linsen
  * @date 2016年6月6日
  */
 public class ActivationActivity extends Activity{
 
+	private static final boolean DBG = true;
 	private static final String TAG = "LC-ActivationActivity";
 	private EditText phone;
 	private TextView rob_agreement;
@@ -45,6 +52,8 @@ public class ActivationActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activation);
 		StatusBarUtil.setTranslucent(this, 0);
+		SMSSDK.getInstance().initSdk(this);
+		SMSSDK.getInstance().setDebugMode(true);
 		//StatusBarUtil.setColor(this, R.color.base_bg_grey);
 		WindowManager windowManager = getWindowManager();
 		Display display = windowManager.getDefaultDisplay();
@@ -89,7 +98,6 @@ public class ActivationActivity extends Activity{
 			public void afterTextChanged(Editable arg0) {
 				int i = phone.getText().toString().trim().length();
 				if (i > 0) {
-					Log.d(TAG, "afterTextChanged");
 					clear.setVisibility(View.VISIBLE);
 					if (i == 11) {
 						activate.setBackgroundResource(drawable.btn_orange_bg);
@@ -129,18 +137,28 @@ public class ActivationActivity extends Activity{
 				startActivity(new Intent(ActivationActivity.this, UseAgreementActivity.class));
 				break;
 			case R.id.home_activate:
-				char one = phone.getText().toString().charAt(0);
+				//getSMSCode(phone.getText().toString());
+				/*char one = phone.getText().toString().charAt(0);
 				char two = phone.getText().toString().charAt(1);
 				String on = one + "";
 				String tw = two + "";
-				// Toast.makeText(getApplicationContext(), one+"", 1).show();
-				if (on.contains("1") && "358".contains(tw)) {
+				if (on.contains("1") && "3578".contains(tw)) {
 					Toast.makeText(getApplicationContext(), "请注意查收短信！",
 							Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(ActivationActivity.this, IdentifyActivity.class);
 					intent.putExtra(INTENT_NAME, phone.getText().toString());
 					startActivity(intent);
 				} else {
+					Toast.makeText(getApplicationContext(), "请正确输入手机号码！",
+							Toast.LENGTH_SHORT).show();
+				}*/
+				if(isMobileNum(phone.getText().toString())){
+					Toast.makeText(getApplicationContext(), "请注意查收短信！",
+							Toast.LENGTH_SHORT).show();
+					Intent intent = new Intent(ActivationActivity.this, IdentifyActivity.class);
+					intent.putExtra(INTENT_NAME, phone.getText().toString());
+					startActivity(intent);
+				}else {
 					Toast.makeText(getApplicationContext(), "请正确输入手机号码！",
 							Toast.LENGTH_SHORT).show();
 				}
@@ -155,5 +173,42 @@ public class ActivationActivity extends Activity{
 
 		}
 	};
-	
+
+	private void getSMSCode(final String phone) {
+		SMSSDK.getInstance().getSmsCodeAsyn(phone, 1 + "", new SmscodeListener() {
+			@Override
+			public void getCodeSuccess(String s) {
+				if(DBG) Log.d(TAG, "getCodeSuccess = " + s);
+				Toast.makeText(getApplicationContext(), "请注意查收短信！",
+						Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(ActivationActivity.this, IdentifyActivity.class);
+				intent.putExtra(INTENT_NAME, phone);
+				startActivity(intent);
+			}
+
+			@Override
+			public void getCodeFail(int errCode, String errMsg) {
+				if(DBG) Log.d(TAG, "getCodeFail = " + errCode + "/" + errMsg);
+				if(errCode == 3002){
+					Toast.makeText(getApplicationContext(), "请正确输入手机号码！",
+							Toast.LENGTH_SHORT).show();
+				}else if(errCode == 2998){
+					Toast.makeText(getApplicationContext(), "网络错误!",
+							Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getApplicationContext(), "获取验证码失败!",
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+	}
+
+	// 判断手机号码是否正确
+	public static boolean isMobileNum(String mobiles) {
+		Pattern p = Pattern
+				.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+		Matcher m = p.matcher(mobiles);
+		if(DBG) Log.d(TAG, "m.matches() = " + m.matches());
+		return m.matches();
+	}
 }

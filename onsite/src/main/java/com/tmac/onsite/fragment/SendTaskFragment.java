@@ -11,12 +11,8 @@ import com.tmac.onsite.bean.TaskBean;
 import com.tmac.onsite.inter_face.UnreadInfoCallBack;
 import com.tmac.onsite.utils.DimenConvert;
 import com.tmac.onsite.utils.GetWH;
-import com.tmac.onsite.view.PullToRefreshLayout;
-import com.tmac.onsite.view.PullableListView;
 import com.toolset.dataManager.dataManager;
 
-import android.R.integer;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -66,7 +66,7 @@
       <item name="colorPrimaryDark">#505664</item>
     </style>
 
-
+    <!-- DisPlayImage -->
     <style name="StyledIndicators" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
     </style>
@@ -87,6 +87,31 @@
         <item name="android:typeface">monospace</item>
         <item name="android:textColor">@drawable/selector_tabtext</item>
     </style>
+
+    <!-- SendTakeFragment -->
+    <style name="SendStyledIndicators" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="vpiTabPageIndicatorStyle">@style/SendCustomTabPageIndicator</item>
+    </style>
+
+    <style name="SendCustomTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:background">@drawable/tab_indicator</item>
+        <item name="android:textAppearance">@style/SendCustomTabPageIndicator.Text</item>
+        <item name="android:textSize">@dimen/x42</item>
+        <item name="android:dividerPadding">18dp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
+    <style name="SendCustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@drawable/selector_tabtext</item>
+    </style>
+
 
     <style name="dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsFloating">true</item>

@@ -41,11 +41,33 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guide);
 		//StatusBarUtil.setTranslucent(this, 0);
-		initViews();
+		initView();
+		//initViews();
 		//initDots();
 
 	}
-	
+
+	private void initView() {
+		LayoutInflater inflater = LayoutInflater.from(this);
+
+		views = new ArrayList<View>();
+		views.add(inflater.inflate(R.layout.one, null));
+		views.add(inflater.inflate(R.layout.two, null));
+
+		vpAdapter = new ViewPagerAdapter(views, this);
+		vp = (ViewPager) findViewById(R.id.viewpager);
+		vp.setAdapter(vpAdapter);
+		start_btn = (Button) findViewById(R.id.start_btn);
+		start_btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(GuideActivity.this, ActivationActivity.class);
+				startActivity(i);
+			}
+		});
+		vp.setOnPageChangeListener(this);
+	}
+
 	private void initViews() {
 		LayoutInflater inflater = LayoutInflater.from(this);
 
@@ -56,7 +78,6 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		vpAdapter = new ViewPagerAdapter(views, this);
 		vp = (ViewPager) findViewById(R.id.viewpager);
 		vp.setAdapter(vpAdapter);
-		
 		start_btn = (Button) views.get(1).findViewById(R.id.start_btn);
 		start_btn.setOnClickListener(new OnClickListener() {
 

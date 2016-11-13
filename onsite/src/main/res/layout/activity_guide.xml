@@ -9,7 +9,27 @@
         android:layout_height="fill_parent"
         android:background="@color/white" >
     </android.support.v4.view.ViewPager>
-	
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/y175">
+
+        <!-- android:text="@string/imme_login" -->
+        <Button
+            android:id="@+id/start_btn"
+            android:layout_width="@dimen/x476"
+            android:layout_height="@dimen/x153"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x48"/>
+    </LinearLayout>
+
+
     <!--&lt;!&ndash;<LinearLayout
         android:id="@+id/ll"
         android:layout_width="fill_parent"

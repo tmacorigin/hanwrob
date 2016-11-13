@@ -86,6 +86,7 @@ public class NoBeginFragment extends Fragment {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if(DBG) Log.d(TAG, "onCreate");
+		EventBus.getDefault().register(this);
 	}
 
 	@Override
@@ -93,7 +94,7 @@ public class NoBeginFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		if(DBG) Log.d(TAG, "onCreateView");
-		EventBus.getDefault().register(this);
+		//EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.nobegin_pull_layout, null);
 	}
 

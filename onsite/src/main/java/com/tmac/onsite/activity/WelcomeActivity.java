@@ -85,7 +85,7 @@ public class WelcomeActivity extends Activity {
                             /*Intent intent = new Intent(mContext, ActivationActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             mContext.startActivity(intent);*/
-				Intent intent = new Intent(this, ActivationActivity.class);
+				Intent intent = new Intent(this, GuideActivity.class);
 				startActivity(intent);
 			} else {
 				TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
@@ -109,7 +109,7 @@ public class WelcomeActivity extends Activity {
 //                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                    mContext.startActivity(intent);
 				} else {
-					Intent intent = new Intent(this, ActivationActivity.class);
+					Intent intent = new Intent(this, GuideActivity.class);
 					startActivity(intent);
 				}
 				//
