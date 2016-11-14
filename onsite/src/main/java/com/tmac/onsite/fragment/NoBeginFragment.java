@@ -48,7 +48,6 @@ import static com.toolset.MainControl.TestControl.TEST_SOURCE;
  * @author tmac
  */
 public class NoBeginFragment extends Fragment {
-
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-NoBeginFragment";
 
@@ -94,7 +93,6 @@ public class NoBeginFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		if(DBG) Log.d(TAG, "onCreateView");
-		//EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.nobegin_pull_layout, null);
 	}
 
@@ -184,8 +182,6 @@ public class NoBeginFragment extends Fragment {
 			
 			@Override
 			public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
-				// TODO Auto-generated method stub
-
 				if(DATA_SOURCE == INTERNET_SOURCE){
 					ExpCommandE getTaskE = new ExpCommandE();
 					dataManager dm = dataManager.getInstance(getActivity());
@@ -194,18 +190,11 @@ public class NoBeginFragment extends Fragment {
 					getTaskE.AddAProperty(new Property("mobile", ""));
 					WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
 				}else if(DATA_SOURCE == TEST_SOURCE){
-					state = 0;
-					List<TaskBean> result = new ArrayList<TaskBean>();
-					result.add(new TaskBean("2016.03.13", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
-					result.add(new TaskBean("2016.03.13", "JHK6758", "宝山区共康路125号万达", "2015-12-12", "0", "0"));
-					result.add(new TaskBean("2016.03.13", "LKHIH67", "宝山区共康路126号万达", "2016-04-26", "0", "0"));
-					result.add(new TaskBean("2016.03.13", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", "0", "0"));
-					RefreshUtils.loadSucceed(result, myHandler);
+
 				}else if(DATA_SOURCE == DB_SOURCE){
 					getListData();
 					RefreshUtils.getResultByState(state, ptrl, true);
 				}
-
 			}
 			
 			@Override
@@ -286,5 +275,4 @@ public class NoBeginFragment extends Fragment {
 	public void notifyTipChange(){
 		if(DBG) Log.d(TAG, "notifyTipChange");
 	}
-
 }

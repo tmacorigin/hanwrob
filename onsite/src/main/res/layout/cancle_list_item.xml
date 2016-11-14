@@ -49,7 +49,6 @@
                 android:textSize="@dimen/x46"
                 android:layout_marginLeft="@dimen/x10"
                 />
-
         </RelativeLayout>
 
     </RelativeLayout>

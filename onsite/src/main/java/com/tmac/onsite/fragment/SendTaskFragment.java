@@ -30,7 +30,6 @@ import android.widget.RadioGroup;
  * @author tmac
  */
 public class SendTaskFragment extends Fragment implements OnClickListener{
-
 	private static final boolean DBG = true;
 	private static final String TAG = "LC-SendTaskFrag";
 	private RadioGroup rg;

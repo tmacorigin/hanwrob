@@ -59,6 +59,7 @@ public class FinishedFragment extends Fragment {
 	private List<TaskBean> allList = new ArrayList<TaskBean>();
 	private FinishedAdapter adapter;
 	public static boolean isFinishedSend = false;
+	private boolean isCreate = true;
 	private Handler myHandler = new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -92,7 +93,6 @@ public class FinishedFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		if(DBG) Log.d(TAG, "onCreateView");
-		//EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.finished_pull_layout, null);
 	}
 

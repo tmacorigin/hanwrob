@@ -59,6 +59,7 @@ public class CancleFragment extends Fragment {
 	private static UnreadInfoCallBack mUnreadInfoCallBack = null;
 	private int unreadInfoNum = 0;
 	public static boolean isCancleSend = false;
+	private boolean isCreate = true;
 	private Handler myHandler = new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -92,7 +93,6 @@ public class CancleFragment extends Fragment {
 							 Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		if(DBG) Log.d(TAG, "onCreateView");
-		//EventBus.getDefault().register(this);
 		return inflater.inflate(R.layout.cancle_pull_layout, null);
 	}
 

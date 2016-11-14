@@ -66,7 +66,6 @@ public class WelcomeActivity extends Activity {
 
 	private void init() {
 		// TODO Auto-generated method stub
-
 		sp = new SharePreferens(getApplicationContext());
 		if(sp.isFirstIN()){
 			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
@@ -102,24 +101,28 @@ public class WelcomeActivity extends Activity {
 					ExpCommandE login = new ExpCommandE();
 					login.AddAProperty(new Property("phone", telNumInfo.getTel()));
 					login.AddAProperty(new Property("password", telNumInfo.getPassWord()));
-
-					//start trans activity
 					WebApiII.getInstance(getMainLooper()).user_loginReq(login);
 //                                    Intent intent = new Intent(mContext, ActivationActivity.class);
 //                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    mContext.startActivity(intent);
-				} else {
-					Intent intent = new Intent(this, GuideActivity.class);
+//
+			} else {
+					Intent intent = new Intent(this, ActivationActivity.class);
 					startActivity(intent);
-				}
-				//
 			}
+		}
+//		sp = new SharePreferens(getApplicationContext());
+//		if(sp.isFirstIN()){
+//			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
+//			sp.isFirstIN(false);
+//		}else {
+//			//setContentView(R.layout.activity_welcome);
+//			//SystemClock.sleep(1000);
+//			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
 			Intent intent = new Intent(this, MainService.class);
 			startService(intent);
 		}
-
 	}
 	
 	/**

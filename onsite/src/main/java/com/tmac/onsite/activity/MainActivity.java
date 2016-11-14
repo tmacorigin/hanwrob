@@ -68,7 +68,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	public BDLocationListener myListener = new MyLocationListener(this);
 
 	private int unReadInfo = 0;
-	private boolean isCreate = true;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -198,10 +197,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 				case R.id.rb_send_task:
 					vp.setCurrentItem(1);
 					rb_rob_task.hiddenBadge();
-					if(!TestControl.isTest && isCreate){
-						getListData();
-						isCreate = false;
-					}
 					if(unReadInfo != 0){
 						rb_send_task.showTextBadge(unReadInfo + "");
 					}else{
@@ -315,12 +310,15 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-			getListData();
-			if(TestControl.isTest){
-				vp.setCurrentItem(0);
-				// 初始化事件
-				initEvents();
-//				EventBus.getDefault().unregister(this);
+			dataManager dm = dataManager.getInstance(this);
+			dm.addA_Class(TaskBean.class);
+			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
+			unReadInfo = 0;
+			for (int index = 0;index < getDataList.size(); index ++){
+				TaskBean taskBean = (TaskBean) getDataList.get(index);
+				if(taskBean.getTaskState().equals("1") && taskBean.getReadState().equals("0")){
+					unReadInfo ++;
+				}
 			}
 		}
 		if( command.equals("NET_DISCONNECT") )

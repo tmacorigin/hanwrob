@@ -87,10 +87,11 @@ public class stateMachine implements stateControlInterface {
                         //send regist
                         dataManager dm = dataManager.getInstance(mContext);
                         dm.addA_Class(TelNumInfo.class);
-                        ArrayList<Object> getDataList = null;
-//                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
+//                        ArrayList<Object> getDataList = null;
+                        ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 //
                         if (getDataList == null || getDataList.size() == 0) {
+//                        if (getDataList == null || getDataList.size() == 0) {
 //                            /*Intent intent = new Intent(mContext, ActivationActivity.class);
 //                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                            mContext.startActivity(intent);*/
@@ -113,34 +114,12 @@ public class stateMachine implements stateControlInterface {
                                     && (imsi != null)
                                     && (imsi.equals(telNumInfo.getImsi()))
                                     ) {
-//                                ExpCommandE login = new ExpCommandE();
-//                                login.AddAProperty(new Property("phone", telNumInfo.getTel()));
-//                                login.AddAProperty(new Property("password", telNumInfo.getPassWord()));
-//
-//                                //start trans activity
-//                                if(userDataStr.equals("unauto")) {
-//                                    WebApiII.getInstance(mContext.getMainLooper()).user_loginReq(login);
-                                    setState(stateMachine.STATE_NORMAL);
-////                                    Intent intent = new Intent(mContext, ActivationActivity.class);
-////                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                                    mContext.startActivity(intent);
-                                }else{
+                                setState(stateMachine.STATE_NULL);
+                            }
+                            else{
                                     setState(stateMachine.STATE_NULL);
                                 }
-//                            } else {
-//                                //start login ACTIVITY
-//                                if(userDataStr.equals("unauto")) {
-//                                    Intent intent = new Intent(mContext, ActivationActivity.class);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    mContext.startActivity(intent);
-//                                }else{
-//                                    setState(stateMachine.STATE_NULL);
-//                                }
-//                            }
-//                            //
                         }
-
-//
                     }
                     if(eventName.equals("loginRequest")){
                         setState(stateMachine.STATE_WAIT_LOGIN);
