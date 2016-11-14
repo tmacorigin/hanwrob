@@ -87,8 +87,8 @@ public class SendTaskFragmentUpdate extends Fragment implements OnClickListener{
 	private void initDatas() {
 		// TODO Auto-generated method stub
 		fragList.add(noBeginFragment);
-		fragList.add(noFinishedFragment);
 		fragList.add(finishedFragment);
+		fragList.add(noFinishedFragment);
 		fragList.add(cancleFragment);
 
 	}

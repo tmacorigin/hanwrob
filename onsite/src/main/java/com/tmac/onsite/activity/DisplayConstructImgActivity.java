@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,15 +16,21 @@ import com.tmac.onsite.R;
 import com.tmac.onsite.fragment.ConstructEndFragment;
 import com.tmac.onsite.fragment.ConstructPreFragment;
 import com.tmac.onsite.utils.StatusBarUtil;
+import com.toolset.CommandParser.ExpCommandE;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
+
 public class DisplayConstructImgActivity extends FragmentActivity implements View.OnClickListener{
 
+    private static final boolean DBG = true;
+    private static final String TAG = "LC-Display";
     private ImageView iv_back;
     private TextView textView;
+    private TextView netHint_tv;
     private TabPageIndicator indicator;
     private ViewPager viewPager;
     private List<Fragment> list = new ArrayList<>();
@@ -35,6 +42,7 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_construct_img);
+        EventBus.getDefault().register(this);
         StatusBarUtil.setColorDiff(this, getResources().getColor(R.color.layout_title_bg));
         StatusBarUtil.setTranslucent(this, 0);
 
@@ -42,6 +50,7 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
         textView = (TextView) findViewById(R.id.base_tv);
         indicator = (TabPageIndicator) findViewById(R.id.tabPageIndicator);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        netHint_tv = (TextView) findViewById(R.id.network_hint_img);
         textView.setText(R.string.construct_img);
         preFragment = new ConstructPreFragment();
         endFragment = new ConstructEndFragment();
@@ -108,4 +117,25 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
                 break;
         }
     }
+
+
+    public void onEvent(Object event) {
+        assert( event instanceof ExpCommandE);
+        ExpCommandE e = (ExpCommandE) event;
+        String command = e.GetCommand();
+
+        if( command.equals("NET_DISCONNECT") )
+        {
+            if(DBG) Log.d(TAG, "NET_DISCONNECT");
+            netHint_tv.setVisibility(View.VISIBLE);
+        }
+        if( command.equals("NET_CONNECT") )
+        {
+            if(DBG) Log.d(TAG, "NET_CONNECT");
+            netHint_tv.setVisibility(View.GONE);
+        }
+
+    }
+
+
 }

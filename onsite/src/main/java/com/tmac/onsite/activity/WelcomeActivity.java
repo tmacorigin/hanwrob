@@ -106,7 +106,7 @@ public class WelcomeActivity extends Activity {
 //                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //
 			} else {
-					Intent intent = new Intent(this, ActivationActivity.class);
+					Intent intent = new Intent(this, GuideActivity.class);
 					startActivity(intent);
 			}
 		}

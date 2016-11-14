@@ -3,11 +3,17 @@ package com.toolset.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 
 import de.greenrobot.event.EventBus;
 import com.tmac.onsite.R;
+import com.tmac.onsite.bean.TaskBean;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.dataManager.dataManager;
+
+import java.util.ArrayList;
 
 /*
 	实际使用的时候要集成basicActitity 并且在集成的activity中的layout文件中增加下面的内容
@@ -73,6 +79,22 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		*//*
 
 	}*/
+
+	public void onEvent(Object event) {
+		assert( event instanceof ExpCommandE);
+		ExpCommandE e = (ExpCommandE) event;
+		String command = e.GetCommand();
+
+		if( command.equals("NET_DISCONNECT") )
+		{
+			if(DBG) Log.d(TAG, "NET_DISCONNECT");
+		}
+		if( command.equals("NET_CONNECT") )
+		{
+			if(DBG) Log.d(TAG, "NET_CONNECT");
+		}
+
+	}
 
 	@Override
 	public void onMenuClick(int menuId) {

@@ -29,6 +29,17 @@
             android:src="@drawable/red_tips" />
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/network_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/disconnect"
+        android:textSize="@dimen/x60"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:textColor="@color/white"/>
+
+
     <FrameLayout
         android:id="@+id/layout_message"
         android:layout_width="wrap_content"

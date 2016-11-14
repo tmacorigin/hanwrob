@@ -46,6 +46,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 
 public class MainActivity extends SlidingFragmentActivity implements OnClickListener, LeftMenuFragment.OnExitAvaiListener{
 
@@ -61,6 +62,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private FrameLayout messages;
 	private ImageView iv_set_tip;
 	private ImageView iv_msg_tip;
+	private TextView netWorkTv;
 	private RobTaskFragment robTaskFragment = new RobTaskFragment();
 	private SendTaskFragmentUpdate sendTaskFragment = new SendTaskFragmentUpdate();
 
@@ -158,6 +160,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		rg = FindViewById.getView(this, R.id.rg);
 		rb_rob_task = FindViewById.getView(this, R.id.rb_get_task);
 		rb_send_task = FindViewById.getView(this, R.id.rb_send_task);
+		netWorkTv = (TextView) findViewById(R.id.network_hint);
 		
         fragmentList = new ArrayList<Fragment>();
         fragmentList.add(robTaskFragment);
@@ -324,10 +327,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		if( command.equals("NET_DISCONNECT") )
 		{
 			if(DBG) Log.d(TAG, "NET_DISCONNECT");
+			netWorkTv.setVisibility(View.VISIBLE);
 		}
 		if( command.equals("NET_CONNECT") )
 		{
 			if(DBG) Log.d(TAG, "NET_CONNECT");
+			netWorkTv.setVisibility(View.GONE);
 		}
 
 	}
