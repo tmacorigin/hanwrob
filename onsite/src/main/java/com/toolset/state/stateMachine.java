@@ -99,7 +99,7 @@ public class stateMachine implements stateControlInterface {
 //                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                                mContext.startActivity(intent);
 //                            }else{
-                                setState(stateMachine.STATE_NULL);
+                                setState(stateMachine.STATE_NORMAL);
 //                            }
                         } else {
                             TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
@@ -190,6 +190,8 @@ public class stateMachine implements stateControlInterface {
                         if (reState.equals("disconnect")) {
                             Log.d( "stateMachine","disconnect" );
                             setState(stateMachine.STATE_OUT_OF_SERVICE);
+                            ExpCommandE expCommandE = new ExpCommandE("NET_DISCONNECT");
+                            EventBus.getDefault().post(expCommandE);
                         }
                     }
                     if (eventName.equals("getTaskListRsp")) {
@@ -203,6 +205,8 @@ public class stateMachine implements stateControlInterface {
                         if (reState.equals("connect")) {
                             Log.d( "stateMachine","connect" );
                             setState(stateMachine.STATE_NORMAL);
+                            ExpCommandE expCommandE = new ExpCommandE("NET_CONNECT");
+                            EventBus.getDefault().post(expCommandE);
                         }
                     }
                     break;

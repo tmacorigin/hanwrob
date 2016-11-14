@@ -88,6 +88,12 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name="com.toolset.Network.NetworkReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
         <!--
         &lt;!&ndash; JPush 配置 AppKey &ndash;&gt;
         <meta-data

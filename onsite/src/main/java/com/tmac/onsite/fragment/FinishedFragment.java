@@ -253,6 +253,12 @@ public class FinishedFragment extends Fragment {
 	}
 
 	@Override
+	public void onPause() {
+		super.onPause();
+		if(DBG) Log.d(TAG, "onPause");
+	}
+
+	@Override
 	public void onDestroy() {
 		EventBus.getDefault().unregister(this);
 		super.onDestroy();

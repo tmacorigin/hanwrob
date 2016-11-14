@@ -22,6 +22,8 @@ public class NetworkReceiver extends BroadcastReceiver {
     private static boolean wifiConnect;
     private boolean registed = false;
 
+    public NetworkReceiver(){};
+
     public NetworkReceiver(Context context) {
         this.context = context;
 

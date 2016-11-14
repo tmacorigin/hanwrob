@@ -44,8 +44,6 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (DBG) Log.d(TAG, "onStartCommand");
-        Log.d(TAG, "MainService onStartCommand");
-        thread.start();
         ExpCommandE expCommandE = new ExpCommandE("startUp");
         expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
         sm.mainControl(expCommandE);

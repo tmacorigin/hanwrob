@@ -117,7 +117,6 @@ public class WelcomeActivity extends Activity {
 		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
 			Intent intent = new Intent(this, MainService.class);
-			intent.putExtra("launcher","unauto");
 			startService(intent);
 		}
 

@@ -320,9 +320,18 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 				vp.setCurrentItem(0);
 				// 初始化事件
 				initEvents();
-				EventBus.getDefault().unregister(this);
+//				EventBus.getDefault().unregister(this);
 			}
 		}
+		if( command.equals("NET_DISCONNECT") )
+		{
+			if(DBG) Log.d(TAG, "NET_DISCONNECT");
+		}
+		if( command.equals("NET_CONNECT") )
+		{
+			if(DBG) Log.d(TAG, "NET_CONNECT");
+		}
+
 	}
 
 
