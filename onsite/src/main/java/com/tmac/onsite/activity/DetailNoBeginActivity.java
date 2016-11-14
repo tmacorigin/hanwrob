@@ -8,7 +8,10 @@ import com.tmac.onsite.utils.MyDialog.OnDialogClickListener;
 import com.tmac.onsite.view.AudioPopupWindow;
 import com.tmac.onsite.view.AudioPopupWindow.OnUpLoadClickListener;
 import com.tmac.onsite.view.CommonDialog;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 import com.toolset.activity.basicActivity;
+import com.toolset.state.WebApiII;
 
 import android.Manifest;
 import android.R.integer;
@@ -305,6 +308,12 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 						}
 					}
 				}).start();
+
+				// 上传录音
+				ExpCommandE e = new ExpCommandE();
+				e.AddAProperty(new Property("name", ""));
+				e.AddAProperty(new Property("password", ""));
+				WebApiII.getInstance(getMainLooper()).user_loginReq(e);
 				break;
 			default:
 				break;

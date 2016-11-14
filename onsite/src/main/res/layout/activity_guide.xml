@@ -22,9 +22,10 @@
         <Button
             android:id="@+id/start_btn"
             android:layout_width="@dimen/x476"
-            android:layout_height="@dimen/x153"
-            android:background="@android:color/transparent"
+            android:layout_height="@dimen/x135"
+            android:background="@color/common_yellow"
             android:layout_gravity="center"
+            android:text="@string/imme_login"
             android:textColor="@color/white"
             android:textSize="@dimen/x48"/>
     </LinearLayout>

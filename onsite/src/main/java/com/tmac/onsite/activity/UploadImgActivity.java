@@ -7,6 +7,8 @@ import me.tmac.photopicker.PhotoPicker;
 import me.tmac.photopicker.PhotoPreview;
 
 import com.tmac.onsite.utils.MyDialog;
+import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.CommandParser.Property;
 import com.toolset.activity.basicActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -38,6 +40,7 @@ import com.tmac.onsite.inter_face.RecyclerItemClickListener.OnItemClickListener;
 import com.tmac.onsite.utils.LightControl;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.CommonDialog;
+import com.toolset.state.WebApiII;
 
 public class UploadImgActivity extends basicActivity implements CommonDialog.OnDialogListenerInterface{
 	
@@ -211,10 +214,13 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 				finish();
 			}
 		}).start();
-		/*Intent intent = new Intent();
-		intent.putExtra(DetailNoBeginActivity.RETURN_STATE, value);
-		setResult(RESULT_OK, intent);
-		finish();*/
+
+		// 上传图片
+		ExpCommandE e = new ExpCommandE();
+		e.AddAProperty(new Property("name", ""));
+		e.AddAProperty(new Property("password", ""));
+		WebApiII.getInstance(getMainLooper()).user_loginReq(e);
+
 	}
 
 	@Override
