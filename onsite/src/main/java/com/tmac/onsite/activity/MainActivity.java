@@ -31,9 +31,12 @@ import com.toolset.dataManager.dataManager;
 import com.toolset.location.MyLocationListener;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -336,6 +339,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		}
 
 	}
+
+
 
 
 }

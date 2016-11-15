@@ -2,8 +2,11 @@ package com.tmac.onsite.service;
 
 import android.Manifest;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -48,6 +51,7 @@ public class MainService extends Service {
         if(!thread.isAlive()){
             thread.start();
         }
+        getWifiState();
         ExpCommandE expCommandE = new ExpCommandE("startUp");
         expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
         sm.mainControl(expCommandE);
@@ -90,6 +94,21 @@ public class MainService extends Service {
         super.onDestroy();
     }
 
+    private void getWifiState(){
+
+        final ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if(connectivity != null){
+            NetworkInfo networkInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if(networkInfo.isConnected()){
+                if(DBG) Log.d(TAG, "isConnected");
+            }else {
+                if(DBG) Log.d(TAG, "isDisConnected");
+            }
+        }
+
+    }
+
     public void onEvent(Object event) {
 
         assert( event instanceof  ExpCommandE );
@@ -102,4 +121,6 @@ public class MainService extends Service {
         }
 
     }
+
+
 }
