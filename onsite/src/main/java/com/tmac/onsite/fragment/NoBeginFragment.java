@@ -150,7 +150,7 @@ public class NoBeginFragment extends Fragment {
 		if(DBG) Log.d(TAG, "onResume");
 		if(!TestControl.isTest){
 			getListData();
-			if(isNoBeginSend && !isCreate) {
+			if(isNoBeginSend) {
 				unreadInfoNum = 0;
 				for (int i = 0; i < allList.size(); i++) {
 					if (allList.get(i).getReadState().equals("0")) {

@@ -168,8 +168,8 @@ public class FinishedFragment extends Fragment {
 			}
 		}else {
 			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
+			adapter.notifyDataSetChanged();
 		}
-		adapter.notifyDataSetChanged();
 	}
 
 	private void getListData(){
@@ -183,6 +183,7 @@ public class FinishedFragment extends Fragment {
 				allList.add(taskBean);
 			}
 		}
+		adapter.notifyDataSetChanged();
 	}
 
 	private void initEvents() {
@@ -210,7 +211,6 @@ public class FinishedFragment extends Fragment {
 					RefreshUtils.loadSucceed(result, myHandler);
 				}else if(DATA_SOURCE == DB_SOURCE){
 					getListData();
-					adapter.notifyDataSetChanged();
 					RefreshUtils.getResultByState(state, ptrl, true);
 				}
 
@@ -273,7 +273,6 @@ public class FinishedFragment extends Fragment {
 		if( command.equals("GET_DATA_COMMAND") )
 		{
 			getListData();
-			adapter.notifyDataSetChanged();
 			RefreshUtils.getResultByState(state, ptrl, true);
 		}
 	}

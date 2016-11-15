@@ -128,15 +128,14 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private UnreadInfoCallBack mUnreadInfoCallBack = new UnreadInfoCallBack() {
 		@Override
 		public void getUnreadInfoNum(int infoNum) {
-//			if(isCreate) {
-				unReadInfo = infoNum;
+			unReadInfo = infoNum;
+			if(SendTaskFragmentUpdate.isSendShow) {
 				if(unReadInfo != 0){
 					rb_send_task.showTextBadge(unReadInfo + "");
 				}else{
 					rb_send_task.hiddenBadge();
 				}
-//				isCreate = false;
-//			}
+			}
 		}
 	};
 
@@ -210,10 +209,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 					SendTaskFragmentUpdate.isSendShow = true;
 					vp.setCurrentItem(1);
 //					rb_rob_task.hiddenBadge();
-					if(isCreate){
-						getListData();
-						isCreate = false;
-					}
+//					if(isCreate){
+//						getListData();
+//						isCreate = false;
+//					}
 					if(unReadInfo != 0){
 						rb_send_task.showTextBadge(unReadInfo + "");
 					}else{

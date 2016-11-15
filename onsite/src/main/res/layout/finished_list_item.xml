@@ -99,15 +99,6 @@
             android:layout_marginLeft="15px"
             android:src="@drawable/red_tips"/>
 
-        <ImageView
-            android:id="@+id/read_state_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_number"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15px"
-            android:src="@drawable/red_tips"/>
-
     </RelativeLayout>
 
     <ImageView
