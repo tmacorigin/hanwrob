@@ -56,9 +56,9 @@ public class FinishedAdapter extends CommonAdapter<TaskBean> {
 		holder.number.setText(list.get(position).getTaskId());
 		holder.area.setText(list.get(position).getPreformAddress());
 		holder.finishTime.setText(list.get(position).getFinishedTime());
-//		if(list.get(position).getEndTime() != null){
-//			holder.timeRemin.setText(list.get(position).getEndTime());
-//		}
+		if(list.get(position).getEndTime() != null){
+			holder.timeRemin.setText(list.get(position).getEndTime());
+		}
 		return convertView;
 	}
 	

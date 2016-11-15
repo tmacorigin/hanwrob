@@ -73,6 +73,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	public BDLocationListener myListener = new MyLocationListener(this);
 
 	private int unReadInfo = 0;
+	private boolean isCreate = true;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		NoFinishedFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
 		CancleFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
 		SendTaskFragment.setUnreadInfoCallBack(mUnreadInfoCallBack);
+		SendTaskFragmentUpdate.setUnreadInfoCallBack(mUnreadInfoCallBack);
 
 		// 添加SlidingMenu
 		addLeftMenu();
@@ -126,12 +128,15 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private UnreadInfoCallBack mUnreadInfoCallBack = new UnreadInfoCallBack() {
 		@Override
 		public void getUnreadInfoNum(int infoNum) {
-			unReadInfo = infoNum;
-			if(unReadInfo != 0){
-				rb_send_task.showTextBadge(unReadInfo + "");
-			}else{
-				rb_send_task.hiddenBadge();
-			}
+//			if(isCreate) {
+				unReadInfo = infoNum;
+				if(unReadInfo != 0){
+					rb_send_task.showTextBadge(unReadInfo + "");
+				}else{
+					rb_send_task.hiddenBadge();
+				}
+//				isCreate = false;
+//			}
 		}
 	};
 
@@ -195,14 +200,20 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 				// TODO Auto-generated method stub
 				switch (checkedId) {
 				case R.id.rb_get_task:
+					SendTaskFragmentUpdate.isSendShow = false;
 					vp.setCurrentItem(0);
 					// 隐藏提示				
 //					rb_rob_task.showTextBadge("12");
 					rb_send_task.hiddenBadge();
 					break;
 				case R.id.rb_send_task:
+					SendTaskFragmentUpdate.isSendShow = true;
 					vp.setCurrentItem(1);
-					rb_rob_task.hiddenBadge();
+//					rb_rob_task.hiddenBadge();
+					if(isCreate){
+						getListData();
+						isCreate = false;
+					}
 					if(unReadInfo != 0){
 						rb_send_task.showTextBadge(unReadInfo + "");
 					}else{
@@ -295,6 +306,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		mLocationClient.stop();
 		super.onDestroy();
 	}
+
 	private void getListData(){
 		dataManager dm = dataManager.getInstance(this);
 		dm.addA_Class(TaskBean.class);
@@ -316,15 +328,9 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 		if( command.equals("GET_DATA_COMMAND") )
 		{
-			dataManager dm = dataManager.getInstance(this);
-			dm.addA_Class(TaskBean.class);
-			ArrayList<Object> getDataList = dm.getAll(TaskBean.class);
-			unReadInfo = 0;
-			for (int index = 0;index < getDataList.size(); index ++){
-				TaskBean taskBean = (TaskBean) getDataList.get(index);
-				if(taskBean.getTaskState().equals("1") && taskBean.getReadState().equals("0")){
-					unReadInfo ++;
-				}
+			if(TestControl.isTest){
+				initEvents();
+				vp.setCurrentItem(0);
 			}
 		}
 		if( command.equals("NET_DISCONNECT") )

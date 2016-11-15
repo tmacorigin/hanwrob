@@ -99,13 +99,13 @@ public class TaskBean extends dataManagerdataBase {
         this.robState = robState;
     }
 
-//    public String getEndTime() {
-//        return endTime;
-//    }
-//
-//    public void setEndTime(String endTime) {
-//        this.endTime = endTime;
-//    }
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 
     @Override
     public String toString() {

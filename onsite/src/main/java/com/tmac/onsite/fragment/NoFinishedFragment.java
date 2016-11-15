@@ -165,10 +165,7 @@ public class NoFinishedFragment extends Fragment {
 			}
 		}else {
 			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
-		}
-		adapter.notifyDataSetChanged();
-		if(isCreate) {
-			isCreate = false;
+			adapter.notifyDataSetChanged();
 		}
 	}
 
@@ -188,6 +185,13 @@ public class NoFinishedFragment extends Fragment {
 					getTaskE.AddAProperty(new Property("mobile", ""));
 					WebApiII.getInstance(getActivity().getMainLooper()).getTaskListReq(getTaskE);
 				}else if(DATA_SOURCE == TEST_SOURCE){
+					state = 0;
+					List<TaskBean> result = new ArrayList<TaskBean>();
+					result.add(new TaskBean("2016.03.13", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));
+					result.add(new TaskBean("2016.03.13", "JHK6758", "宝山区共康路125号万达", "2015-12-12", "0", "0"));
+					result.add(new TaskBean("2016.03.13", "LKHIH67", "宝山区共康路126号万达", "2016-04-26", "0", "0"));
+					result.add(new TaskBean("2016.03.13", "23YUIPK", "宝山区共康路127号万达", "2016-05-19", "0", "0"));
+					RefreshUtils.loadSucceed(result, myHandler);
 				}else if(DATA_SOURCE == DB_SOURCE){
 					getListData();
 					RefreshUtils.getResultByState(state, ptrl, true);

@@ -110,14 +110,6 @@ public class WelcomeActivity extends Activity {
 					startActivity(intent);
 			}
 		}
-//		sp = new SharePreferens(getApplicationContext());
-//		if(sp.isFirstIN()){
-//			handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
-//			sp.isFirstIN(false);
-//		}else {
-//			//setContentView(R.layout.activity_welcome);
-//			//SystemClock.sleep(1000);
-//			handler.sendEmptyMessageDelayed(GO_ACTIVATION, TIME);
 		}
 		if(!ServiceWorkUtils.isServiceWorked(this, serviceName)){
 			Intent intent = new Intent(this, MainService.class);
