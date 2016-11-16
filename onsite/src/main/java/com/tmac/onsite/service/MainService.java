@@ -18,6 +18,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.CommandParser.Property;
+import com.toolset.Network.NetworkReceiver;
 import com.toolset.location.MyLocationListener;
 import com.toolset.state.stateMachine;
 
@@ -36,6 +37,7 @@ public class MainService extends Service {
     private static final String TAG = "LC-MainService";
     private final String serviceName = "com.tmac.onsite.service.AssistService";
     private stateMachine  sm = null;
+    private NetworkReceiver networkReceiver;
 
 
     @Nullable
@@ -51,7 +53,6 @@ public class MainService extends Service {
         if(!thread.isAlive()){
             thread.start();
         }
-        getWifiState();
         ExpCommandE expCommandE = new ExpCommandE("startUp");
         expCommandE.AddAExpProperty(new Property("internalMessageName", "startUp"));
         sm.mainControl(expCommandE);
@@ -84,6 +85,8 @@ public class MainService extends Service {
 //        System.loadLibrary("locSDK7");
         EventBus.getDefault().register(this);
         sm = new stateMachine( this );
+        networkReceiver = new NetworkReceiver(this);
+        networkReceiver.regist();
         super.onCreate();
     }
 
@@ -91,23 +94,10 @@ public class MainService extends Service {
     public void onDestroy() {
         Log.i(TAG, "MainService onDestroy");
         EventBus.getDefault().unregister(this);
+        networkReceiver.unregist();
         super.onDestroy();
     }
 
-    private void getWifiState(){
-
-        final ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        if(connectivity != null){
-            NetworkInfo networkInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if(networkInfo.isConnected()){
-                if(DBG) Log.d(TAG, "isConnected");
-            }else {
-                if(DBG) Log.d(TAG, "isDisConnected");
-            }
-        }
-
-    }
 
     public void onEvent(Object event) {
 

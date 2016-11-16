@@ -120,4 +120,7 @@ public class NetworkReceiver extends BroadcastReceiver {
             registed = false;
         }
     }
+
+
+
 }

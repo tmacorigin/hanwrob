@@ -27,6 +27,7 @@ import com.tmac.onsite.utils.FindViewById;
 import com.tmac.onsite.view.NoScrollViewPager;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.MainControl.TestControl;
+import com.toolset.Network.NetworkReceiver;
 import com.toolset.dataManager.dataManager;
 import com.toolset.location.MyLocationListener;
 
@@ -122,7 +123,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		if(!TestControl.isTest){
 			initEvents();
 		}
-
+		getWifiState();
 	}
 
 	private UnreadInfoCallBack mUnreadInfoCallBack = new UnreadInfoCallBack() {
@@ -345,7 +346,30 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 	}
 
+	private void getWifiState(){
 
+		if(NetworkReceiver.isConnect()){
+			netWorkTv.setVisibility(View.GONE);
+			if(DBG) Log.d(TAG, "isConnected");
+		}else {
+			netWorkTv.setVisibility(View.VISIBLE);
+			if(DBG) Log.d(TAG, "isDisConnected");
+		}
+
+		/*final ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		if(connectivity != null){
+			NetworkInfo networkInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+			if(networkInfo.isConnected()){
+				netWorkTv.setVisibility(View.GONE);
+				if(DBG) Log.d(TAG, "isConnected");
+			}else {
+				netWorkTv.setVisibility(View.VISIBLE);
+				if(DBG) Log.d(TAG, "isDisConnected");
+			}
+		}*/
+
+	}
 
 
 }

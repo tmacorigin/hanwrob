@@ -99,6 +99,7 @@
             android:layout_marginLeft="15px"
             android:src="@drawable/red_tips"/>
 
+
     </RelativeLayout>
 
     <ImageView
