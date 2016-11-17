@@ -84,6 +84,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(DBG) Log.d(TAG, "onCreate");
 		EventBus.getDefault().register(this);
 //		ExpCommandE getTaskE = new ExpCommandE();
 //		getTaskE.AddAProperty(new Property("mobile", ""));
@@ -129,6 +130,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 			initEvents();
 		}
 		getWifiState();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(DBG) Log.d(TAG, "onResume");
 	}
 
 	private UnreadInfoCallBack mUnreadInfoCallBack = new UnreadInfoCallBack() {
@@ -307,9 +314,20 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	}
 
 	@Override
-	protected void onDestroy() {
+	protected void onPause() {
+		super.onPause();
+		if(DBG) Log.d(TAG, "onPause");
+	}
 
+	@Override
+	protected void onDestroy() {
+		if(DBG) Log.d(TAG, "onDestroy");
 		mLocationClient.stop();
+		SendTaskFragmentUpdate.isSendShow = false;
+		NoBeginFragment.isNoBeginSend = true;
+		FinishedFragment.isFinishedSend = false;
+		NoFinishedFragment.isNoFinishedSend = false;
+		CancleFragment.isCancleSend = false;
 		super.onDestroy();
 	}
 
