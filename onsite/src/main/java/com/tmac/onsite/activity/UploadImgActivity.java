@@ -216,10 +216,10 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 		}).start();
 
 		// 上传图片
-		ExpCommandE e = new ExpCommandE();
+		/*ExpCommandE e = new ExpCommandE();
 		e.AddAProperty(new Property("name", ""));
 		e.AddAProperty(new Property("password", ""));
-		WebApiII.getInstance(getMainLooper()).user_loginReq(e);
+		WebApiII.getInstance(getMainLooper()).user_loginReq(e);*/
 
 	}
 

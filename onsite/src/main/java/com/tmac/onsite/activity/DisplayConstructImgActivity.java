@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.tmac.onsite.fragment.ConstructEndFragment;
 import com.tmac.onsite.fragment.ConstructPreFragment;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.Network.NetworkReceiver;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
     private List<Fragment> list = new ArrayList<>();
     private Fragment preFragment;
     private Fragment endFragment;
+    private RelativeLayout layout;
     private static final String[] TITLE = new String[]{"施工前图片", "施工后图片"};
 
     @Override
@@ -51,6 +54,7 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
         indicator = (TabPageIndicator) findViewById(R.id.tabPageIndicator);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         netHint_tv = (TextView) findViewById(R.id.network_hint_img);
+        layout = (RelativeLayout) findViewById(R.id.net_disconnect_layout);
         textView.setText(R.string.construct_img);
         preFragment = new ConstructPreFragment();
         endFragment = new ConstructEndFragment();
@@ -79,6 +83,12 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
         });
 
         iv_back.setOnClickListener(this);
+
+        if(NetworkReceiver.isConnect()){
+            layout.setVisibility(View.GONE);
+        }else {
+            layout.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -127,12 +137,14 @@ public class DisplayConstructImgActivity extends FragmentActivity implements Vie
         if( command.equals("NET_DISCONNECT") )
         {
             if(DBG) Log.d(TAG, "NET_DISCONNECT");
-            netHint_tv.setVisibility(View.VISIBLE);
+            layout.setVisibility(View.VISIBLE);
+            //netHint_tv.setVisibility(View.VISIBLE);
         }
         if( command.equals("NET_CONNECT") )
         {
             if(DBG) Log.d(TAG, "NET_CONNECT");
-            netHint_tv.setVisibility(View.GONE);
+            layout.setVisibility(View.GONE);
+            //netHint_tv.setVisibility(View.GONE);
         }
 
     }

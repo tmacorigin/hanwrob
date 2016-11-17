@@ -25,7 +25,8 @@
     <color name="layout_bottom_menu_bg">#F5F5F5</color>
     <color name="layout_bottom_menu_text_press">#427CA6</color>
     <color name="layout_bottom_menu_text_normal">#BDBDBD</color>
-    
+    <color name="diconnect_bg">#ffeeee</color>
+
     <color name="light_blue">#6593cb</color>
     <color name="load_more_gray">#585858</color>
 

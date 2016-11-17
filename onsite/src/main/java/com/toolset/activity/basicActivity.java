@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import de.greenrobot.event.EventBus;
 import com.tmac.onsite.R;
 import com.toolset.CommandParser.ExpCommandE;
+import com.toolset.Network.NetworkReceiver;
 
 /*
 	实际使用的时候要集成basicActitity 并且在集成的activity中的layout文件中增加下面的内容
@@ -39,7 +40,7 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 	protected void onCreate(Bundle savedInstanceState) {
 
 
-		//EventBus.getDefault().register(this);
+		EventBus.getDefault().register(this);
 
 		super.onCreate(savedInstanceState);
 
@@ -48,6 +49,12 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		{
 			if (DBG) Log.d(TAG, "headerCtrl init");
 			hc = new headerCtrl( zdnHeaderLayout , this );
+		}
+
+		if(NetworkReceiver.isConnect()){
+			hc.setIsVisiable(false);
+		}else {
+			hc.setIsVisiable(true);
 		}
 
 	}
@@ -103,10 +110,12 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		if( command.equals("NET_DISCONNECT") )
 		{
 			if(DBG) Log.d(TAG, "NET_DISCONNECT");
+			hc.setIsVisiable(true);
 		}
 		if( command.equals("NET_CONNECT") )
 		{
 			if(DBG) Log.d(TAG, "NET_CONNECT");
+			hc.setIsVisiable(false);
 		}
 
 	}

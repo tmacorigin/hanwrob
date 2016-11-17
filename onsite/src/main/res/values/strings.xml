@@ -8,6 +8,7 @@
     <string name="home_tel_img">中国  ( +86 )</string>
     <string name="image_clear">msgClear</string>
     <string name="disconnect">(未连接)</string>
+    <string name="disconnect_msg">网络未连接</string>
 
     <!-- Activation -->
     <string name="imme_login">马上登录</string>

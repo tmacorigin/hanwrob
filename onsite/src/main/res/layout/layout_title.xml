@@ -1,67 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y138"
+    android:layout_height="wrap_content"
     android:id="@+id/layout_title"
-    android:background="@color/layout_title_bg"
+    android:orientation="vertical"
     >
-    
-    <FrameLayout
-        android:id="@+id/layout_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/x40">
 
-        <ImageView
-            android:id="@+id/img_settings"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:background="@color/layout_title_bg">
+
+        <FrameLayout
+            android:id="@+id/layout_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/x8"
-            android:src="@drawable/setting" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40">
 
-        <ImageView
-            android:id="@+id/img_settings_red_tips"
+            <ImageView
+                android:id="@+id/img_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/x8"
+                android:src="@drawable/setting" />
+
+            <ImageView
+                android:id="@+id/img_settings_red_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:visibility="visible"
+                android:src="@drawable/red_tips" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/network_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:visibility="visible"
-            android:src="@drawable/red_tips" />
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/network_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/disconnect"
-        android:textSize="@dimen/x60"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:textColor="@color/white"/>
+            android:text="@string/disconnect"
+            android:textSize="@dimen/x60"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:textColor="@color/white"/>
 
 
-    <FrameLayout
-        android:id="@+id/layout_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/x50"
-        >
-
-        <ImageView
-            android:id="@+id/img_message"
+        <FrameLayout
+            android:id="@+id/layout_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/message" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x50"
+            >
 
-        <ImageView
-            android:id="@+id/img_message_red_tips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:visibility="invisible"
-            android:src="@drawable/red_tips" />
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/img_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/message" />
 
-</RelativeLayout>
+            <ImageView
+                android:id="@+id/img_message_red_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:visibility="invisible"
+                android:src="@drawable/red_tips" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/network_layout"/>
+
+</LinearLayout>

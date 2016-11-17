@@ -29,6 +29,7 @@ public class headerCtrl {
 
     private ImageView ShowFriendListButton = null;
     private ImageView addFriend = null;
+    private RelativeLayout netWork_layout;
 
 
     public headerCtrl(LinearLayout header, menuStateChange msc)
@@ -39,6 +40,7 @@ public class headerCtrl {
         headerTitle = (TextView) header.findViewById(R.id.headerTitle);
         headerRight = (ImageView) header.findViewById(R.id.headRight);
         headerRight_tv = (TextView) header.findViewById(R.id.headRight_tv);
+        netWork_layout = (RelativeLayout) header.findViewById(R.id.net_disconnect_layout);
         RelativeLayout rl = (RelativeLayout)(header.findViewById(R.id.title_bar));
         int buttonCount = rl.getChildCount();
 
@@ -103,6 +105,14 @@ public class headerCtrl {
         public void onMenuClick(int menuId);
 
         public void menuFragmentClick();
+    }
+
+    public void setIsVisiable(boolean isVisiable){
+        if(isVisiable){
+            netWork_layout.setVisibility(View.VISIBLE);
+        }else {
+            netWork_layout.setVisibility(View.GONE);
+        }
     }
 
 }

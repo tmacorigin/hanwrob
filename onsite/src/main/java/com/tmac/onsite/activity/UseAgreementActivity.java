@@ -14,8 +14,8 @@ public class UseAgreementActivity extends basicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_agreement);
+        super.onCreate(savedInstanceState);
         initViews();
 
     }

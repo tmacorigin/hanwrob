@@ -1,47 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y138"
+    android:layout_height="wrap_content"
     android:id="@+id/header"
     android:background="@color/layout_title_bg"
+    android:orientation="vertical"
     >
     //android:background="@color/white"
 
     <RelativeLayout
         android:id="@+id/title_bar"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/y138"
         android:layout_width="match_parent"
         >
-
-        <!--ImageView
-            android:id="@+id/navigationButton"
-            android:layout_height="match_parent"
-            android:layout_width="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop ="true"
-            android:layout_alignParentBottom="true"
-
-            android:src="@drawable/refresh_arrow"
-            android:contentDescription="导航"/-->
-
-        <!--ImageView
-            android:id="@+id/back_button"
-            android:layout_height="match_parent"
-            android:layout_width="40dp"
-            android:layout_alignLeft="@+id/navigationButton"
-            android:layout_alignBottom="@id/navigationButton"
-            android:layout_alignTop="@id/navigationButton"
-            android:src="@drawable/back_off"
-            android:contentDescription="@string/back"/-->
 
         <ImageView
             android:id="@+id/headBack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/x14"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/x44"
+            android:paddingRight="@dimen/x80"
             android:src="@drawable/back_white"
+            android:scaleType="center"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x40"/>
+            android:layout_marginLeft="@dimen/x10"/>
 
         <TextView
             android:id="@+id/headerTitle"
@@ -76,27 +58,10 @@
             android:visibility="gone"
             />
 
-        <!--ImageView
-            android:id="@+id/addFriend"
-            android:layout_height="match_parent"
-            android:layout_width="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/navigationButton"
-            android:layout_alignTop="@id/navigationButton"
-            android:src="@drawable/add"
-            android:contentDescription="add a friend"
-            /-->
 
-        <!--ImageView
-            android:id="@+id/friendList"
-            android:layout_height="match_parent"
-            android:layout_width="40dp"
-            android:layout_alignBottom="@id/navigationButton"
-            android:layout_alignTop="@id/navigationButton"
-            android:layout_toLeftOf="@id/addFriend"
-            android:src="@drawable/contact_friend"
-            android:contentDescription="@string/friends"
-            /-->
     </RelativeLayout>
+
+    <include layout="@layout/network_layout"/>
+
 
 </LinearLayout>

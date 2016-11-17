@@ -48,7 +48,7 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		EventBus.getDefault().register(this);
+		//EventBus.getDefault().register(this);
 		setContentView(R.layout.activity_detail_task);
 		super.onCreate(savedInstanceState);
 		tarStr = getIntent().getStringExtra("tarTaskId");

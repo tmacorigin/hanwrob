@@ -50,7 +50,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class MainActivity extends SlidingFragmentActivity implements OnClickListener, LeftMenuFragment.OnExitAvaiListener{
 
@@ -67,6 +71,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private ImageView iv_set_tip;
 	private ImageView iv_msg_tip;
 	private TextView netWorkTv;
+	private RelativeLayout dis_layout;
 	private RobTaskFragment robTaskFragment = new RobTaskFragment();
 	private SendTaskFragmentUpdate sendTaskFragment = new SendTaskFragmentUpdate();
 
@@ -169,7 +174,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		rb_rob_task = FindViewById.getView(this, R.id.rb_get_task);
 		rb_send_task = FindViewById.getView(this, R.id.rb_send_task);
 		netWorkTv = (TextView) findViewById(R.id.network_hint);
-		
+		dis_layout = (RelativeLayout) findViewById(R.id.net_disconnect_layout);
+
         fragmentList = new ArrayList<Fragment>();
         fragmentList.add(robTaskFragment);
         fragmentList.add(sendTaskFragment);
@@ -336,12 +342,14 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		if( command.equals("NET_DISCONNECT") )
 		{
 			if(DBG) Log.d(TAG, "NET_DISCONNECT");
-			netWorkTv.setVisibility(View.VISIBLE);
+			dis_layout.setVisibility(VISIBLE);
+			//netWorkTv.setVisibility(VISIBLE);
 		}
 		if( command.equals("NET_CONNECT") )
 		{
 			if(DBG) Log.d(TAG, "NET_CONNECT");
-			netWorkTv.setVisibility(View.GONE);
+			dis_layout.setVisibility(GONE);
+			//netWorkTv.setVisibility(GONE);
 		}
 
 	}
@@ -349,10 +357,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	private void getWifiState(){
 
 		if(NetworkReceiver.isConnect()){
-			netWorkTv.setVisibility(View.GONE);
+			dis_layout.setVisibility(GONE);
+			//netWorkTv.setVisibility(GONE);
 			if(DBG) Log.d(TAG, "isConnected");
 		}else {
-			netWorkTv.setVisibility(View.VISIBLE);
+			dis_layout.setVisibility(VISIBLE);
+			//netWorkTv.setVisibility(VISIBLE);
 			if(DBG) Log.d(TAG, "isDisConnected");
 		}
 

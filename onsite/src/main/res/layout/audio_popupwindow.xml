@@ -54,7 +54,7 @@
         android:id="@+id/popup_layout_middle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y144"
+        android:layout_marginTop="@dimen/y154"
         android:gravity="center"
         >
         

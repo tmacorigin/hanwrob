@@ -310,10 +310,10 @@ public class DetailNoBeginActivity extends basicActivity implements OnClickListe
 				}).start();
 
 				// 上传录音
-				ExpCommandE e = new ExpCommandE();
+				/*ExpCommandE e = new ExpCommandE();
 				e.AddAProperty(new Property("name", ""));
 				e.AddAProperty(new Property("password", ""));
-				WebApiII.getInstance(getMainLooper()).user_loginReq(e);
+				WebApiII.getInstance(getMainLooper()).user_loginReq(e);*/
 				break;
 			default:
 				break;
