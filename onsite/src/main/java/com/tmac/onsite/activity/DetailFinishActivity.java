@@ -21,7 +21,6 @@ public class DetailFinishActivity extends basicActivity implements View.OnClickL
 
         btn_display_img = (Button) findViewById(R.id.contrust_img_btn);
         btn_display_img.setOnClickListener(this);
-
     }
 
     @Override

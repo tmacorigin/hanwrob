@@ -115,7 +115,6 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 
 	@Override
 	protected void onDestroy() {
-		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 	}
 
@@ -142,10 +141,6 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 			getTaskE.AddAProperty(new Property("taskId", tarStr));
 			WebApiII.getInstance(getMainLooper()).getTaskListReq(getTaskE);
 		}
-	}
-
-	public void onEvent(Object event){
-
 	}
 
 }
