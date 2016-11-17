@@ -40,7 +40,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guide);
-		//StatusBarUtil.setTranslucent(this, 0);
+		//StatusBarUtil.setTranslucentDiff(this);
 		initView();
 		//initViews();
 		//initDots();

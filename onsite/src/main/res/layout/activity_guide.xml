@@ -16,7 +16,7 @@
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/y175">
+        android:layout_marginBottom="@dimen/y200">
 
         <!-- android:text="@string/imme_login" -->
         <Button

@@ -50,7 +50,7 @@
         <activity
             android:name=".activity.WelcomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme">
+            android:theme="@style/customTheme_guide">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -104,23 +104,23 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme" />
+            android:theme="@style/customTheme" />
         <activity
             android:name=".activity.GuideActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme" />
+            android:theme="@style/customTheme_guide" />
         <activity
             android:name=".activity.ActivationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme" />
+            android:theme="@style/customTheme" />
         <activity
             android:name=".activity.IdentifyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppBaseTheme" />
+            android:theme="@style/customTheme" />
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:theme="@style/main" />
         <activity
             android:name=".activity.DetailTaskActivity"
             android:screenOrientation="portrait" />

@@ -70,12 +70,20 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/x50"
+				android:visibility="gone"
 				android:background="@drawable/add_img_selector"/>
 
 
 		</RelativeLayout>
 
 	</ScrollView>
+
+	<ImageView
+		android:id="@+id/add_no_img_btn"
+		android:layout_centerInParent="true"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/add_img_selector"/>
 
 	<ImageView
 		android:id="@+id/window_background"

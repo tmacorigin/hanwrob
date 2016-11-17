@@ -24,6 +24,7 @@ import com.tmac.onsite.fragment.SendTaskFragment;
 import com.tmac.onsite.fragment.SendTaskFragmentUpdate;
 import com.tmac.onsite.inter_face.UnreadInfoCallBack;
 import com.tmac.onsite.utils.FindViewById;
+import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.NoScrollViewPager;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.MainControl.TestControl;
@@ -36,8 +37,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -46,6 +49,8 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -84,6 +89,17 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			Window window = getWindow();
+			window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+					| WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+			window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+					| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+					| View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+			window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+			window.setStatusBarColor(Color.TRANSPARENT);
+		}
+		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
 		if(DBG) Log.d(TAG, "onCreate");
 		EventBus.getDefault().register(this);
 //		ExpCommandE getTaskE = new ExpCommandE();

@@ -351,8 +351,7 @@
         android:layout_below="@+id/linearlayout"
         android:id="@+id/nobegin_layout_bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y342"
-        android:gravity="center"
+        android:layout_height="match_parent"
         >
         
         <Button 
@@ -362,6 +361,8 @@
             android:background="@color/common_yellow"
             android:text="@string/upload_pre_img"
             android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            style="?android:attr/borderlessButtonStyle"
             android:textSize="@dimen/x48"/>
         
         <Button 
@@ -372,6 +373,8 @@
             android:background="@color/upload_end_construct_btn"
             android:text="@string/upload_end_img"
             android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            style="?android:attr/borderlessButtonStyle"
             android:textSize="@dimen/x48"/>
         
         <RelativeLayout 
@@ -381,6 +384,7 @@
             android:paddingLeft="@dimen/x48"
             android:paddingRight="@dimen/x48"
             android:visibility="gone"
+            android:layout_centerVertical="true"
             >
             
             <!-- 施工完成 -->
@@ -392,6 +396,7 @@
                 android:textSize="@dimen/x48"
                 android:textColor="@color/white"
                 android:background="@color/common_yellow"
+                style="?android:attr/borderlessButtonStyle"
                 />
             
             <!-- 未能完成 -->
@@ -404,6 +409,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/x48"
                 android:background="@color/upload_end_construct_btn"
+                style="?android:attr/borderlessButtonStyle"
                 />
             
         </RelativeLayout>
@@ -416,6 +422,7 @@
             android:paddingLeft="@dimen/x48"
             android:paddingRight="@dimen/x48"
             android:visibility="gone"
+            android:layout_centerVertical="true"
             >
 			
             <!-- 施工图片 -->
@@ -427,6 +434,7 @@
                 android:textSize="@dimen/x48"
                 android:textColor="@color/white"
                 android:background="@color/common_yellow"
+                style="?android:attr/borderlessButtonStyle"
                 />
             
             <!-- 录音时间 00:28 -->
@@ -438,6 +446,7 @@
                 android:textSize="@dimen/x48"
                 android:textColor="@color/white"
                 android:background="@color/upload_end_construct_btn"
+                style="?android:attr/borderlessButtonStyle"
                 />
             
             <!-- 查看原因 -->
@@ -450,6 +459,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/x48"
                 android:background="@color/upload_end_construct_btn"
+                style="?android:attr/borderlessButtonStyle"
                 android:visibility="gone"
                 />
             

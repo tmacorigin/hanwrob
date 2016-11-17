@@ -58,7 +58,7 @@
             android:layout_toRightOf="@+id/update_iv"
             android:background="@drawable/red_tips"
             android:layout_alignTop="@+id/update_iv"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
             
 
         <TextView

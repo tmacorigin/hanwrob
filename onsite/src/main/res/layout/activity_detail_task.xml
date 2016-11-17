@@ -361,10 +361,11 @@
         android:layout_alignParentBottom="true"
         android:text="@string/me_rob_order"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/y93"
+        android:layout_marginBottom="@dimen/y95"
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
         android:textSize="@dimen/x48"
+        style="?android:attr/borderlessButtonStyle"
         android:background="@color/common_yellow"/>
 											    
 </RelativeLayout>

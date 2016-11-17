@@ -136,10 +136,10 @@ public class DetailTaskActivity extends basicActivity implements CommonDialog.On
 //				tmpList.add((dataManagerdataBase) getDataList.get(i));
 //			}
 //			dm.resetdbData(TaskBean.class, tmpList);
-			ExpCommandE getTaskE = new ExpCommandE();
+			/*ExpCommandE getTaskE = new ExpCommandE();
 			getTaskE.AddAProperty(new Property("mobile", ""));
 			getTaskE.AddAProperty(new Property("taskId", tarStr));
-			WebApiII.getInstance(getMainLooper()).getTaskListReq(getTaskE);
+			WebApiII.getInstance(getMainLooper()).getTaskListReq(getTaskE);*/
 		}
 	}
 

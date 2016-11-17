@@ -61,9 +61,21 @@
     <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/start_page</item>
         <item name="actionBarTheme">@style/actionBarTheme</item>
-      <!--<item name="colorPrimary">#FFA500</item>-->
-      <item name="actionBarSize">@dimen/actionBarSize</item>
-      <item name="colorPrimaryDark">#505664</item>
+        <!--<item name="colorPrimary">#FFA500</item>-->
+        <item name="actionBarSize">@dimen/actionBarSize</item>
+        <item name="colorPrimaryDark">#505664</item>
+    </style>
+
+    <style name="customTheme_guide" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/start_page</item>
+        <item name="actionBarTheme">@style/actionBarTheme</item>
+        <!--<item name="colorPrimary">#FFA500</item>-->
+        <item name="actionBarSize">@dimen/actionBarSize</item>
+        <item name="colorPrimaryDark">@color/black</item>
+    </style>
+
+    <style name="main" parent="Theme.AppCompat.Light.NoActionBar">
+
     </style>
 
     <!-- DisPlayImage -->

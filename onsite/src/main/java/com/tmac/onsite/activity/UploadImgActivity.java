@@ -51,6 +51,7 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 	private TextView tvView;
 	private ListView mListView;
 	private ImageView upload_img;
+	private ImageView btn_add_no_img;
 	private ImageView window_back;
 	private ArrayList<String> selectedPhotos;
 	private RecyclerView recyclerView;
@@ -78,6 +79,7 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 		// TODO Auto-generated method stub
 		btn_add_img = (ImageView) findViewById(R.id.add_img_btn);
 		upload_img = (ImageView) findViewById(R.id.uploading_img);
+		btn_add_no_img = (ImageView) findViewById(R.id.add_no_img_btn);
 		window_back = (ImageView) findViewById(R.id.window_background);
 		//btn_send_img = (Button) findViewById(R.id.send_img_btn);
 		recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -107,6 +109,17 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 					.setShowCamera(true)
 					.setSelected(selectedPhotos)
 					.start(UploadImgActivity.this);
+			}
+		});
+
+		btn_add_no_img.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				PhotoPicker.builder()
+						.setPhotoCount(20)
+						.setShowCamera(true)
+						.setSelected(selectedPhotos)
+						.start(UploadImgActivity.this);
 			}
 		});
 		
@@ -184,11 +197,16 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 				cam_path = data.getStringExtra("callback_path");
 			}
 
-
 			if (photos != null) {
 				selectedPhotos.clear();
 				selectedPhotos.addAll(photos);
 			}
+
+			if(photos.size() > 0){
+				btn_add_no_img.setVisibility(View.GONE);
+				btn_add_img.setVisibility(View.VISIBLE);
+			}
+
 			if(cam_path != null){
 				selectedPhotos.add(cam_path);
 			}

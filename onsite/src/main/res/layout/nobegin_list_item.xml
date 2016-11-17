@@ -48,7 +48,7 @@
                 android:textColor="@color/nobegin_text_type"
                 android:includeFontPadding="false"
                 android:textSize="@dimen/x46"
-                android:textStyle="bold" />
+                />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -58,7 +58,7 @@
                 android:layout_toRightOf="@id/tv_time"
                 android:text="@string/day"
                 android:textSize="@dimen/x46"
-                android:textStyle="bold" />
+                />
 
         </RelativeLayout>
 
