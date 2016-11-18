@@ -23,6 +23,7 @@ import com.tmac.onsite.fragment.RobTaskFragment;
 import com.tmac.onsite.fragment.SendTaskFragment;
 import com.tmac.onsite.fragment.SendTaskFragmentUpdate;
 import com.tmac.onsite.inter_face.UnreadInfoCallBack;
+import com.tmac.onsite.utils.AppManager;
 import com.tmac.onsite.utils.FindViewById;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.NoScrollViewPager;
@@ -99,7 +100,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 			window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 			window.setStatusBarColor(Color.TRANSPARENT);
 		}
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
 		if(DBG) Log.d(TAG, "onCreate");
 		EventBus.getDefault().register(this);
 //		ExpCommandE getTaskE = new ExpCommandE();
@@ -125,7 +125,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
 		//getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		setContentView(R.layout.activity_main);
-		//StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
+		AppManager.getAppManager().addActivity(this);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+			StatusBarUtil.setColor(this, getResources().getColor(R.color.layout_title_bg),0);
+		}
 
 		/*SystemBarTintManager tintManager = new SystemBarTintManager(this);
 		tintManager.setStatusBarTintEnabled(false);
@@ -326,6 +329,9 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	@Override
 	public void onExitAvai() {
 		if(DBG) Log.d(TAG, "Exit MainActivity");
+		AppManager.getAppManager().finishActivity(LoginActivity.class);
+		AppManager.getAppManager().finishActivity(IdentifyActivity.class);
+		AppManager.getAppManager().finishActivity(ActivationActivity.class);
 		finish();
 	}
 
@@ -416,4 +422,13 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	}
 
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		/*AppManager.getAppManager().finishActivity(LoginActivity.class);
+		AppManager.getAppManager().finishActivity(IdentifyActivity.class);
+		AppManager.getAppManager().finishActivity(ActivationActivity.class);
+		AppManager.getAppManager().finishActivity(GuideActivity.class);*/
+		AppManager.getAppManager().finishAllActivity();
+	}
 }

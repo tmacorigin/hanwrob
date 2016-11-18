@@ -86,6 +86,7 @@ public class WelcomeActivity extends Activity {
                             mContext.startActivity(intent);*/
 				Intent intent = new Intent(this, GuideActivity.class);
 				startActivity(intent);
+				finish();
 			} else {
 				TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
 				TelephonyManager mTm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -108,6 +109,7 @@ public class WelcomeActivity extends Activity {
 			} else {
 					Intent intent = new Intent(this, GuideActivity.class);
 					startActivity(intent);
+					finish();
 			}
 		}
 		}

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.activity.MainActivity;
+import com.tmac.onsite.utils.AppManager;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.PhoneEditText;
 import com.toolset.CommandParser.ExpCommandE;
@@ -47,7 +48,10 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             window.setStatusBarColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.activity_login);
-        StatusBarUtil.setTranslucent(this, 0);
+        AppManager.getAppManager().addActivity(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            StatusBarUtil.setTranslucent(this, 0);
+        }
 
         initViews();
         initEvents();
@@ -102,7 +106,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 // 验证密码是否正确
 				if(!TestControl.isTest) {
 					startActivity(new Intent(LoginActivity.this, MainActivity.class));
-					finish();
+					//finish();
 				}
 				else {
 					ExpCommandE e = new ExpCommandE();

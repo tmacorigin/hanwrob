@@ -5,6 +5,7 @@ package com.tmac.onsite.activity;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.R.drawable;
+import com.tmac.onsite.utils.AppManager;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.PhoneEditText;
 
@@ -64,7 +65,10 @@ public class ActivationActivity extends Activity{
 			window.setStatusBarColor(Color.TRANSPARENT);
 		}
 		setContentView(R.layout.activity_activation);
-		StatusBarUtil.setTranslucent(this, 0);
+		AppManager.getAppManager().addActivity(this);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+			StatusBarUtil.setTranslucent(this, 0);
+		}
 		SMSSDK.getInstance().initSdk(this);
 		SMSSDK.getInstance().setDebugMode(true);
 		//StatusBarUtil.setTranslucent(this);

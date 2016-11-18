@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.tmac.onsite.R;
 import com.tmac.onsite.adapter.ViewPagerAdapter;
+import com.tmac.onsite.utils.AppManager;
 import com.tmac.onsite.utils.StatusBarUtil;
 
 import android.app.Activity;
@@ -32,6 +33,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 	private ViewPagerAdapter vpAdapter;
 	private List<View> views;
 	private ImageView[] dots;
+	private ImageView mPoint;
 	//private int[] ids = { R.id.iv1, R.id.iv2 };
 	private Button start_btn;
 	
@@ -40,6 +42,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guide);
+		AppManager.getAppManager().addActivity(this);
 		//StatusBarUtil.setTranslucentDiff(this);
 		initView();
 		//initViews();
@@ -57,6 +60,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 		vpAdapter = new ViewPagerAdapter(views, this);
 		vp = (ViewPager) findViewById(R.id.viewpager);
 		vp.setAdapter(vpAdapter);
+		mPoint = (ImageView) findViewById(R.id.mPoint);
 		start_btn = (Button) findViewById(R.id.start_btn);
 		start_btn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -121,6 +125,11 @@ public class GuideActivity extends Activity implements OnPageChangeListener{
 				//dots[i].setImageResource(R.drawable.login_point);
 			}
 		}*/
+		if(arg0 == 0){
+			mPoint.setBackgroundResource(R.drawable.point_1);
+		}else {
+			mPoint.setBackgroundResource(R.drawable.point_2);
+		}
 	}
 	
 }
