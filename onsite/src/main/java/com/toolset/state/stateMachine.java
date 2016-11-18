@@ -1,7 +1,11 @@
 package com.toolset.state;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -64,21 +68,21 @@ public class stateMachine implements stateControlInterface {
         if (eventName != null) {
             if (eventName.equals("loginRequest")) {
                 //send regist
-//                dataManager dm = dataManager.getInstance(mContext);
-//                dm.addA_Class(TelNumInfo.class);
-//                ArrayList<dataManagerdataBase> telNumInfoList = new ArrayList<dataManagerdataBase>();
-//
-//
-//                TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
-//                String imei = mTm.getDeviceId();
-//                String imsi = mTm.getSubscriberId();
-//
-//
-//                String tel = (String) (e.GetProperty("phone").GetPropertyContext());
-//                String passWord = (String) (e.GetProperty("password").GetPropertyContext());
-//                TelNumInfo telNumInfo = new TelNumInfo(tel, passWord, imei, imsi);
-//                telNumInfoList.add(telNumInfo);
-//                dm.resetdbData(TelNumInfo.class, telNumInfoList);
+                dataManager dm = dataManager.getInstance(mContext);
+                dm.addA_Class(TelNumInfo.class);
+                ArrayList<dataManagerdataBase> telNumInfoList = new ArrayList<dataManagerdataBase>();
+
+
+                TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
+                String imei = mTm.getDeviceId();
+                String imsi = mTm.getSubscriberId();
+
+
+                String tel = (String) (e.GetProperty("phone").GetPropertyContext());
+                String passWord = (String) (e.GetProperty("password").GetPropertyContext());
+                TelNumInfo telNumInfo = new TelNumInfo(tel, passWord, imei, imsi);
+                telNumInfoList.add(telNumInfo);
+                dm.resetdbData(TelNumInfo.class, telNumInfoList);
 
             }
             switch (state) {
@@ -91,17 +95,7 @@ public class stateMachine implements stateControlInterface {
                         ArrayList<Object> getDataList = dm.getAll(TelNumInfo.class);
 //
                         if (getDataList == null || getDataList.size() == 0) {
-//                        if (getDataList == null || getDataList.size() == 0) {
-//                            /*Intent intent = new Intent(mContext, ActivationActivity.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            mContext.startActivity(intent);*/
-//                            if(userDataStr.equals("unauto")) {
-//                                Intent intent = new Intent(mContext, ActivationActivity.class);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                mContext.startActivity(intent);
-//                            }else{
                                 setState(stateMachine.STATE_NORMAL);
-//                            }
                         } else {
                             TelNumInfo telNumInfo = (TelNumInfo) getDataList.get(0);
                             TelephonyManager mTm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
@@ -114,18 +108,15 @@ public class stateMachine implements stateControlInterface {
                                     && (imsi != null)
                                     && (imsi.equals(telNumInfo.getImsi()))
                                     ) {
+                                setState(stateMachine.STATE_NORMAL);
+                            } else{
                                 setState(stateMachine.STATE_NULL);
                             }
-                            else{
-                                    setState(stateMachine.STATE_NULL);
-                                }
                         }
                     }
                     if(eventName.equals("loginRequest")){
                         setState(stateMachine.STATE_WAIT_LOGIN);
                     }
-
-
                     break;
 
                 case stateMachine.STATE_WAIT_LOGIN:

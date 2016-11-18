@@ -9,11 +9,15 @@ import com.tmac.onsite.utils.AppManager;
 import com.tmac.onsite.utils.StatusBarUtil;
 import com.tmac.onsite.view.PhoneEditText;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -68,6 +72,10 @@ public class ActivationActivity extends Activity{
 		AppManager.getAppManager().addActivity(this);
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
 			StatusBarUtil.setTranslucent(this, 0);
+		}
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+				!= PackageManager.PERMISSION_GRANTED){
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 0);
 		}
 		SMSSDK.getInstance().initSdk(this);
 		SMSSDK.getInstance().setDebugMode(true);

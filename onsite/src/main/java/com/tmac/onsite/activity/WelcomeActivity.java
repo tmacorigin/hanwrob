@@ -7,13 +7,17 @@ import com.tmac.onsite.service.MainService;
 import com.tmac.onsite.service.ServiceWorkUtils;
 import com.tmac.onsite.utils.SharePreferens;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 
 import com.tmac.onsite.R;
@@ -58,6 +62,7 @@ public class WelcomeActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+
 		TestControl.saveDataToDB(this);
 		//StatusBarUtil.setTranslucent(this, 0);
 		SystemClock.sleep(1500);
