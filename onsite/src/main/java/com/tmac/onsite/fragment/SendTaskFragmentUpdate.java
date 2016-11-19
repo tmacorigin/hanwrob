@@ -47,7 +47,7 @@ public class SendTaskFragmentUpdate extends Fragment implements OnClickListener{
 	private TabPageIndicator indicator;
 	private ViewPager viewPager;
 	private static final String[] TITLE = new String[]{"还未施工", "已经完成", "未能完成", "已经撤销"};
-	public static boolean isSendShow = false;
+	public static boolean isSendShow = true;
 
 
 	private static UnreadInfoCallBack mUnreadInfoCallBack = null;
@@ -115,19 +115,19 @@ public class SendTaskFragmentUpdate extends Fragment implements OnClickListener{
 					NoFinishedFragment.isNoFinishedSend = false;
 					CancleFragment.isCancleSend = false;
 				}else if(position == 1) {
-					getUnreadInfo("2");
+					//getUnreadInfo("2");
 					NoBeginFragment.isNoBeginSend = false;
 					FinishedFragment.isFinishedSend = true;
 					NoFinishedFragment.isNoFinishedSend = false;
 					CancleFragment.isCancleSend = false;
 				}else if(position == 2) {
-					getUnreadInfo("3");
+					//getUnreadInfo("3");
 					NoBeginFragment.isNoBeginSend = false;
 					FinishedFragment.isFinishedSend = false;
 					NoFinishedFragment.isNoFinishedSend = true;
 					CancleFragment.isCancleSend = false;
 				}else if(position == 3) {
-					getUnreadInfo("4");
+					//getUnreadInfo("4");
 					NoBeginFragment.isNoBeginSend = false;
 					FinishedFragment.isFinishedSend = false;
 					NoFinishedFragment.isNoFinishedSend = false;

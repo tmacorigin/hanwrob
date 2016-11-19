@@ -74,7 +74,7 @@
     <string name="upload_end_img">上传施工后照片</string>
     <string name="get_img">获取照片</string>
     <string name="nobegin_task">还未施工任务</string>
-    <string name="task_finish">查看照片</string>
+    <string name="task_finish">施工完成</string>
     <string name="task_nofinish">未能完成</string>
     <string name="finish_task_dialog_message">确定该工单完成了吗？</string>
     <string name="ensure_construct_finish">确认施工已完成？</string>

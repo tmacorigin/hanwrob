@@ -152,6 +152,7 @@ public class NoBeginFragment extends Fragment {
 			getListData();
 			if(isNoBeginSend) {
 				unreadInfoNum = 0;
+				if(DBG) Log.d(TAG, "list size = " + allList.size());
 				for (int i = 0; i < allList.size(); i++) {
 					if (allList.get(i).getReadState().equals("0")) {
 						unreadInfoNum++;

@@ -87,6 +87,7 @@ public class NetworkReceiver extends BroadcastReceiver {
     }
 
     static public boolean isConnect() {
+        Log.d(TAG, "gprsConnect = " + gprsConnect + " wifiConnect = " + wifiConnect);
         if (gprsConnect || wifiConnect) {
             return true;
         } else {

@@ -161,7 +161,7 @@ public class NoFinishedFragment extends Fragment {
 						unreadInfoNum++;
 					}
 				}
-				mUnreadInfoCallBack.getUnreadInfoNum(unreadInfoNum);
+				//mUnreadInfoCallBack.getUnreadInfoNum(unreadInfoNum);
 			}
 		}else {
 			allList.add(new TaskBean("02", "ABGh675", "宝山区共康路124号万达", "2016-03-12", "0", "0"));

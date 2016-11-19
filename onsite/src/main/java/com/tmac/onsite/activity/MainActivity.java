@@ -148,12 +148,12 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		if(!TestControl.isTest){
 			initEvents();
 		}
-		getWifiState();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		getWifiState();
 		if(DBG) Log.d(TAG, "onResume");
 	}
 
@@ -163,8 +163,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 			unReadInfo = infoNum;
 			if(SendTaskFragmentUpdate.isSendShow) {
 				if(unReadInfo != 0){
+					if(DBG) Log.d(TAG, "unReadInfo = " + unReadInfo);
 					rb_send_task.showTextBadge(unReadInfo + "");
 				}else{
+					if(DBG) Log.d(TAG, "hiddenBadge");
 					rb_send_task.hiddenBadge();
 				}
 			}
@@ -236,7 +238,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 					vp.setCurrentItem(0);
 					// 隐藏提示				
 //					rb_rob_task.showTextBadge("12");
-					rb_send_task.hiddenBadge();
+					//rb_send_task.hiddenBadge();
 					break;
 				case R.id.rb_send_task:
 					SendTaskFragmentUpdate.isSendShow = true;
@@ -396,7 +398,20 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 	private void getWifiState(){
 
-		if(NetworkReceiver.isConnect()){
+		ConnectivityManager connectMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+		if (mobNetInfo.isConnected() || wifiNetInfo.isConnected()) {// unconnect network
+			dis_layout.setVisibility(GONE);
+			if(DBG) Log.d(TAG, "isConnected");
+		} else {
+			dis_layout.setVisibility(VISIBLE);
+			if(DBG) Log.d(TAG, "isDisConnected");
+		}
+
+
+		/*if(NetworkReceiver.isConnect()){
 			dis_layout.setVisibility(GONE);
 			//netWorkTv.setVisibility(GONE);
 			if(DBG) Log.d(TAG, "isConnected");
@@ -404,19 +419,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 			dis_layout.setVisibility(VISIBLE);
 			//netWorkTv.setVisibility(VISIBLE);
 			if(DBG) Log.d(TAG, "isDisConnected");
-		}
-
-		/*final ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-		if(connectivity != null){
-			NetworkInfo networkInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-			if(networkInfo.isConnected()){
-				netWorkTv.setVisibility(View.GONE);
-				if(DBG) Log.d(TAG, "isConnected");
-			}else {
-				netWorkTv.setVisibility(View.VISIBLE);
-				if(DBG) Log.d(TAG, "isDisConnected");
-			}
 		}*/
 
 	}
@@ -425,10 +427,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		/*AppManager.getAppManager().finishActivity(LoginActivity.class);
-		AppManager.getAppManager().finishActivity(IdentifyActivity.class);
-		AppManager.getAppManager().finishActivity(ActivationActivity.class);
-		AppManager.getAppManager().finishActivity(GuideActivity.class);*/
 		AppManager.getAppManager().finishAllActivity();
 	}
 }

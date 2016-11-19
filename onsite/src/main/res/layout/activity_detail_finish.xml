@@ -367,7 +367,7 @@
                 android:id="@+id/contrust_img_btn"
                 android:layout_width="@dimen/x476"
                 android:layout_height="match_parent"
-                android:text="@string/task_finish"
+                android:text="@string/construct_img"
                 android:textSize="@dimen/x48"
                 android:textColor="@color/white"
                 android:background="@color/common_yellow"
