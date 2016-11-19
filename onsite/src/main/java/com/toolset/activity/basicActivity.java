@@ -51,12 +51,18 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 			hc = new headerCtrl( zdnHeaderLayout , this );
 		}
 
+
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		if(NetworkReceiver.isConnect()){
 			hc.setIsVisiable(false);
 		}else {
 			hc.setIsVisiable(true);
 		}
-
 	}
 
 	@Override
