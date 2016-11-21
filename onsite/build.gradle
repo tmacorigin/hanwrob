@@ -59,13 +59,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'cn.jiguang:jpush:2.2.0'
+    compile 'com.github.linsentmac:BadgeView:1.0'
+    compile 'com.github.linsentmac:ViewPagerIndicator:1.0'
+    compile 'com.github.linsentmac:SlidingMenu:1.0'
+    compile 'com.github.linsentmac:PhotoSelect:1.0'
     testCompile 'junit:junit:4.12'
-    compile project(':badgeview_library')
-    compile project(':photopicker')
-    compile project(':slindingmenu_library')
     compile files('libs/universal-image-loader-1.8.6.jar')
     compile files('libs/mylib.jar')
-    compile project(':viewpagerindicator')
     compile files('libs/eventbus.jar')
     compile files('libs/xUtils-2.6.14.jar')
     compile files('libs/jpush-sdk-sms-v1.0.0.jar')

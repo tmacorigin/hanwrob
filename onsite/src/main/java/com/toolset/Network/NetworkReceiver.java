@@ -16,7 +16,7 @@ import de.greenrobot.event.EventBus;
 
 
 public class NetworkReceiver extends BroadcastReceiver {
-    private static final String TAG = "SystemEventReceiver";
+    private static final String TAG = "LC-SystemEventReceiver";
     private Context context;
     private static boolean gprsConnect;
     private static boolean wifiConnect;
@@ -26,6 +26,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 
     public NetworkReceiver(Context context) {
         this.context = context;
+        Log.d(TAG, "NetworkReceiver Init.....");
 
         ConnectivityManager connectMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -57,7 +58,7 @@ public class NetworkReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO Auto-generated method stub
-        Log.d("NetworkReceiver", "onReceive");
+        Log.d(TAG, "onReceive");
         ConnectivityManager connectMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -76,10 +77,10 @@ public class NetworkReceiver extends BroadcastReceiver {
         e.AddAExpProperty(new Property("internalMessageName", "netConnect"));
 
         if (gprsConnect || wifiConnect) {
-            Log.d("NetworkReceiver", "connect");
+            Log.d(TAG, "connect");
             e.AddAProperty(new Property("netState", "connect"));
         } else {
-            Log.d("NetworkReceiver", "disconnect");
+            Log.d(TAG, "disconnect");
             e.AddAProperty(new Property("netState", "disconnect"));
         }
         EventBus.getDefault().post(e); // dispatch message to anyone who care about it
@@ -105,7 +106,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 
     public void regist() {
         if (!registed) {
-            Log.d("NetworkReceiver", "registerReceiver");
+            Log.d(TAG, "registerReceiver");
             IntentFilter intentfilter = new IntentFilter();
             intentfilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
             context.registerReceiver(this, intentfilter);
@@ -115,7 +116,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 
     public void unregist() {
         if (registed) {
-            Log.d("NetworkReceiver", "unregisterReceiver");
+            Log.d(TAG, "unregisterReceiver");
 
             context.unregisterReceiver(this);
             registed = false;

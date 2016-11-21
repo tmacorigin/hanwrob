@@ -200,12 +200,13 @@ public class UploadImgActivity extends basicActivity implements CommonDialog.OnD
 			if (photos != null) {
 				selectedPhotos.clear();
 				selectedPhotos.addAll(photos);
+				if(photos.size() > 0){
+					btn_add_no_img.setVisibility(View.GONE);
+					btn_add_img.setVisibility(View.VISIBLE);
+				}
 			}
 
-			if(photos.size() > 0){
-				btn_add_no_img.setVisibility(View.GONE);
-				btn_add_img.setVisibility(View.VISIBLE);
-			}
+
 
 			if(cam_path != null){
 				selectedPhotos.add(cam_path);

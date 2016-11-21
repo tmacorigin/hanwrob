@@ -1,1 +1,1 @@
-include ':badgeview_library', ':photopicker', ':slindingmenu_library', ':onsite', ':viewpagerindicator'
+include ':onsite'

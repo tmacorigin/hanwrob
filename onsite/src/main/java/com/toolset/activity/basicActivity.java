@@ -1,6 +1,9 @@
 package com.toolset.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,9 @@ import de.greenrobot.event.EventBus;
 import com.tmac.onsite.R;
 import com.toolset.CommandParser.ExpCommandE;
 import com.toolset.Network.NetworkReceiver;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /*
 	实际使用的时候要集成basicActitity 并且在集成的activity中的layout文件中增加下面的内容
@@ -58,11 +64,12 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(NetworkReceiver.isConnect()){
+		/*if(NetworkReceiver.isConnect()){
 			hc.setIsVisiable(false);
 		}else {
 			hc.setIsVisiable(true);
-		}
+		}*/
+		getWifiState();
 	}
 
 	@Override
@@ -125,4 +132,20 @@ public class basicActivity extends Activity implements headerCtrl.menuStateChang
 		}
 
 	}
+
+	private void getWifiState(){
+
+		ConnectivityManager connectMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo mobNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		NetworkInfo wifiNetInfo = connectMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+		if (mobNetInfo.isConnected() || wifiNetInfo.isConnected()) {// unconnect network
+			hc.setIsVisiable(false);
+			if(DBG) Log.d(TAG, "isConnected");
+		} else {
+			hc.setIsVisiable(true);
+			if(DBG) Log.d(TAG, "isDisConnected");
+		}
+	}
+
 }

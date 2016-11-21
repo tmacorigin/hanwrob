@@ -82,7 +82,7 @@ public class MainService extends Service {
     @Override
     public void onCreate() {
         Log.i(TAG, "MainService onCreate");
-//        System.loadLibrary("locSDK7");
+//      System.loadLibrary("locSDK7");
         EventBus.getDefault().register(this);
         sm = new stateMachine( this );
         networkReceiver = new NetworkReceiver(this);
